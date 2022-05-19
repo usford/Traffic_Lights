@@ -30,20 +30,23 @@ namespace Traffic_Lights {
             catch {
                 Console.WriteLine("Ошибка в чтении схемы");
             }
-
-            var mySQL = new MySQLUtility(this);
+            var dataConnection = ExcelUtility.GetConnection();
+            var mySQL = new MySQLUtility(this, dataConnection);
             mySQL.RunConnection();
         }
         //Нажатие на любую кнопку
         private void ButtonClick(object sender, RoutedEventArgs e) {
             string name = (e.OriginalSource as Button)!.Name;
-            Console.WriteLine(name);
+            var dataConnection = ExcelUtility.GetConnection();
+            var mySQL = new MySQLUtility(this, dataConnection);
+            mySQL.InsertStateTable2(name);
         }
         //Изменение элементов, где name = наименование элемента, а elementCode его код в excel файле
         public void ChangeElement(string? name, string? elementCode) {
             if (sp_buttons.FindName(name) is not null) {
                 var svgElement = sp_buttons.FindName(name) as SharpVectors.Converters.SvgViewbox;
-                Console.WriteLine("Изменение элемента: " + svgElement.Name);
+                (svgElement.Parent as Button).Name = elementCode;
+                Console.WriteLine("Изменение элемента: " + (svgElement.Parent as Button).Name);
                 string path = pathDirectory + @"Элементы схемы\" + elementCode + ".svg";
                 svgElement!.StreamSource = new StreamReader(path).BaseStream;
             }          

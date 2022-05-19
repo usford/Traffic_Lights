@@ -33,13 +33,13 @@
             <StackPanel Width="11856" Height="8847">
                 <svgc:SvgViewbox ButtonBase.Click="ButtonClick" x:Name="svg_scheme" Margin="0,0,0,215" Height="6049" />
                 <StackPanel x:Name="sp_buttons" Orientation="Horizontal" HorizontalAlignment="Center" Margin="1400,0,0,0">
-                    <Button Style="{StaticResource Buttons}" x:Name="btn_red">
+                    <Button Style="{StaticResource Buttons}">
                         <svgc:SvgViewbox x:Name="КН1" Height="619" Width="1733" />
                     </Button>
-                    <Button Style="{StaticResource Buttons}" x:Name="btn_yellow">
+                    <Button Style="{StaticResource Buttons}">
                         <svgc:SvgViewbox x:Name="КН2" Height="619" Width="1733" Margin="500,0,500,0"/>
                     </Button>
-                    <Button Style="{StaticResource Buttons}" x:Name="btn_green">
+                    <Button Style="{StaticResource Buttons}">
                         <svgc:SvgViewbox x:Name="КН3" Height="619" Width="1733" />
                     </Button>
                 </StackPanel>

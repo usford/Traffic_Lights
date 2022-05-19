@@ -52,7 +52,7 @@ namespace Traffic_Lights {
                 return elements;
             }            
         }
-        //Логика состояний элементов из excel файла Логика
+        //Логика состояний элементов в файле логика.xlsx
         public static List<ElementInfoExcel> GetLogicElement() {
             using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}Excel файлы\Логика.xlsx")) {
                 var worksheet = workbook.Worksheet(3);
@@ -80,7 +80,77 @@ namespace Traffic_Lights {
                     }
                     indexStates++;
 
-                    var element = new ElementInfoExcel(name, code, cell, states);
+                    var element = new ElementInfoExcel(name, cell, states, code: code);
+                    elements.Add(element);
+                }
+
+                return elements;
+            }
+        }
+        //Логика связий состояний ячеек в файле логика.xlsx
+        public static List<ElementInfoExcel> GetLogicRelations() {
+            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}Excel файлы\Логика.xlsx")) {
+                var worksheet = workbook.Worksheet(2);
+                var rows = worksheet.RangeUsed().RowsUsed();
+                var columns = worksheet.RangeUsed().ColumnsUsed();
+                var elements = new List<ElementInfoExcel>();
+
+                int counterRows = 0;
+                int indexStates = 6;
+                foreach (var row in rows) {
+                    if (counterRows++ < 5) continue;
+                    var states = new Dictionary<string[], int?>();
+                    string? name = Convert.ToString(row.Cell(3).Value);
+                    string[] cell = Convert.ToString(row.Cell(4).Value)!.Split(" ");
+                    int logicState = Convert.ToInt32(row.Cell(5).Value);
+
+                    int counterColumns = 0;
+                    foreach (var column in columns) {
+                        if (counterColumns++ < 7) continue;
+                        if ((column.Cell(indexStates).Value != "")) {
+                            string[] cellState = Convert.ToString(column.Cell(4).Value)!.Split(" ");  
+                            int? state = Convert.ToInt32(column.Cell(indexStates).Value);
+                            states.Add(cellState, state);
+                        }
+                    }
+                    indexStates++;
+
+                    var element = new ElementInfoExcel(name, cell, states, logicState: logicState);
+                    elements.Add(element);
+                }
+
+                return elements;
+            }
+        }
+        //Логика состояний кнопок управления в файле логика.xlsx
+        public static List<ElementInfoExcel> GetStateButtons() {
+            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}Excel файлы\Логика.xlsx")) {
+                var worksheet = workbook.Worksheet(1);
+                var rows = worksheet.RangeUsed().RowsUsed();
+                var columns = worksheet.RangeUsed().ColumnsUsed();
+                var elements = new List<ElementInfoExcel>();
+
+                int counterRows = 0;
+                int indexStates = 6;
+                foreach (var row in rows) {
+                    if (counterRows++ < 5) continue;
+                    var states = new Dictionary<string[], int?>();
+                    string? name = Convert.ToString(row.Cell(2).Value);
+                    string? code = Convert.ToString(row.Cell(3).Value);
+                    string[] cell = Convert.ToString(row.Cell(5).Value)!.Split(" ");
+
+                    int counterColumns = 0;
+                    foreach (var column in columns) {
+                        if (counterColumns++ < 7) continue;
+                        if ((column.Cell(indexStates).Value != "")) {
+                            string[] cellState = Convert.ToString(column.Cell(4).Value)!.Split(" ");
+                            int? state = Convert.ToInt32(column.Cell(indexStates).Value);
+                            states.Add(cellState, state);
+                        }
+                    }
+                    indexStates++;
+
+                    var element = new ElementInfoExcel(name, cell, states, code: code);
                     elements.Add(element);
                 }
 
@@ -95,13 +165,16 @@ namespace Traffic_Lights {
             private string? _code;
             public string[] Cell { get => _cell; }
             private string[] _cell;
+            public int? LogicState { get => _logicState; }
+            private int? _logicState;
             public Dictionary<string[], int?> States { get => _states; }
             private Dictionary<string[], int?> _states;
-            public ElementInfoExcel(string? name, string? code, string[] cell, Dictionary<string[], int?> states) {
+            public ElementInfoExcel(string? name, string[] cell, Dictionary<string[], int?> states, string? code = null, int? logicState = null) {
                 _name = name;
                 _code = code;
                 _cell = cell;
                 _states = states;
+                _logicState = logicState;
             }
         }
         //Элементы схемы в бд

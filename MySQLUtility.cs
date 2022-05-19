@@ -10,19 +10,19 @@ using System.Windows.Controls;
 namespace Traffic_Lights {
     class MySQLUtility {
         MainWindow mainWindow { get; set; }
+        ExcelUtility.DataConnectionMySQL dataConnection { get; set; }
+        MySqlConnection connection { get; set; }
         //Запуск работы с бд MySQL
-        public MySQLUtility(MainWindow mainWindow) {
+        public MySQLUtility(MainWindow mainWindow, ExcelUtility.DataConnectionMySQL dataConnection) {
             this.mainWindow = mainWindow;
+            this.dataConnection = dataConnection;
+            connection = GetDBConnection(dataConnection);
         }
-        public void RunConnection() {
-            ExcelUtility.DataConnectionMySQL dataConnection = ExcelUtility.GetConnection();
-            MySqlConnection connection = GetDBConnection(dataConnection);
-            
+        public void RunConnection() {       
             connection.Open();
-
             try {
-                CreateDB(connection, dataConnection);
-                CheckElement(connection, dataConnection);
+                CreateDB();
+                CheckElement();
             }
             catch (Exception ex) {
                 Console.WriteLine($"Error: {ex}");
@@ -33,7 +33,7 @@ namespace Traffic_Lights {
             }
         }
         //Создание базы данных если её нет (с таблицами)
-        void CreateDB(MySqlConnection connection, ExcelUtility.DataConnectionMySQL dataConnection) {
+        void CreateDB() {
             var cmd = new MySqlCommand();
             cmd.Connection = connection;
 
@@ -91,8 +91,8 @@ namespace Traffic_Lights {
             }
             
         }
-        //Проверка элементов согласно логике в excel файле
-        void CheckElement(MySqlConnection connection, ExcelUtility.DataConnectionMySQL dataConnection) {
+        //Проверка элементов согласно логике в логика.xlsx
+        void CheckElement() {
             Console.WriteLine("Проверка элементов...");
             var cmd = new MySqlCommand();
             cmd.Connection = connection;
@@ -102,7 +102,7 @@ namespace Traffic_Lights {
             foreach (var element in elements) {
                 bool check = true;
                 foreach (var state in element.States) {
-                    cmd.CommandText = $"select state from {dataConnection.Database}.table1 Where id = '{state.Key[0]}'";
+                    cmd.CommandText = $"select state from {dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
                     int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
 
                     if (stateCheck != state.Value) {
@@ -113,6 +113,46 @@ namespace Traffic_Lights {
                 //Если логика верна, изменяем элемент согласно ей  
                 if (check) mainWindow.ChangeElement(element.Name, element.Code);
             }
+        }
+        //Проверка элементов согласно логики связей состояний ячеек в логика.xlsx
+        void CheckRelationsElement() {
+            var cmd = new MySqlCommand();
+            cmd.Connection = connection;
+
+            List<ExcelUtility.ElementInfoExcel> elements = ExcelUtility.GetLogicRelations();
+            foreach (var element in elements) {
+                bool check = true;
+                foreach (var state in element.States) {
+                    cmd.CommandText = $"select state from {dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (stateCheck != state.Value) {
+                        check = false;
+                        break;
+                    }
+                }
+                //Если логика верна, изменяем элемент согласно ей  
+                cmd.CommandText = $"update {dataConnection.Database}.{element.Cell[1]} set state = {Convert.ToInt32(check)} " +
+                        $"Where id = '{element.Cell[0]}' ";
+                cmd.ExecuteNonQuery();
+            }
+        }
+        //Вставка значения в таблицу 2 по нажатию кнопки
+        public void InsertStateTable2(string code) {
+            List<ExcelUtility.ElementInfoExcel> elements = ExcelUtility.GetStateButtons();
+            var cmd = new MySqlCommand();
+            connection.Open();
+            cmd.Connection = connection;
+
+            foreach (var element in elements.Where(e => e.Code == code)) {
+                foreach(var state in element.States) {
+                    cmd.CommandText = $"update {dataConnection.Database}.{state.Key[1]} set state = {state.Value} " +
+                        $"Where id = '{state.Key[0]}' ";
+                    //Console.WriteLine(cmd.CommandText);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            CheckRelationsElement();
         }
         //Подключение к бд MySQL
         MySqlConnection GetDBConnection(ExcelUtility.DataConnectionMySQL dataConnection) {
