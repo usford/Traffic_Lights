@@ -84,6 +84,27 @@ namespace Traffic_Lights {
                     cmd.ExecuteNonQuery();
                 }
             }
+            CheckElement(connection, dataconnection);
+        }
+        //Проверка элемента согласно логике в excel файле
+        private static void CheckElement(MySqlConnection connection, ExcelUtility.DataConnectionMySQL dataconnection) {
+            Console.WriteLine("Проверка элементов...");
+            var cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            
+            List<ExcelUtility.ElementInfoExcel> elements = ExcelUtility.GetLogicElement();
+
+            foreach (var element in elements) {
+                foreach (var state in element.States) {
+                    cmd.CommandText = $"select state from {dataconnection.Database}.table1 Where id = '{state.Key[0]}'";
+                    int check = Convert.ToInt32(cmd.ExecuteScalar());
+                    //Если логика верна, изменяем элемент согласно ей
+                    if (check == state.Value) {
+                        Console.WriteLine(element.Name + " " + element.Code);
+                        //new MainWindow().ChangeElement(element.Name, element.Code);
+                    }
+                }
+            }
         }
         //Подключение к бд MySQL
         static MySqlConnection GetDBConnection(ExcelUtility.DataConnectionMySQL dataConnection) {

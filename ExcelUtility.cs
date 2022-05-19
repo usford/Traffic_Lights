@@ -25,35 +25,86 @@ namespace Traffic_Lights {
             }
         }
         //Взятие элементов из excel файла с шаблоном бд
-        public static List<ElementInfo> GetElementsFromExcel(int index) {
+        public static List<ElementInfoDB> GetElementsFromExcel(int index) {
             using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}Excel файлы\Шаблон бд.xlsx")) {
                 var worksheet = workbook.Worksheet(1);
-                var elements = new List<ElementInfo>();
-                var rows = worksheet.RangeUsed().ColumnsUsed();
+                var elements = new List<ElementInfoDB>();
+                var columns = worksheet.RangeUsed().ColumnsUsed();
 
                 int counter = 0;
-                foreach(var row in rows) {
+                foreach(var column in columns) {
                     if (counter++ == 0) continue;
 
-                    var cellID = row.Cell(index).Value;
-                    var cellName = row.Cell(index + 1).Value;
-                    var cellState = row.Cell(index + 2).Value;
-                    var cellComment = row.Cell(index + 3).Value;
+                    var cellID = column.Cell(index).Value;
+                    var cellName = column.Cell(index + 1).Value;
+                    var cellState = column.Cell(index + 2).Value;
+                    var cellComment = column.Cell(index + 3).Value;
 
                     string? id = (cellID != "") ? Convert.ToString(cellID) : null;
                     string? name = (cellName != "") ? Convert.ToString(cellName) : null;
                     int? state = (cellState != "") ? Convert.ToInt32(cellState) : null;
                     string? comment = (cellComment != "") ? Convert.ToString(cellComment) : null;
 
-                    var element = new ElementInfo(id, name, state, comment);
+                    var element = new ElementInfoDB(id, name, state, comment);
                     elements.Add(element);
                 }
 
                 return elements;
             }            
         }
-        //Элементы схемы
-        public class ElementInfo {
+        //Логика состояний элементов из excel файла Логика
+        public static List<ElementInfoExcel> GetLogicElement() {
+            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}Excel файлы\Логика.xlsx")) {
+                var worksheet = workbook.Worksheet(3);
+                var rows = worksheet.RangeUsed().RowsUsed();
+                var columns = worksheet.RangeUsed().ColumnsUsed();
+                var elements = new List<ElementInfoExcel>();
+
+                int counterRows = 0;
+                int indexStates = 6;
+                foreach(var row in rows) {
+                    if (counterRows++ < 5) continue;
+                    var states = new Dictionary<string[], int?>();
+                    string? name = Convert.ToString(row.Cell(2).Value);
+                    string? code = Convert.ToString(row.Cell(3).Value);
+                    string[] cell = Convert.ToString(row.Cell(5).Value)!.Split(" ");
+
+                    int counterColumns = 0;
+                    foreach (var column in columns) {
+                        if (counterColumns++ < 8) continue;
+                        if ((column.Cell(indexStates).Value != "")) {
+                            string[] cellState = Convert.ToString(column.Cell(4).Value)!.Split(" ");
+                            int? state = Convert.ToInt32(column.Cell(indexStates).Value);
+                            states.Add(cellState, state);
+                        }     
+                    }
+                    indexStates++;
+
+                    var element = new ElementInfoExcel(name, code, cell, states);
+                    elements.Add(element);
+                }
+
+                return elements;
+            }
+        }
+        public class ElementInfoExcel {
+            public string? Name { get => _name; }
+            private string? _name;
+            public string? Code { get => _code; }
+            private string? _code;
+            public string[] Cell { get => _cell; }
+            private string[] _cell;
+            public Dictionary<string[], int?> States { get => _states; }
+            private Dictionary<string[], int?> _states;
+            public ElementInfoExcel(string? name, string? code, string[] cell, Dictionary<string[], int?> states) {
+                _name = name;
+                _code = code;
+                _cell = cell;
+                _states = states;
+            }
+        }
+        //Элементы схемы в бд
+        public class ElementInfoDB {
             public string? ID { get => _id; }
             private string? _id;
             public string? Name { get => _name; }
@@ -63,7 +114,7 @@ namespace Traffic_Lights {
             public string? Comment { get => _comment; }
             private string? _comment;
 
-            public ElementInfo(string? id, string? name, int? state, string? comment) {
+            public ElementInfoDB(string? id, string? name, int? state, string? comment) {
                 _id = id;
                 _name = name;
                 _state = state;

@@ -27,22 +27,27 @@ namespace Traffic_Lights {
             string buttonRedPath = pathDirectory + @"Элементы схемы\buttonOFF_red.svg";
             string buttonYellowPath = pathDirectory + @"Элементы схемы\buttonOFF_yellow.svg";
             string buttonGreenPath = pathDirectory + @"Элементы схемы\buttonOFF_green.svg";
-
-            try {
+           
+            try {  
                 svg_scheme.StreamSource = new StreamReader(schemePath).BaseStream;
-                svg_buttonRed.StreamSource = new StreamReader(buttonRedPath).BaseStream;
-                svg_buttonYellow.StreamSource = new StreamReader(buttonYellowPath).BaseStream;
-                svg_buttonGreen.StreamSource = new StreamReader(buttonGreenPath).BaseStream;
+                КН1.StreamSource = new StreamReader(buttonRedPath).BaseStream;
+                КН2.StreamSource = new StreamReader(buttonYellowPath).BaseStream;
+                КН3.StreamSource = new StreamReader(buttonGreenPath).BaseStream;
             }
             catch {
                 Console.WriteLine("Ошибка в чтении файлов");
             }
-
-            
         }
+        //Нажатие на любую кнопку
         private void ButtonClick(object sender, RoutedEventArgs e) {
             string name = (e.OriginalSource as Button)!.Name;
             Console.WriteLine(name);
+        }
+        //Изменение элементов, где name = наименование элемента, а elementCode его код в excel файле
+        public void ChangeElement(string? name, string? elementCode) {
+            var svgElement = sp_buttons.FindName(name) as SharpVectors.Converters.SvgViewbox;
+            string path = pathDirectory + @"Элементы схемы\" + elementCode + ".svg";
+            svgElement!.StreamSource = new StreamReader(path).BaseStream;
         }
     }
 }
