@@ -1,7 +1,7 @@
 ﻿Traffic_Lights
 1.0.0.0
 
-winexe
+exe
 C#
 .cs
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\
@@ -12,8 +12,8 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\VS projects\Traffic_Lights\App.xaml
 11407045341
 
-5-1359794825
-1941142463650
+7-1041090989
+214108931432
 MainWindow.xaml;
 
 False

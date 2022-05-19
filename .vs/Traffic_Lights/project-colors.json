@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b16e9df1-2a6f-44bb-9ca0-68ab645cd3a0": {
+      "ProjectGuid": "b16e9df1-2a6f-44bb-9ca0-68ab645cd3a0",
+      "DisplayName": "Traffic_Lights",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

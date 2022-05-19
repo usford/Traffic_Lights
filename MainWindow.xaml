@@ -4,9 +4,45 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Traffic_Lights"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="900" Width="1200">
+    <Window.Resources>
+        <Style x:Key="Buttons" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Snow"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Snow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
-
+        <Viewbox Stretch="Uniform">
+            <StackPanel Width="11856" Height="8847">
+                <svgc:SvgViewbox ButtonBase.Click="ButtonClick" x:Name="svg_scheme" Margin="0,0,0,215" Height="6049" />
+                <StackPanel x:Name="sp_buttons" Orientation="Horizontal" HorizontalAlignment="Center" Margin="1400,0,0,0">
+                    <Button Style="{StaticResource Buttons}" x:Name="btn_red">
+                        <svgc:SvgViewbox x:Name="svg_buttonRed" Height="619" Width="1733" />
+                    </Button>
+                    <Button Style="{StaticResource Buttons}" x:Name="btn_yellow">
+                        <svgc:SvgViewbox x:Name="svg_buttonYellow" Height="619" Width="1733" Margin="500,0,500,0"/>
+                    </Button>
+                    <Button Style="{StaticResource Buttons}" x:Name="btn_green">
+                        <svgc:SvgViewbox x:Name="svg_buttonGreen" Height="619" Width="1733" />
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Viewbox>
     </Grid>
 </Window>
