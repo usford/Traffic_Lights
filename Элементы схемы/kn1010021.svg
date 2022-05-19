@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   width="1040"
-   height="608"
+   width="117.94843"
+   height="37.902916"
+   viewBox="0 0 31.207621 10.02836"
    version="1.1"
-   id="svg18"
-   sodipodi:docname="kn1010021.svg"
+   id="svg22"
+   sodipodi:docname="buttonON_yellow.svg"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs26" />
   <sodipodi:namedview
-     id="namedview20"
+     id="namedview24"
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
@@ -20,74 +22,35 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      showgrid="false"
-     inkscape:zoom="1.0442308"
-     inkscape:cx="519.52118"
-     inkscape:cy="304.05157"
+     inkscape:zoom="1.7902005"
+     inkscape:cx="37.425976"
+     inkscape:cy="-18.154392"
      inkscape:window-width="1920"
      inkscape:window-height="1057"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg18" />
-  <defs
-     id="defs8">
-    <linearGradient
-       id="a"
-       inkscape:swatch="solid">
-      <stop
-         offset="0"
-         style="stop-color:#333;stop-opacity:.05098039"
-         id="stop2" />
-    </linearGradient>
-    <linearGradient
-       gradientTransform="matrix(1.99548 0 0 .9887 56.218 -2.424)"
-       gradientUnits="userSpaceOnUse"
-       y2="556.735"
-       x2="116.058"
-       y1="556.735"
-       x1="56.476"
-       id="b"
-       xlink:href="#a" />
-    <linearGradient
-       gradientTransform="matrix(1.99548 0 0 .9887 206.831 -.696)"
-       gradientUnits="userSpaceOnUse"
-       y2="556.735"
-       x2="116.058"
-       y1="556.735"
-       x1="56.476"
-       id="c"
-       xlink:href="#a" />
-    <linearGradient
-       gradientTransform="matrix(1.99548 0 0 .9887 355.874 .011)"
-       gradientUnits="userSpaceOnUse"
-       y2="556.735"
-       x2="116.058"
-       y1="556.735"
-       x1="56.476"
-       id="d"
-       xlink:href="#a" />
-  </defs>
+     inkscape:current-layer="svg22" />
   <g
-     style="display:inline"
-     id="kn1010021">
-    <desc
-       id="desc22">button</desc>
+     transform="translate(-54.55869,-138.03696)"
+     id="g8">
     <rect
-       style="display:inline;fill:#333;fill-opacity:.37185932;stroke:#000;stroke-width:2.24738073;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:.94634148"
-       width="115.703"
-       height="35.655"
-       x="321.124"
-       y="531.922"
-       ry="1.363"
-       id="rect10" />
+       ry="0.361"
+       y="138.334"
+       x="54.855999"
+       height="9.434"
+       width="30.613001"
+       style="display:inline;fill:#333333;fill-opacity:0.396985;stroke:#000000;stroke-width:0.594619;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.946341"
+       id="rect2" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:400;font-size:10.66666698px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000;fill-opacity:1;stroke:none"
-       x="357.446"
-       y="551.609"
-       id="text14"><tspan
-         x="357.446"
-         y="551.609"
-         id="tspan12">ВКЛ</tspan></text>
+       style="font-style:normal;font-weight:400;font-size:2.82223px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="66.884003"
+       y="144.04201"
+       id="text6"><tspan
+         x="66.884003"
+         y="144.04201"
+         style="stroke-width:0.264583"
+         id="tspan4">ВКЛ</tspan></text>
   </g>
 </svg>

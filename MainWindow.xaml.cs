@@ -21,22 +21,18 @@ namespace Traffic_Lights {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();     
             sp_buttons.AddHandler(Button.ClickEvent, new RoutedEventHandler(ButtonClick)); //Обработка нажатий всех кнопок
-            MySQLUtility.RunConnection();
+            
 
             string schemePath = pathDirectory + @"Элементы схемы\Светофор.svg";
-            string buttonRedPath = pathDirectory + @"Элементы схемы\buttonOFF_red.svg";
-            string buttonYellowPath = pathDirectory + @"Элементы схемы\buttonOFF_yellow.svg";
-            string buttonGreenPath = pathDirectory + @"Элементы схемы\buttonOFF_green.svg";
-           
             try {  
                 svg_scheme.StreamSource = new StreamReader(schemePath).BaseStream;
-                КН1.StreamSource = new StreamReader(buttonRedPath).BaseStream;
-                КН2.StreamSource = new StreamReader(buttonYellowPath).BaseStream;
-                КН3.StreamSource = new StreamReader(buttonGreenPath).BaseStream;
             }
             catch {
-                Console.WriteLine("Ошибка в чтении файлов");
+                Console.WriteLine("Ошибка в чтении схемы");
             }
+
+            var mySQL = new MySQLUtility(this);
+            mySQL.RunConnection();
         }
         //Нажатие на любую кнопку
         private void ButtonClick(object sender, RoutedEventArgs e) {
@@ -45,9 +41,12 @@ namespace Traffic_Lights {
         }
         //Изменение элементов, где name = наименование элемента, а elementCode его код в excel файле
         public void ChangeElement(string? name, string? elementCode) {
-            var svgElement = sp_buttons.FindName(name) as SharpVectors.Converters.SvgViewbox;
-            string path = pathDirectory + @"Элементы схемы\" + elementCode + ".svg";
-            svgElement!.StreamSource = new StreamReader(path).BaseStream;
+            if (sp_buttons.FindName(name) is not null) {
+                var svgElement = sp_buttons.FindName(name) as SharpVectors.Converters.SvgViewbox;
+                Console.WriteLine("Изменение элемента: " + svgElement.Name);
+                string path = pathDirectory + @"Элементы схемы\" + elementCode + ".svg";
+                svgElement!.StreamSource = new StreamReader(path).BaseStream;
+            }          
         }
     }
 }

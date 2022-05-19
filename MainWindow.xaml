@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Traffic_Lights"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1200">
+        Title="MainWindow" Height="900" Width="1200"
+        x:Name="JOPA">
     <Window.Resources>
         <Style x:Key="Buttons" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Snow"/>

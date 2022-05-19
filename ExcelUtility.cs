@@ -87,6 +87,7 @@ namespace Traffic_Lights {
                 return elements;
             }
         }
+        //Элементы схемы в excel
         public class ElementInfoExcel {
             public string? Name { get => _name; }
             private string? _name;
