@@ -46,7 +46,7 @@ namespace Traffic_Lights {
             if (sp_buttons.FindName(name) is not null) {
                 var svgElement = sp_buttons.FindName(name) as SharpVectors.Converters.SvgViewbox;
                 (svgElement.Parent as Button).Name = elementCode;
-                Console.WriteLine("Изменение элемента: " + (svgElement.Parent as Button).Name);
+                //Console.WriteLine("Изменение элемента: " + (svgElement.Parent as Button).Name);
                 string path = pathDirectory + @"Элементы схемы\" + elementCode + ".svg";
                 svgElement!.StreamSource = new StreamReader(path).BaseStream;
             }          
