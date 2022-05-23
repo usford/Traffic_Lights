@@ -24,8 +24,14 @@ namespace Traffic_Lights {
             
 
             string schemePath = pathDirectory + @"Элементы схемы\Светофор.svg";
+            //string lnPath1 = pathDirectory + @"Элементы схемы\el1010042.svg";
+            //string lnPath2 = pathDirectory + @"Элементы схемы\el1010052.svg";
+            //string lnPath3 = pathDirectory + @"Элементы схемы\el1010062.svg";
             try {  
                 svg_scheme.StreamSource = new StreamReader(schemePath).BaseStream;
+                //лН1.StreamSource = new StreamReader(lnPath1).BaseStream;
+                //лН2.StreamSource = new StreamReader(lnPath2).BaseStream;
+                //лН3.StreamSource = new StreamReader(lnPath3).BaseStream;
             }
             catch {
                 Console.WriteLine("Ошибка в чтении схемы");
@@ -45,7 +51,7 @@ namespace Traffic_Lights {
         public void ChangeElement(string? name, string? elementCode) {
             if (sp_buttons.FindName(name) is not null) {
                 var svgElement = sp_buttons.FindName(name) as SharpVectors.Converters.SvgViewbox;
-                (svgElement.Parent as Button).Name = elementCode;
+                if (svgElement.Parent as Button != null) (svgElement.Parent as Button).Name = elementCode;
                 //Console.WriteLine("Изменение элемента: " + (svgElement.Parent as Button).Name);
                 string path = pathDirectory + @"Элементы схемы\" + elementCode + ".svg";
                 svgElement!.StreamSource = new StreamReader(path).BaseStream;

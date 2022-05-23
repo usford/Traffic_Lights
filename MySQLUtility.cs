@@ -48,7 +48,7 @@ namespace Traffic_Lights {
                 cmd.CommandText = $"select count(*) from {dataConnection.Database}.table1_changes";
                 int checkTable1 = Convert.ToInt32(cmd.ExecuteScalar());
                 if (checkTable1 > 0) {
-                    Console.WriteLine("Данные поменялись");
+                    Console.WriteLine("Данные поменялись в table1");
                     CheckElement();
                     cmd.CommandText = $"delete from {dataConnection.Database}.table1_changes";
                     cmd.ExecuteNonQuery();
@@ -57,7 +57,7 @@ namespace Traffic_Lights {
                 cmd.CommandText = $"select count(*) from {dataConnection.Database}.table2_changes";
                 int checkTable2 = Convert.ToInt32(cmd.ExecuteScalar());
                 if (checkTable2 > 0) {
-                    Console.WriteLine("Данные поменялись");
+                    Console.WriteLine("Данные поменялись в table2");
                     CheckRelationsElement();
                     cmd.CommandText = $"delete from {dataConnection.Database}.table2_changes";
                     cmd.ExecuteNonQuery();

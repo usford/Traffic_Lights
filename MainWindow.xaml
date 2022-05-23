@@ -29,11 +29,15 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Viewbox Stretch="Uniform">
+        <Viewbox>
             <StackPanel Width="11856" Height="8847">
-                <svgc:SvgViewbox ButtonBase.Click="ButtonClick" x:Name="svg_scheme" Margin="0,0,0,215" Height="6049" />
-                <StackPanel x:Name="sp_buttons" Orientation="Horizontal" HorizontalAlignment="Center" Margin="1400,0,0,0">
-                    <Button Style="{StaticResource Buttons}">
+                <Canvas>
+                <svgc:SvgViewbox x:Name="svg_scheme" Height="6049" />
+                    <svgc:SvgViewbox x:Name="лН1" Margin="2060,60,0,0" Height="4800" Width="6650"/>
+                    <svgc:SvgViewbox x:Name="лН2" Margin="2130,800,0,0" Height="4800" Width="6650"/>
+                    <svgc:SvgViewbox x:Name="лН3" Margin="1750,930,0,0" Height="5000" Width="7000"/>
+                    <StackPanel Canvas.Top="5800" Canvas.Left="1000" x:Name="sp_buttons" Orientation="Horizontal" HorizontalAlignment="Center" Margin="1400,0,0,0">
+                    <Button  Style="{StaticResource Buttons}" Cursor="Hand">
                         <svgc:SvgViewbox x:Name="КН1" Height="619" Width="1733" />
                     </Button>
                     <Button Style="{StaticResource Buttons}">
@@ -43,6 +47,7 @@
                         <svgc:SvgViewbox x:Name="КН3" Height="619" Width="1733" />
                     </Button>
                 </StackPanel>
+                </Canvas>
             </StackPanel>
         </Viewbox>
     </Grid>
