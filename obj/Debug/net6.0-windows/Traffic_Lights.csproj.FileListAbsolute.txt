@@ -13,11 +13,9 @@ E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\SharpVectors.Rendering.Gd
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\SharpVectors.Rendering.Wpf.dll
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\SharpVectors.Runtime.Wpf.dll
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\Traffic_Lights.csproj.AssemblyReference.cache
-E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\MainWindow.g.cs
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\App.g.cs
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\Traffic_Lights_MarkupCompile.cache
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\Traffic_Lights_MarkupCompile.lref
-E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\MainWindow.baml
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\Traffic_Lights.g.resources
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\Traffic_Lights.GeneratedMSBuildEditorConfig.editorconfig
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\Traffic_Lights.AssemblyInfoInputs.cache
@@ -39,3 +37,5 @@ E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\K4os.Hash.xxHash.dll
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\MySql.Data.dll
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\Ubiety.Dns.Core.dll
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\ZstdNet.dll
+E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\MainWindow.g.cs
+E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\MainWindow.baml

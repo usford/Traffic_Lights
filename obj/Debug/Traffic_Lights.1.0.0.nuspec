@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Traffic_Lights</id>
+    <version>1.0.0</version>
+    <authors>Traffic_Lights</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net6.0-windows7.0">
+        <dependency id="ClosedXML" version="0.95.4" exclude="Build,Analyzers" />
+        <dependency id="MySql.Data" version="8.0.29" exclude="Build,Analyzers" />
+        <dependency id="SharpVectors" version="1.7.7" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net6.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\Traffic_Lights.runtimeconfig.json" target="lib\net6.0-windows7.0\Traffic_Lights.runtimeconfig.json" />
+    <file src="E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\Traffic_Lights.dll" target="lib\net6.0-windows7.0\Traffic_Lights.dll" />
+  </files>
+</package>

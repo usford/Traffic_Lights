@@ -17,6 +17,7 @@ using System.IO;
 namespace Traffic_Lights {
     public partial class MainWindow : Window {
         public static string pathDirectory = @"E:\VS projects\Traffic_Lights\"; //Директория программы
+        //public static string pathDirectory = @"C:\Traffic_Lights\"; //Для установщика
         public MainWindow() {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();     
@@ -24,14 +25,8 @@ namespace Traffic_Lights {
             
 
             string schemePath = pathDirectory + @"Элементы схемы\Светофор.svg";
-            //string lnPath1 = pathDirectory + @"Элементы схемы\el1010042.svg";
-            //string lnPath2 = pathDirectory + @"Элементы схемы\el1010052.svg";
-            //string lnPath3 = pathDirectory + @"Элементы схемы\el1010062.svg";
             try {  
                 svg_scheme.StreamSource = new StreamReader(schemePath).BaseStream;
-                //лН1.StreamSource = new StreamReader(lnPath1).BaseStream;
-                //лН2.StreamSource = new StreamReader(lnPath2).BaseStream;
-                //лН3.StreamSource = new StreamReader(lnPath3).BaseStream;
             }
             catch {
                 Console.WriteLine("Ошибка в чтении схемы");
