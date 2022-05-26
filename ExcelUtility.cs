@@ -55,13 +55,14 @@ namespace Traffic_Lights {
         //Логика состояний элементов в файле логика.xlsx
         public static List<ElementInfoExcel> GetLogicElement() {
             using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}Excel файлы\Логика.xlsx")) {
-                var worksheet = workbook.Worksheet(3);
+                var worksheet = workbook.Worksheet(4);
                 var rows = worksheet.RangeUsed().RowsUsed();
                 var columns = worksheet.RangeUsed().ColumnsUsed();
                 var elements = new List<ElementInfoExcel>();
 
                 int counterRows = 0;
                 int indexStates = 6;
+                string? nameTable = Convert.ToString(worksheet.Cell(2, 9).Value);
                 foreach(var row in rows) {
                     if (counterRows++ < 5) continue;
                     var states = new Dictionary<string[], int?>();
@@ -73,7 +74,7 @@ namespace Traffic_Lights {
                     foreach (var column in columns) {
                         if (counterColumns++ < 8) continue;
                         if ((column.Cell(indexStates).Value != "")) {
-                            string[] cellState = Convert.ToString(column.Cell(4).Value)!.Split(" ");
+                            string[] cellState = { Convert.ToString(column.Cell(4).Value), nameTable};
                             int? state = Convert.ToInt32(column.Cell(indexStates).Value);
                             states.Add(cellState, state);
                         }     
@@ -87,28 +88,29 @@ namespace Traffic_Lights {
                 return elements;
             }
         }
-        //Логика связий состояний ячеек в файле логика.xlsx
+        //Логика связий ячеек table1 и table 2 в файле логика.xlsx
         public static List<ElementInfoExcel> GetLogicRelations() {
             using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}Excel файлы\Логика.xlsx")) {
-                var worksheet = workbook.Worksheet(2);
+                var worksheet = workbook.Worksheet(3);
                 var rows = worksheet.RangeUsed().RowsUsed();
                 var columns = worksheet.RangeUsed().ColumnsUsed();
                 var elements = new List<ElementInfoExcel>();
 
                 int counterRows = 0;
                 int indexStates = 6;
+                string? nameTable = Convert.ToString(worksheet.Cell(2, 7).Value);
                 foreach (var row in rows) {
                     if (counterRows++ < 5) continue;
                     var states = new Dictionary<string[], int?>();
-                    string? name = Convert.ToString(row.Cell(3).Value);
-                    string[] cell = Convert.ToString(row.Cell(4).Value)!.Split(" ");
-                    int logicState = Convert.ToInt32(row.Cell(5).Value);
+                    string? name = Convert.ToString(row.Cell(2).Value);
+                    string[] cell = Convert.ToString(row.Cell(3).Value)!.Split(" ");
+                    int logicState = Convert.ToInt32(row.Cell(4).Value);
 
                     int counterColumns = 0;
                     foreach (var column in columns) {
-                        if (counterColumns++ < 7) continue;
+                        if (counterColumns++ < 6) continue;
                         if ((column.Cell(indexStates).Value != "")) {
-                            string[] cellState = Convert.ToString(column.Cell(4).Value)!.Split(" ");  
+                            string[] cellState = { Convert.ToString(column.Cell(4).Value)!, nameTable! };
                             int? state = Convert.ToInt32(column.Cell(indexStates).Value);
                             states.Add(cellState, state);
                         }
@@ -122,16 +124,17 @@ namespace Traffic_Lights {
                 return elements;
             }
         }
-        //Логика состояний кнопок управления в файле логика.xlsx
+        //Логика включения кнопок управления в файле логика.xlsx
         public static List<ElementInfoExcel> GetStateButtons() {
             using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}Excel файлы\Логика.xlsx")) {
-                var worksheet = workbook.Worksheet(1);
+                var worksheet = workbook.Worksheet(2);
                 var rows = worksheet.RangeUsed().RowsUsed();
                 var columns = worksheet.RangeUsed().ColumnsUsed();
                 var elements = new List<ElementInfoExcel>();
 
                 int counterRows = 0;
                 int indexStates = 6;
+                string? nameTable = Convert.ToString(worksheet.Cell(2, 8).Value);
                 foreach (var row in rows) {
                     if (counterRows++ < 5) continue;
                     var states = new Dictionary<string[], int?>();
@@ -143,7 +146,43 @@ namespace Traffic_Lights {
                     foreach (var column in columns) {
                         if (counterColumns++ < 7) continue;
                         if ((column.Cell(indexStates).Value != "")) {
-                            string[] cellState = Convert.ToString(column.Cell(4).Value)!.Split(" ");
+                            string[] cellState = { Convert.ToString(column.Cell(4).Value)!, nameTable! };
+                            int? state = Convert.ToInt32(column.Cell(indexStates).Value);
+                            states.Add(cellState, state);
+                        }
+                    }
+                    indexStates++;
+
+                    var element = new ElementInfoExcel(name, cell, states, code: code);
+                    elements.Add(element);
+                }
+
+                return elements;
+            }
+        }
+        //Логика разрешения включения кнопок управления в файле логика.xlsx
+        public static List<ElementInfoExcel> GetPermitStateButtons() {
+            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}Excel файлы\Логика.xlsx")) {
+                var worksheet = workbook.Worksheet(1);
+                var rows = worksheet.RangeUsed().RowsUsed();
+                var columns = worksheet.RangeUsed().ColumnsUsed();
+                var elements = new List<ElementInfoExcel>();
+
+                int counterRows = 0;
+                int indexStates = 6;
+                string? nameTable = Convert.ToString(worksheet.Cell(2, 7).Value);
+                foreach (var row in rows) {
+                    if (counterRows++ < 5) continue;
+                    var states = new Dictionary<string[], int?>();
+                    string? name = Convert.ToString(row.Cell(2).Value);
+                    string? code = Convert.ToString(row.Cell(3).Value);
+                    string[] cell = Convert.ToString(row.Cell(5).Value)!.Split(" ");
+
+                    int counterColumns = 0;
+                    foreach (var column in columns) {
+                        if (counterColumns++ < 6) continue;
+                        if ((column.Cell(indexStates).Value != "")) {
+                            string[] cellState = { Convert.ToString(column.Cell(4).Value)!, nameTable! };
                             int? state = Convert.ToInt32(column.Cell(indexStates).Value);
                             states.Add(cellState, state);
                         }

@@ -172,10 +172,13 @@ namespace Traffic_Lights {
             cmd.Connection = connection;
             
             List<ExcelUtility.ElementInfoExcel> elements = ExcelUtility.GetLogicElement();
-            foreach (var element in elements) {
+            foreach (var element in elements) { 
                 bool check = true;
                 foreach (var state in element.States) {
                     cmd.CommandText = $"select state from {dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    //Console.WriteLine("---------------");
+                    //Console.WriteLine(element.Name);
+                    //Console.WriteLine(state.Key[0] + " " + state.Key[1]);
                     int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
                     
                     if (stateCheck != state.Value) {
@@ -213,17 +216,34 @@ namespace Traffic_Lights {
         //Вставка значения в таблицу 2 по нажатию кнопки
         public void InsertStateTable2(string code) {
             List<ExcelUtility.ElementInfoExcel> elements = ExcelUtility.GetStateButtons();
+            List<ExcelUtility.ElementInfoExcel> permitElements = ExcelUtility.GetPermitStateButtons();
             var cmd = new MySqlCommand();
             cmd.Connection = connection;
 
-            foreach (var element in elements.Where(e => e.Code == code)) {
-                foreach(var state in element.States) {
-                    cmd.CommandText = $"update {dataConnection.Database}.{state.Key[1]} set state = {state.Value} " +
-                        $"Where id = '{state.Key[0]}' ";
-                    //Console.WriteLine(cmd.CommandText);
-                    cmd.ExecuteNonQuery();
+            bool check = true;
+
+            foreach (var element in permitElements.Where(e => e.Code == code)) {
+                foreach (var state in element.States) {
+                    cmd.CommandText = $"select state from {dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (stateCheck != state.Value) {
+                        check = false;
+                        break;
+                    }
                 }
             }
+
+            if (check) {
+                foreach (var element in elements.Where(e => e.Code == code)) {
+                    foreach (var state in element.States) {
+                        cmd.CommandText = $"update {dataConnection.Database}.{state.Key[1]} set state = {state.Value} " +
+                            $"Where id = '{state.Key[0]}' ";
+                        //Console.WriteLine(cmd.CommandText);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }      
         }
         //Подключение к бд MySQL
         MySqlConnection GetDBConnection(ExcelUtility.DataConnectionMySQL dataConnection) {

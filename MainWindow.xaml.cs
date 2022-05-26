@@ -22,18 +22,19 @@ namespace Traffic_Lights {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();     
             sp_buttons.AddHandler(Button.ClickEvent, new RoutedEventHandler(ButtonClick)); //Обработка нажатий всех кнопок
-            
 
             string schemePath = pathDirectory + @"Элементы схемы\Светофор.svg";
             try {  
                 svg_scheme.StreamSource = new StreamReader(schemePath).BaseStream;
+                var dataConnection = ExcelUtility.GetConnection();
+                var mySQL = new MySQLUtility(this, dataConnection);
+                mySQL.RunConnection();
             }
-            catch {
+            catch (Exception e) {
                 Console.WriteLine("Ошибка в чтении схемы");
+                Console.WriteLine(e);
             }
-            var dataConnection = ExcelUtility.GetConnection();
-            var mySQL = new MySQLUtility(this, dataConnection);
-            mySQL.RunConnection();
+            
         }
         //Нажатие на любую кнопку
         private void ButtonClick(object sender, RoutedEventArgs e) {

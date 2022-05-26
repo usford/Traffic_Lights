@@ -30,22 +30,25 @@
     </Window.Resources>
     <Grid>
         <Viewbox>
-            <StackPanel Width="11856" Height="8847">
+            <StackPanel Width="9500" Height="8847">
                 <Canvas>
                 <svgc:SvgViewbox x:Name="svg_scheme" Height="6049" />
-                    <svgc:SvgViewbox x:Name="лН1" Margin="2060,60,0,0" Height="4800" Width="6650"/>
-                    <svgc:SvgViewbox x:Name="лН2" Margin="2130,800,0,0" Height="4800" Width="6650"/>
-                    <svgc:SvgViewbox x:Name="лН3" Margin="1750,930,0,0" Height="5000" Width="7000"/>
-                    <StackPanel Canvas.Top="5800" Canvas.Left="1000" x:Name="sp_buttons" Orientation="Horizontal" HorizontalAlignment="Center" Margin="1400,0,0,0">
-                    <Button  Style="{StaticResource Buttons}" Cursor="Hand">
-                        <svgc:SvgViewbox x:Name="КН1" Height="619" Width="1733" />
-                    </Button>
-                    <Button Style="{StaticResource Buttons}">
-                        <svgc:SvgViewbox x:Name="КН2" Height="619" Width="1733" Margin="500,0,500,0"/>
-                    </Button>
-                    <Button Style="{StaticResource Buttons}">
-                        <svgc:SvgViewbox x:Name="КН3" Height="619" Width="1733" />
-                    </Button>
+                <svgc:SvgViewbox x:Name="ЛН1" Margin="1900,30,0,0" Height="4800" Width="6650"/>
+                <svgc:SvgViewbox x:Name="ЛН2" Margin="2130,800,0,0" Height="4700" Width="6550"/>
+                <svgc:SvgViewbox x:Name="ЛН3" Margin="1750,930,0,0" Height="5000" Width="6800"/>
+                <StackPanel Canvas.Top="5800" Canvas.Left="600" x:Name="sp_buttons" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
+                <Button  Style="{StaticResource Buttons}" Cursor="Hand">
+                        <svgc:SvgViewbox x:Name="КН" Height="619" Width="1733" Margin="0,0,500,0"/>
+                </Button>
+                <Button  Style="{StaticResource Buttons}" Cursor="Hand">
+                    <svgc:SvgViewbox x:Name="КН1" Height="619" Width="1733" />
+                </Button>
+                <Button Style="{StaticResource Buttons}">
+                    <svgc:SvgViewbox x:Name="КН2" Height="619" Width="1733" Margin="500,0,500,0"/>
+                </Button>
+                <Button Style="{StaticResource Buttons}">
+                    <svgc:SvgViewbox x:Name="КН3" Height="619" Width="1733" />
+                </Button>
                 </StackPanel>
                 </Canvas>
             </StackPanel>
