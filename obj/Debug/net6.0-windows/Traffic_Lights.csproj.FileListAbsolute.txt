@@ -39,3 +39,5 @@ E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\Ubiety.Dns.Core.dll
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\ZstdNet.dll
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\MainWindow.g.cs
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\MainWindow.baml
+E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
+E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs

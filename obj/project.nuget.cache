@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oBMIr6GelZh0OS5ITaneCTgmCCQrfFzYkJJTKfkgNiotz2coJYatPdbjPsSviI3tPgjuIuy9Suqe4xOivYbQDA==",
+  "dgSpecHash": "7mBUBSDfY5itbw+wN8ePGJ7wPNjsor3dx1Wijjdx3m70Jn7BAbmvwILJ0Oczu0MRx2jjzG3xYxF+wTeRbj1GOw==",
   "success": true,
   "projectFilePath": "E:\\VS projects\\Traffic_Lights\\Traffic_Lights.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,7 @@
     "C:\\Users\\lukic\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\lukic\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\lukic\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\lukic\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
     "C:\\Users\\lukic\\.nuget\\packages\\mysql.data\\8.0.29\\mysql.data.8.0.29.nupkg.sha512",
     "C:\\Users\\lukic\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\lukic\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
