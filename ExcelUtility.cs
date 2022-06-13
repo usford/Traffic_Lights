@@ -192,6 +192,60 @@ namespace Traffic_Lights {
                 return elements;
             }
         }
+        //Взятие элементов из файла Все элементы.xlsx
+        public static List<ElementXAML> GetElementsXAML() {
+            var elements = new List<ElementXAML>();
+
+            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}Элементы схемы\Все элементы.xlsx")) {
+                var worksheet = workbook.Worksheet(1);
+                var rows = worksheet.RangeUsed().RowsUsed();
+
+                int counter = 0;
+                foreach (var row in rows) {
+                    if (counter++ == 0) continue;
+                    string id = Convert.ToString(row.Cell(1).Value)!;
+                    string type = Convert.ToString(row.Cell(2).Value)!;
+                    int x = Convert.ToInt32(row.Cell(3).Value);
+                    int y = Convert.ToInt32(row.Cell(4).Value);
+
+                    var element = new ElementXAML(id, type, x, y);
+                    elements.Add(element);
+                }
+            }
+
+            return elements;
+        }
+        public static void SaveXAML(ElementXAML element) {
+            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}Элементы схемы\Все элементы.xlsx")) {
+                var worksheet = workbook.Worksheet(1);
+                var rows = worksheet.RangeUsed().RowsUsed();
+
+                int counter = 0;
+                foreach (var row in rows) {
+                    if (counter++ == 0) continue;
+                    if (row.Cell(1).Value.ToString() == element.id) {
+                        row.Cell(3).Value = element.x;
+                        row.Cell(4).Value = element.y;
+                    }
+                }
+
+                workbook.Save();
+            }
+        }
+        //Для динамического создания схемы
+        public struct ElementXAML {
+            public string id;
+            public string type;
+            public int x;
+            public int y;
+
+            public ElementXAML(string id, string type, int x, int y) {
+                this.id = id;
+                this.type = type;
+                this.x = x;
+                this.y = y;
+            }
+        }
         //Элементы схемы в excel
         public class ElementInfoExcel {
             public string? Name { get => _name; }

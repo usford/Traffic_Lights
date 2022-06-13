@@ -2,7 +2,6 @@ E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\Traffic_Lights.exe
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\Traffic_Lights.deps.json
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\Traffic_Lights.runtimeconfig.json
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\Traffic_Lights.dll
-E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\ref\Traffic_Lights.dll
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\Traffic_Lights.pdb
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\SharpVectors.Converters.Wpf.dll
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\SharpVectors.Core.dll
@@ -40,4 +39,4 @@ E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\ZstdNet.dll
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\MainWindow.g.cs
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\MainWindow.baml
 E:\VS projects\Traffic_Lights\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
-E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\refint\Traffic_Lights.dll

@@ -9,61 +9,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1200"
         >
-    <Window.Resources>
-        <Style x:Key="Buttons" TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="Snow"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Snow"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
-
-    <Viewbox x:Name="viewBox">
-        <StackPanel Width="9500" Height="8847">
-            <Canvas>
-                <svgc:SvgViewbox x:Name="svg_scheme" Height="6049"/>
-                <svgc:SvgViewbox x:Name="ЛН1" Height="4800" Width="6650">
-                    <i:Interaction.Behaviors>
-                        <local:CustomMouseDragElementBehavior />
-                    </i:Interaction.Behaviors>
-                </svgc:SvgViewbox>
-                <svgc:SvgViewbox x:Name="ЛН2" Margin="2130,800,0,0" Height="4700" Width="6550">
-                    <i:Interaction.Behaviors>
-                        <local:CustomMouseDragElementBehavior />
-                    </i:Interaction.Behaviors>
-                </svgc:SvgViewbox>
-                <svgc:SvgViewbox x:Name="ЛН3" Margin="1750,930,0,0" Height="5000" Width="6800">
-                    <i:Interaction.Behaviors>
-                        <local:CustomMouseDragElementBehavior />
-                    </i:Interaction.Behaviors>
-                </svgc:SvgViewbox>
-                <StackPanel Canvas.Top="5800" Canvas.Left="600" x:Name="sp_buttons" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Style="{StaticResource Buttons}" Cursor="Hand">
-                        <svgc:SvgViewbox x:Name="КН" Height="619" Width="1733" Margin="0,0,500,0"/>
-                    </Button>
-                    <Button Style="{StaticResource Buttons}" Cursor="Hand">
-                        <svgc:SvgViewbox x:Name="КН1" Height="619" Width="1733" />
-                    </Button>
-                    <Button Style="{StaticResource Buttons}">
-                        <svgc:SvgViewbox x:Name="КН2" Height="619" Width="1733" Margin="500,0,500,0"/>
-                    </Button>
-                    <Button Style="{StaticResource Buttons}">
-                        <svgc:SvgViewbox x:Name="КН3" Height="619" Width="1733" />
-                    </Button>
-                </StackPanel>
-            </Canvas>
-        </StackPanel>
-    </Viewbox>
+    <Canvas x:Name="mainCanvas">
+    </Canvas>
 </Window>

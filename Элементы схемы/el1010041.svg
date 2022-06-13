@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   width="441.78436"
-   height="176.48293"
+   width="580.00037"
+   height="225.99944"
    version="1.1"
    id="svg80"
-   sodipodi:docname="зеленый светофор ON.svg"
+   sodipodi:docname="el1010041.svg"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -20,9 +20,9 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      showgrid="false"
-     inkscape:zoom="8.3538464"
-     inkscape:cx="125.33149"
-     inkscape:cy="46.505524"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="89.954802"
+     inkscape:cy="111.95427"
      inkscape:window-width="1920"
      inkscape:window-height="1057"
      inkscape:window-x="-8"
@@ -74,7 +74,7 @@
   <g
      style="display:inline"
      id="el1010061"
-     transform="translate(-166.833,-287.556)">
+     transform="translate(-170.36687,-297.06263)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:400;font-size:13.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none"
@@ -87,9 +87,18 @@
        x="355.617"
        y="552.65503"
        id="text12" />
+    <rect
+       style="fill:#ffffff;fill-opacity:0;stroke:#000000;stroke-width:1.22782;stroke-miterlimit:0;stroke-opacity:0"
+       id="rect864"
+       width="578.7406"
+       height="224.81738"
+       x="170.98094"
+       y="297.68198"
+       ry="0" />
     <g
        style="display:inline;fill:#2cdc12;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       id="g36">
+       id="g36"
+       transform="matrix(1.3558915,0,0,1.3532653,-60.626847,-104.95939)">
       <ellipse
          style="fill:#2cdc12;fill-opacity:1;stroke:#000000;stroke-width:4.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          cx="515.66699"
@@ -108,7 +117,8 @@
     </g>
     <g
        style="display:inline;stroke:#f20000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.949749"
-       id="g44">
+       id="g44"
+       transform="matrix(1.3558915,0,0,1.3532653,-60.626847,-104.95939)">
       <ellipse
          ry="4.243"
          rx="4.5960002"
@@ -130,13 +140,13 @@
          id="ellipse42" />
     </g>
     <path
-       d="m 288.27273,314.96724 38.75984,21.02483"
-       style="display:inline;fill:none;stroke:#f00000;stroke-width:2.53395;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.949749"
+       d="m 330.23975,321.27485 52.55414,28.45218"
+       style="display:inline;fill:none;stroke:#f00000;stroke-width:3.43244;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.949749"
        id="path62"
        sodipodi:nodetypes="cc" />
     <g
        id="g74"
-       transform="translate(2.2145487,-7.1823202)">
+       transform="matrix(1.3558915,0,0,1.3532653,-57.624159,-114.67898)">
       <g
          style="display:inline;stroke:#f50000;stroke-opacity:0.924623"
          id="g68"
