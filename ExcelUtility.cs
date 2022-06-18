@@ -58,7 +58,7 @@ namespace Traffic_Lights {
 
                 int counterRows = 0;
                 int indexStates = 6;
-                string? nameTable = Convert.ToString(worksheet.Cell(2, 9).Value);
+                string? nameTable = Convert.ToString(worksheet.Cell(2, 8).Value);
                 foreach(var row in rows) {
                     if (counterRows++ < 5) continue;
                     var states = new Dictionary<string[], int?>();
@@ -68,11 +68,16 @@ namespace Traffic_Lights {
 
                     int counterColumns = 0;
                     foreach (var column in columns) {
-                        if (counterColumns++ < 8) continue;
+                        if (counterColumns++ < 7) continue;
+                        
                         if ((column.Cell(indexStates).Value != "")) {
-                            string[] cellState = { Convert.ToString(column.Cell(4).Value), nameTable};
-                            int? state = Convert.ToInt32(column.Cell(indexStates).Value);
-                            states.Add(cellState, state);
+                            int state;
+                            bool isInt = int.TryParse(Convert.ToString(column.Cell(indexStates).Value), out state);
+
+                            if (isInt) {
+                                string[] cellState = { Convert.ToString(column.Cell(4).Value)!, nameTable! };
+                                states.Add(cellState, state);
+                            }
                         }     
                     }
                     indexStates++;
@@ -94,7 +99,7 @@ namespace Traffic_Lights {
 
                 int counterRows = 0;
                 int indexStates = 6;
-                string? nameTable = Convert.ToString(worksheet.Cell(2, 7).Value);
+                string? nameTable = Convert.ToString(worksheet.Cell(2, 6).Value);
                 foreach (var row in rows) {
                     if (counterRows++ < 5) continue;
                     var states = new Dictionary<string[], int?>();
@@ -104,11 +109,15 @@ namespace Traffic_Lights {
 
                     int counterColumns = 0;
                     foreach (var column in columns) {
-                        if (counterColumns++ < 6) continue;
+                        if (counterColumns++ < 5) continue;
                         if ((column.Cell(indexStates).Value != "")) {
-                            string[] cellState = { Convert.ToString(column.Cell(4).Value)!, nameTable! };
-                            int? state = Convert.ToInt32(column.Cell(indexStates).Value);
-                            states.Add(cellState, state);
+                            int state;
+                            bool isInt = int.TryParse(Convert.ToString(column.Cell(indexStates).Value), out state);
+
+                            if (isInt) {
+                                string[] cellState = { Convert.ToString(column.Cell(4).Value)!, nameTable! };
+                                states.Add(cellState, state);
+                            }
                         }
                     }
                     indexStates++;
@@ -142,9 +151,13 @@ namespace Traffic_Lights {
                     foreach (var column in columns) {
                         if (counterColumns++ < 7) continue;
                         if ((column.Cell(indexStates).Value != "")) {
-                            string[] cellState = { Convert.ToString(column.Cell(4).Value)!, nameTable! };
-                            int? state = Convert.ToInt32(column.Cell(indexStates).Value);
-                            states.Add(cellState, state);
+                            int state;
+                            bool isInt = int.TryParse(Convert.ToString(column.Cell(indexStates).Value), out state);
+
+                            if (isInt) {
+                                string[] cellState = { Convert.ToString(column.Cell(4).Value)!, nameTable! };
+                                states.Add(cellState, state);
+                            }
                         }
                     }
                     indexStates++;
@@ -166,7 +179,7 @@ namespace Traffic_Lights {
 
                 int counterRows = 0;
                 int indexStates = 6;
-                string? nameTable = Convert.ToString(worksheet.Cell(2, 7).Value);
+                string? nameTable = Convert.ToString(worksheet.Cell(2, 8).Value);
                 foreach (var row in rows) {
                     if (counterRows++ < 5) continue;
                     var states = new Dictionary<string[], int?>();
@@ -176,11 +189,15 @@ namespace Traffic_Lights {
 
                     int counterColumns = 0;
                     foreach (var column in columns) {
-                        if (counterColumns++ < 6) continue;
+                        if (counterColumns++ < 7) continue;
                         if ((column.Cell(indexStates).Value != "")) {
-                            string[] cellState = { Convert.ToString(column.Cell(4).Value)!, nameTable! };
-                            int? state = Convert.ToInt32(column.Cell(indexStates).Value);
-                            states.Add(cellState, state);
+                            int state;
+                            bool isInt = int.TryParse(Convert.ToString(column.Cell(indexStates).Value), out state);
+
+                            if (isInt) {
+                                string[] cellState = { Convert.ToString(column.Cell(4).Value)!, nameTable! };
+                                states.Add(cellState, state);
+                            }  
                         }
                     }
                     indexStates++;

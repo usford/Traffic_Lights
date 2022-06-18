@@ -221,14 +221,17 @@ namespace Traffic_Lights {
                 foreach (var state in element.States) {
                     cmd.CommandText = $"select state from {dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
                     int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
-
+                    //Console.WriteLine(state.Key[1]);
+                    //Console.WriteLine(state.Key[0]);
+                    //Console.WriteLine(cmd.CommandText);
+                    //Console.WriteLine(stateCheck);
                     if (stateCheck != state.Value) {
                         check = false;
                         break;
                     }
                 }
             }
-
+            
             if (check) {
                 foreach (var element in elements.Where(e => e.Code == code)) {
                     foreach (var state in element.States) {
