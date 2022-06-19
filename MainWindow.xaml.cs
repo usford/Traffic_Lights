@@ -22,7 +22,7 @@ namespace Traffic_Lights {
             
             try {
                 CreateXAML(this);
-                var dataConnection = ExcelUtility.GetConnection();
+                var dataConnection = ExcelTaskJobRepository.GetConnection();
                 var mySQL = new MySQLUtility(this, dataConnection);
                 mySQL.RunConnection();
             }
@@ -35,7 +35,7 @@ namespace Traffic_Lights {
         public void ButtonClick(object sender, MouseButtonEventArgs e) {
             if (UtilitySettings.buttonDragging) return;
             string name = (e.OriginalSource as SvgViewBox)!.Name.Split("_")[1];
-            var dataConnection = ExcelUtility.GetConnection();
+            var dataConnection = ExcelTaskJobRepository.GetConnection();
             var mySQL = new MySQLUtility(this, dataConnection);
             mySQL.InsertStateTable2(name);
         }
@@ -46,7 +46,7 @@ namespace Traffic_Lights {
         }
         //Динамическое создание схемы
         public static void CreateXAML(MainWindow mw) {
-            List<ExcelUtility.ElementXAML> elements = ExcelUtility.GetElementsXAML();
+            List<ExcelTaskJobRepository.ElementXAML> elements = ExcelTaskJobRepository.GetElementsXAML();
             var mainCanvas = mw.FindName("mainCanvas") as Canvas;
 
             foreach (var element in elements) {
@@ -101,8 +101,8 @@ namespace Traffic_Lights {
                 string id = AssociatedObject.Name.Split("_")[0];
                 int x = Convert.ToInt32(X);
                 int y = Convert.ToInt32(Y);
-                var element = new ExcelUtility.ElementXAML(id, "empty", x, y);
-                ExcelUtility.SaveXAML(element);
+                var element = new ExcelTaskJobRepository.ElementXAML(id, "empty", x, y);
+                ExcelTaskJobRepository.SaveXAML(element);
             }      
         }
     }

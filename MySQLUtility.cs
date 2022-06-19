@@ -7,10 +7,10 @@ using System.Threading;
 namespace Traffic_Lights {
     class MySQLUtility {
         MainWindow mainWindow { get; set; }
-        ExcelUtility.DataConnectionMySQL dataConnection { get; set; }
+        ExcelTaskJobRepository.DataConnectionMySQL dataConnection { get; set; }
         MySqlConnection connection { get; set; }
         //Запуск работы с бд MySQL
-        public MySQLUtility(MainWindow mainWindow, ExcelUtility.DataConnectionMySQL dataConnection) {
+        public MySQLUtility(MainWindow mainWindow, ExcelTaskJobRepository.DataConnectionMySQL dataConnection) {
             this.mainWindow = mainWindow;
             this.dataConnection = dataConnection;
             connection = GetDBConnection(dataConnection);
@@ -106,7 +106,7 @@ namespace Traffic_Lights {
             //Заполнение таблиц данными, если они отсутствуют
             if (countRecords == 0) {
                 Console.WriteLine("Создаётся база данных...");
-                var elements = ExcelUtility.GetElementsFromExcel(7);
+                var elements = ExcelTaskJobRepository.GetElementsFromExcel(7);
                 cmd.CommandText = $"insert into {dataConnection.Database}.table1 (id, name, state, comment) values " +
                         $"(@id, @name, @state, @comment)";
                 var id = cmd.Parameters.Add("@id", MySqlDbType.String);
@@ -122,7 +122,7 @@ namespace Traffic_Lights {
                     cmd.ExecuteNonQuery();
                 }
 
-                elements = ExcelUtility.GetElementsFromExcel(17);
+                elements = ExcelTaskJobRepository.GetElementsFromExcel(17);
                 cmd.CommandText = $"insert into {dataConnection.Database}.table2 (id, name, state, comment) values " +
                         $"(@id, @name, @state, @comment)";
 
@@ -166,7 +166,7 @@ namespace Traffic_Lights {
             var cmd = new MySqlCommand();
             cmd.Connection = connection;
             
-            List<ExcelUtility.ElementInfoExcel> elements = ExcelUtility.GetLogicElement();
+            List<ExcelTaskJobRepository.ElementInfoExcel> elements = ExcelTaskJobRepository.GetLogicElement();
             foreach (var element in elements) { 
                 bool check = true;
                 foreach (var state in element.States) {
@@ -190,7 +190,7 @@ namespace Traffic_Lights {
             var cmd = new MySqlCommand();
             cmd.Connection = connection;
 
-            List<ExcelUtility.ElementInfoExcel> elements = ExcelUtility.GetLogicRelations();
+            List<ExcelTaskJobRepository.ElementInfoExcel> elements = ExcelTaskJobRepository.GetLogicRelations();
             foreach (var element in elements) {
                 bool check = true;
                 foreach (var state in element.States) {
@@ -210,8 +210,8 @@ namespace Traffic_Lights {
         }
         //Вставка значения в таблицу 2 по нажатию кнопки
         public void InsertStateTable2(string code) {
-            List<ExcelUtility.ElementInfoExcel> elements = ExcelUtility.GetStateButtons();
-            List<ExcelUtility.ElementInfoExcel> permitElements = ExcelUtility.GetPermitStateButtons();
+            List<ExcelTaskJobRepository.ElementInfoExcel> elements = ExcelTaskJobRepository.GetStateButtons();
+            List<ExcelTaskJobRepository.ElementInfoExcel> permitElements = ExcelTaskJobRepository.GetPermitStateButtons();
             var cmd = new MySqlCommand();
             cmd.Connection = connection;
 
@@ -244,7 +244,7 @@ namespace Traffic_Lights {
             }      
         }
         //Подключение к бд MySQL
-        MySqlConnection GetDBConnection(ExcelUtility.DataConnectionMySQL dataConnection) {
+        MySqlConnection GetDBConnection(ExcelTaskJobRepository.DataConnectionMySQL dataConnection) {
             var connection = new MySqlConnection($"Server={dataConnection.Host};" +
                 $"Port={dataConnection.Port};" +
                 $"User id={dataConnection.Username};" +
