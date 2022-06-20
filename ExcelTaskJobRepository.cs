@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ClosedXML.Excel;
+using Traffic_Lights.Models;
 
 namespace Traffic_Lights {
     public class ExcelTaskJobRepository : TaskJobRepository {

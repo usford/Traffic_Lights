@@ -8,10 +8,8 @@
         Title="MenuTasksView" 
         Height="900" Width="1200"
         MaxHeight="900" MaxWidth="1200" 
-        MinHeight="900" MinWidth="1200">
-    <Window.DataContext>
-        <local:MenuTasksViewModel/>
-    </Window.DataContext>
+        MinHeight="900" MinWidth="1200"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
@@ -24,14 +22,21 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel>
-            <TextBlock HorizontalAlignment="Center"
+        <Grid>
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center"
                        Margin="0, 0, 0, 15">Установить программу задачи</TextBlock>
-            <Button Content="Установить"/>
-        </StackPanel>
+                <Button Content="Установить"
+                    Command="{Binding SetupClick}"/>
+            </StackPanel>
+            <TextBlock Text="{Binding SetupState}"
+                       HorizontalAlignment="Right"
+                       Margin="0, 25, 30, 0"
+                       />
+        </Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock TextAlignment="Center">Переход в меню отдельных программ "Задачи"</TextBlock>
-            <ItemsControl ItemsSource="{Binding GetTaskJobList}" VerticalAlignment="Center">
+            <ItemsControl ItemsSource="{Binding TaskJobs}" VerticalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

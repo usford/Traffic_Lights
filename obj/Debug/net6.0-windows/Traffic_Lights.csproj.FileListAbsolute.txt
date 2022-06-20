@@ -43,3 +43,5 @@ E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\refint\Traffic_Lights.dll
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\Views\MenuTasksView.g.cs
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\Views\MenuTasksView.baml
 E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\Views\SetupBar.g.cs
+E:\VS projects\Traffic_Lights\obj\Debug\net6.0-windows\Views\SetupBar.baml

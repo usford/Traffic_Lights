@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\VS projects\Traffic_Lights\App.xaml
-2-1409482664
+3-1023537314
 
-14-685840417
+141947776100
 215965734408
-MainWindow.xaml;Views\MenuTasksView.xaml;
+MainWindow.xaml;Views\MenuTasksView.xaml;Views\SetupBar.xaml;
 
-False
+True
 
