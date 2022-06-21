@@ -14,12 +14,11 @@ using System.ComponentModel;
 
 namespace Traffic_Lights {
     public partial class MainWindow : Window {
-        public static string pathDirectory = @"E:\VS projects\Traffic_Lights\"; //Директория программы
-        //public static string pathDirectory = @"C:\Traffic_Lights\"; //Для установщика
+        public static string pathDirectory = new DirectoryInfo(@"..\..\..").FullName; //Директория программы
+        //public static string pathDirectory = new DirectoryInfo(@"..\..\..").FullName; //Для установщика
         public MainWindow() {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();
-            
             try {
                 CreateXAML(this);
                 var dataConnection = ExcelTaskJobRepository.GetConnection();
