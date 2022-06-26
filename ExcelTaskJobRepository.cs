@@ -86,7 +86,7 @@ namespace Traffic_Lights {
                             title: nameDB,
                             comment: comment,
                             tables: new List<List<ElementInfoDB>>(tables),
-                            enabled: true
+                            enabled: (comment == "Неизвестно") ? false : true
                         ));
                         tables.Clear();
                     }

@@ -25,6 +25,7 @@ namespace Traffic_Lights {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();
             xDoc.Load((@$"{pathDirectory}\Элементы схемы\схема.svg"));
+            
             try {
                 //CreateXAML(this);
                 var dataConnection = ExcelTaskJobRepository.GetConnection();
@@ -46,6 +47,7 @@ namespace Traffic_Lights {
             string name = (e.OriginalSource as SvgViewBox)!.Name.Split("_")[1];
             var dataConnection = ExcelTaskJobRepository.GetConnection();
             var mySQL = new MySQLUtility(this, dataConnection);
+            Console.WriteLine("Click!");
             mySQL.InsertStateTable2(name);
         }
         //Изменение элементов, где name = наименование элемента, а state = его состояние

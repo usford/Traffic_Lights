@@ -14,5 +14,8 @@ namespace Traffic_Lights.Views {
             Console.OutputEncoding = Encoding.UTF8;
             DataContext = new MenuTasksViewModel();
         }
+        public void ButtonClose (object sender, RoutedEventArgs e) {
+            Close();
+        }
     }
 }

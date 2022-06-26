@@ -9,7 +9,7 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <sodipodi:namedview id="namedview7" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:document-units="mm" showgrid="false" inkscape:zoom="0.77682386" inkscape:cx="639.14103" inkscape:cy="507.83713" inkscape:window-width="1920" inkscape:window-height="1057" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:window-maximized="1" inkscape:current-layer="layer6" width="1200mm" height="126.40442mm" showguides="false" units="px" />
+  <sodipodi:namedview id="namedview7" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:document-units="mm" showgrid="false" inkscape:zoom="1.5536477" inkscape:cx="459.56364" inkscape:cy="647.18661" inkscape:window-width="1920" inkscape:window-height="1057" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:window-maximized="1" inkscape:current-layer="layer2" width="1200mm" height="126.40442mm" showguides="false" units="px" />
   <defs id="defs2">
     <linearGradient id="a" inkscape:swatch="solid">
       <stop offset="0" style="stop-color:#333;stop-opacity:.05098039" id="stop2" />
@@ -106,7 +106,9 @@
         <text id="text110" y="116.42616" x="95.304878" style="font-style:normal;font-weight:400;font-size:2.82223px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583" xml:space="preserve">           <tspan id="tspan108" y="116.42616" x="95.304878" style="stroke-width:0.264583">КН2</tspan>        </text>
         <text id="text114" y="116.99951" x="134.66905" style="font-style:normal;font-weight:400;font-size:2.82223px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583" xml:space="preserve">           <tspan id="tspan112" y="116.99951" x="134.66905" style="stroke-width:0.264583">КН3</tspan>        </text>
         <text id="text106-3" y="116.02378" x="11.036798" style="font-style:normal;font-weight:400;font-size:2.82223px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583" xml:space="preserve">           <tspan id="tspan104-7" y="116.02378" x="11.036798" style="stroke-width:0.264583">КН</tspan>        </text>
-        <text xml:space="preserve" style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583" x="23.671444" y="103.7547" id="text5880">           <tspan sodipodi:role="line" id="tspan5878" x="23.671444" y="103.7547" style="font-size:2.11667px;stroke-width:0.264583">КНОПКА ВКЛЮЧЕНИЯ</tspan>           <tspan sodipodi:role="line" x="23.671444" y="103.7547" style="font-size:2.11667px;stroke-width:0.264583" id="tspan5882">       ПИТАНИЯ</tspan>        </text>
+        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.25px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583" x="16.591585" y="102.77989" id="text5880">
+          <tspan sodipodi:role="line" id="tspan465" x="16.591585" y="102.77989">КНОПКА ВКЛЮЧЕНИЯ ПИТАНИЯ        </tspan>
+        </text>
       </g>
     </g>
   </g>
@@ -352,7 +354,7 @@
       <text y="552.65503" x="355.617" style="font-style:normal;font-weight:400;font-size:13.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none" xml:space="preserve" id="text18" />
     </g>
   </g>
-  <g inkscape:groupmode="layer" id="layer12" inkscape:label="kn1010042" style="display:none" transform="translate(0,34.595642)" sodipodi:insensitive="true">
+  <g id="layer12" inkscape:label="kn1010042" style="display:none" transform="translate(0,34.595642)" sodipodi:insensitive="true">
     <g transform="matrix(1.563503,0,0,1.5723091,91.658526,-16.065993)" style="display:inline" id="kn1010042">
       <title id="title1805-8">кн3 выкл</title>
       <rect style="display:inline;fill:url(#linearGradient1557);fill-opacity:1;stroke:#000000;stroke-width:0.594619;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.946341" width="30.613087" height="9.4337187" x="88.57534" y="110.7453" ry="0.36062708" id="rect12-4-5" />
