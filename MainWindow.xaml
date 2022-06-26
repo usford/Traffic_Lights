@@ -7,8 +7,27 @@
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"  
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1200"
+        Title="MainWindow" Height="840" Width="1060"
+        WindowStartupLocation="CenterScreen"
         >
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
     <Canvas x:Name="mainCanvas">
+        <Button Content="Выйти"
+                Click="ButtonExit"/>
+        <svgc:SvgViewbox  x:Name="svgMain" 
+                          Height="600"
+                          Canvas.Top="100"
+                          Canvas.Left="100"
+                          />
     </Canvas>
 </Window>

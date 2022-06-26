@@ -181,8 +181,7 @@ namespace Traffic_Lights {
                         break;
                     }                      
                 }
-                //Если логика верна, изменяем элемент согласно ей  
-                if (check) mainWindow.ChangeElement(element.Name, element.Code);
+                mainWindow.ChangeElement(element.Code, Convert.ToInt32(check));
             }
         }
         //Проверка элементов согласно логики связей состояний ячеек в логика.xlsx

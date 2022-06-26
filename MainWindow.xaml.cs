@@ -9,18 +9,24 @@ using Microsoft.Xaml.Behaviors;
 using System.Windows.Input;
 using System.Collections.Generic;
 using System.ComponentModel;
-
+using System.Xml.Linq;
+using System.Xml;
+using System.Threading.Tasks;
+using System.Threading;
+using Traffic_Lights.Views;
 
 
 namespace Traffic_Lights {
     public partial class MainWindow : Window {
+        public XmlDocument xDoc = new XmlDocument();
         public static string pathDirectory = new DirectoryInfo(@"..\..\..").FullName; //Директория программы
-        //public static string pathDirectory = new DirectoryInfo(@"..\..\..").FullName; //Для установщика
+        //public static string pathDirectory = new DirectoryInfo(@"..").FullName + @"Traffic_Lights"; //Для установщика
         public MainWindow() {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();
+            xDoc.Load((@$"{pathDirectory}\Элементы схемы\схема.svg"));
             try {
-                CreateXAML(this);
+                //CreateXAML(this);
                 var dataConnection = ExcelTaskJobRepository.GetConnection();
                 var mySQL = new MySQLUtility(this, dataConnection);
                 mySQL.RunConnection();
@@ -29,80 +35,41 @@ namespace Traffic_Lights {
                 Console.WriteLine("Ошибка в чтении схемы");
                 Console.WriteLine(e);
             }
+        }
 
+        public void ButtonExit(object sender, RoutedEventArgs e) {
+            Hide();
+            var menuTasksView = new MenuTasksView();
+            menuTasksView.Show();
         }
         public void ButtonClick(object sender, MouseButtonEventArgs e) {
-            if (UtilitySettings.buttonDragging) return;
             string name = (e.OriginalSource as SvgViewBox)!.Name.Split("_")[1];
             var dataConnection = ExcelTaskJobRepository.GetConnection();
             var mySQL = new MySQLUtility(this, dataConnection);
             mySQL.InsertStateTable2(name);
         }
-        public void Editing(object sender, MouseButtonEventArgs e) {
-            if (UtilitySettings.buttonDragging) return;
-            UtilitySettings.editing = !UtilitySettings.editing;
-            Console.WriteLine(UtilitySettings.editing);
-        }
-        //Динамическое создание схемы
-        public static void CreateXAML(MainWindow mw) {
-            List<ExcelTaskJobRepository.ElementXAML> elements = ExcelTaskJobRepository.GetElementsXAML();
-            var mainCanvas = mw.FindName("mainCanvas") as Canvas;
+        //Изменение элементов, где name = наименование элемента, а state = его состояние
+        public void ChangeElement(string? elementCode, int state) {     
 
-            foreach (var element in elements) {
-                var child = new SvgViewBox();
-                //var schemePath = $@"E:\VS projects\TestWPF\Элементы схемы\{element.id}.svg";
-
-                child.Name = element.id;
-                Canvas.SetLeft(child, element.x);
-                Canvas.SetTop(child, element.y);
-                //child.StreamSource = new StreamReader(schemePath).BaseStream;
-                Interaction.GetBehaviors(child).Add(new CustomMouseDragElementBehavior());
-                            
-                if (element.type == "кнопка") {
-                    child.Cursor = Cursors.Hand;
-                    child.MouseLeftButtonUp += mw.ButtonClick;
+            using (StreamWriter streamReader = new StreamWriter(@"E:\VS projects\Traffic_Lights\Элементы схемы\схема.svg")) {
+                var layers = xDoc.DocumentElement.ChildNodes;
+                foreach (XmlNode layer in layers)  {
+                    if (layer.Attributes["inkscape:label"] != null) {
+                        if (layer.Attributes["inkscape:label"].Value == elementCode) {
+                            layer.Attributes["style"].Value = $"display:{(VisibleElement)state}";
+                        }
+                    }
                 }
+                xDoc.Save(streamReader.BaseStream);
+            }
 
-                mainCanvas.Children.Add(child);
+            using (StreamReader streamReader = new StreamReader(@"E:\VS projects\Traffic_Lights\Элементы схемы\схема.svg")) {
+                svgMain.StreamSource = streamReader.BaseStream;
             }
-        }
-        //Изменение элементов, где name = наименование элемента, а elementCode его код в excel файле
-        public void ChangeElement(string? name, string? elementCode) {
-            foreach (var element in mainCanvas.Children) {
-                var check = (element as SvgViewBox).Name.Split("_")[0];
-                if (check == name) {
-                    var svgElement = element as SvgViewBox;
-                    if (svgElement.Cursor == Cursors.Hand) svgElement.Name = $"{name}_{elementCode}";
-                    //Console.WriteLine("Изменение элемента: " + svgElement.Name);
-                    string path = pathDirectory + @"Элементы схемы\" + elementCode + ".svg";
-                    svgElement!.StreamSource = new StreamReader(path).BaseStream;
-                }
-            }
-            if (mainCanvas.FindName(name) is not null) {
-                
-            }          
         }
     }
-    public class CustomMouseDragElementBehavior : BehaviorsLayout.MouseDragElementBehavior {
-        protected override void OnAttached() {
-            base.OnAttached();
-            DragFinished += Finished;
-            Dragging += DragMove;
-        }
-        private void DragMove(object sender, MouseEventArgs e) {
-            UtilitySettings.buttonDragging = true;
-        }
-        private void Finished(object sender, MouseEventArgs e) {
-            UtilitySettings.buttonDragging = false;
-            //Console.WriteLine("Перестал перетаскивать");
-
-            if (X.ToString().Length != 8 && Y.ToString().Length != 8) {
-                string id = AssociatedObject.Name.Split("_")[0];
-                int x = Convert.ToInt32(X);
-                int y = Convert.ToInt32(Y);
-                var element = new ExcelTaskJobRepository.ElementXAML(id, "empty", x, y);
-                ExcelTaskJobRepository.SaveXAML(element);
-            }      
-        }
+    public enum VisibleElement {
+        none,
+        inline
     }
 }

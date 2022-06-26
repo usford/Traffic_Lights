@@ -25,6 +25,7 @@ namespace Traffic_Lights {
             }
         }
         //Взятие элементов из excel файла с шаблоном бд
+        //TODO убрать этот метод, перенести в GetTaskJobs()
         public static List<ElementInfoDB> GetElementsFromExcel(int index) {
             using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}\Excel файлы\Шаблон бд.xlsx")) {
                 var worksheet = workbook.Worksheet(1);
@@ -53,6 +54,7 @@ namespace Traffic_Lights {
             }            
         }
         //Получения списка всех таблиц из excel файла с шаблоном бд
+        //TODO база данных должна быть одна, наименование таблиц формируется как {Name_task.name_table}
         public List<TaskJob> GetTaskJobs() {
             var taskJobList = new List<TaskJob>();
 

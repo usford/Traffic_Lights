@@ -21,7 +21,8 @@ namespace Traffic_Lights.Models {
             get { return true; }
         }
         public void MyAction() {
-            Console.WriteLine(Tables.Count);
+            MainWindow mw = new MainWindow();
+            mw.Show();
         }
         public TaskJob(string title, string comment, List<List<ExcelTaskJobRepository.ElementInfoDB>> tables, bool enabled) {
             Title = title;

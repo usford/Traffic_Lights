@@ -4,6 +4,8 @@ using System.Windows;
 using Traffic_Lights.ViewsModels;
 using System.IO;
 using System.Runtime;
+using System.Xml.Linq;
+using System.Linq;
 
 namespace Traffic_Lights.Views {
     public partial class MenuTasksView : Window {
