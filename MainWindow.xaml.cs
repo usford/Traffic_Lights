@@ -25,7 +25,7 @@ namespace Traffic_Lights {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();
             xDoc.Load((@$"{pathDirectory}\Элементы схемы\схема.svg"));
-            
+
             try {
                 //CreateXAML(this);
                 var dataConnection = ExcelTaskJobRepository.GetConnection();
@@ -37,7 +37,6 @@ namespace Traffic_Lights {
                 Console.WriteLine(e);
             }
         }
-
         public void ButtonExit(object sender, RoutedEventArgs e) {
             Hide();
             var menuTasksView = new MenuTasksView();
