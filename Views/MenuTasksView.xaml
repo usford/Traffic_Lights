@@ -44,7 +44,6 @@
                                     IsEnabled="{Binding Enabled}"
                                     Command="{Binding ClickCommand}"
                                     Margin="0, 15, 0, 0"
-                                    Click="ButtonClose"
                             />
                             <TextBlock Text="{Binding Comment}"   
                                        VerticalAlignment="Center"

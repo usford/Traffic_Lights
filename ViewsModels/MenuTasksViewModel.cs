@@ -6,11 +6,15 @@ using System.Runtime.CompilerServices;
 using Traffic_Lights.Models;
 using Traffic_Lights.Views;
 using System.Threading;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Traffic_Lights.ViewsModels {
     public class MenuTasksViewModel : INotifyPropertyChanged {
         private List<TaskJob> _taskJobs;
         private string _setupState;
+        private ConfigJson _configJson;
         public string SetupState {
             get { return _setupState; }
             set {
@@ -26,6 +30,12 @@ namespace Traffic_Lights.ViewsModels {
             }
         }
         public MenuTasksViewModel() {
+            _configJson = JsonConvert.DeserializeObject<ConfigJson>(File.ReadAllText(@$"{MainWindow.pathDirectory}\config.json"));
+            if (_configJson.isSetup) {
+                if (TaskJobs == null) TaskJobs = new TaskJobList(new ExcelTaskJobRepository()).taskList!;
+                SetupState = "Программа успешно установлена";
+            }
+            
         }
         public ICommand SetupClick {
             get {
@@ -33,6 +43,7 @@ namespace Traffic_Lights.ViewsModels {
             }
         }
         private async void SetupClickAction() {
+            if (_configJson.isSetup) return;
             Console.WriteLine("Установка программы");
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(3000));
             bool setup = false;
@@ -43,9 +54,12 @@ namespace Traffic_Lights.ViewsModels {
                     setup = true;
                     if (TaskJobs == null) TaskJobs = new TaskJobList(new ExcelTaskJobRepository()).taskList!;
                     SetupState = "Программа успешно установлена";
+                    _configJson.isSetup = true;
+                    string output = JsonConvert.SerializeObject(_configJson, Formatting.Indented);
+                    File.WriteAllText(@$"{MainWindow.pathDirectory}\config.json", output);
                     setupBar.Hide();
                 }         
-            }       
+            }        
         }
         private bool SetupClickCanExecute {
             get { return true; }

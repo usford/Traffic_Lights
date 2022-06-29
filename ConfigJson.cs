@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Traffic_Lights
 {
-    public class JsonParse {
+    public class ConfigJson {
+        public bool isSetup { get; set; } //Установлена ли программа
     }
 }

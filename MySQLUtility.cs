@@ -35,7 +35,6 @@ namespace Traffic_Lights {
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(dataConnection.UpdateInterval));
             var cmd = new MySqlCommand();
             cmd.Connection = connection;
-
             while (await timer.WaitForNextTickAsync()) {
                 if (Convert.ToString(connection.State) == "Closed") connection.Open();
 
@@ -106,7 +105,7 @@ namespace Traffic_Lights {
             //Заполнение таблиц данными, если они отсутствуют
             if (countRecords == 0) {
                 Console.WriteLine("Создаётся база данных...");
-                var elements = ExcelTaskJobRepository.GetElementsFromExcel(7);
+                var elements = ExcelTaskJobRepository.GetElementsFromExcel(10);
                 cmd.CommandText = $"insert into {dataConnection.Database}.table1 (id, name, state, comment) values " +
                         $"(@id, @name, @state, @comment)";
                 var id = cmd.Parameters.Add("@id", MySqlDbType.String);
@@ -122,7 +121,7 @@ namespace Traffic_Lights {
                     cmd.ExecuteNonQuery();
                 }
 
-                elements = ExcelTaskJobRepository.GetElementsFromExcel(17);
+                elements = ExcelTaskJobRepository.GetElementsFromExcel(20);
                 cmd.CommandText = $"insert into {dataConnection.Database}.table2 (id, name, state, comment) values " +
                         $"(@id, @name, @state, @comment)";
 
