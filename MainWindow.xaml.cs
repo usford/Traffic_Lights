@@ -26,15 +26,22 @@ namespace Traffic_Lights {
         public XmlDocument xamlDocument = new XmlDocument();
         //public static string pathDirectory = new DirectoryInfo(@"..\..\..").FullName; //Директория программы
         public static string pathDirectory = new DirectoryInfo(@"..").FullName + @"Traffic_Lights"; //Для установщика
+        public Dictionary<string, string> mapElementsSvg;
         public MainWindow() {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();
             xDoc.Load((@$"{pathDirectory}\Элементы схемы\схема.svg"));
 
+            var svgElementsParse = new SvgElementsParse();
+            mapElementsSvg = svgElementsParse.GetElementsMap();
+
+            ButtonRendering(svgElementsParse.GetCoordinatesButtons());
+
             buttons = new List<Button>();
-            foreach (Button btn in canvasButtons.Children) {
+            foreach (Button btn     in canvasButtons.Children) {
                 buttons.Add(btn);
             }
+
             //xamlDocument.Load(@$"{pathDirectory}\MainWindow.xaml");
 
 
@@ -79,6 +86,20 @@ namespace Traffic_Lights {
             }
 
         }
+        //Наложение xaml кнопок поверх кнопок свг
+        public void ButtonRendering(List<SvgElementsParse.XamlButtons> xamlButtons) {
+            foreach (var xamlButton in xamlButtons) {
+                //Console.WriteLine(lol.ID);
+                //Console.WriteLine("X: " + lol.Coordinates.x + ":" + "Y: " + lol.Coordinates.y);
+                var button = new Button();
+                button.Name = xamlButton.ID;
+                button.Click += ButtonClick;
+                button.Opacity = 0;
+                Canvas.SetLeft(button, xamlButton.Coordinates.x);
+                Canvas.SetTop(button, xamlButton.Coordinates.y);
+                canvasButtons.Children.Add(button);
+            }
+        }
         public void ButtonExit(object sender, RoutedEventArgs e) {
             var menuTasksView = new MenuTasksView();
             menuTasksView.Show();
@@ -97,7 +118,7 @@ namespace Traffic_Lights {
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(200));
             while (await timer.WaitForNextTickAsync()) {
                 try {
-                    using (StreamReader streamReader = new StreamReader(@"E:\VS projects\Traffic_Lights\Элементы схемы\схема.svg")) {
+                    using (StreamReader streamReader = new StreamReader($@"{pathDirectory}\Элементы схемы\схема.svg")) {
                         svgMain.StreamSource = streamReader.BaseStream;
                     }
                 }
@@ -107,25 +128,31 @@ namespace Traffic_Lights {
             }
         }
         //Изменение элементов, где name = наименование элемента, а state = его состояние
-        public void ChangeElement(string? elementCode, int state) {
-            Console.WriteLine(elementCode + ":" + state);
+        //TODO вынести layers
+        public async void ChangeElement(string? elementCode, int state) {
+            //Console.WriteLine(elementCode + ":" + state);
             if (elementCode.StartsWith("kn")) {
                 if (state == 1) {
                     int index = (int)Char.GetNumericValue(elementCode[7]) - 1;
+                    //Console.WriteLine("------------------------");
+                    //Console.WriteLine("Текущее id кнопки: " + buttons[index].Name);
+                    //Console.WriteLine("Новое id кнопки: " + elementCode);
                     buttons[index].Name = elementCode;
+                    canvasButtons.InvalidateVisual();
                 }
             }
+            string layerName = mapElementsSvg[elementCode];
             var layers = xDoc.DocumentElement.ChildNodes;
             foreach (XmlNode layer in layers) {
                 if (layer.Attributes["inkscape:label"] != null) {
-                    if (layer.Attributes["inkscape:label"].Value == elementCode) {
+                    if (layer.Attributes["inkscape:label"].Value == layerName) {
                         layer.Attributes["style"].Value = $"display:{(VisibleElement)state}";
                     }
                 }
             }
 
             try {
-                using (StreamWriter streamReader = new StreamWriter(@"E:\VS projects\Traffic_Lights\Элементы схемы\схема.svg")) {
+                using (StreamWriter streamReader = new StreamWriter($@"{pathDirectory}\Элементы схемы\схема.svg")) {
                     xDoc.Save(streamReader.BaseStream);
                 }
             }

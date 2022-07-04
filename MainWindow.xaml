@@ -8,13 +8,15 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
         mc:Ignorable="d" 
         Title="MainWindow" 
-        Height="840" Width="1060" 
+        Height="840" Width="1060"
+        MaxHeight="840" MaxWidth="1060"
+        MinHeight="840" MinWidth="1060"
         WindowStartupLocation="CenterScreen">
   <Window.Resources>
     <Style TargetType="Button">
       <Setter Property="Cursor" Value="Hand" />
-      <Setter Property="Width" Value="150" />
-      <Setter Property="Height" Value="50" />
+      <Setter Property="Width" Value="155" />
+      <Setter Property="Height" Value="55" />
       <Setter Property="FontSize" Value="25" />
     </Style>
     <Style TargetType="TextBlock">
@@ -24,7 +26,7 @@
   <Canvas x:Name="mainCanvas">
     <!--<Button Content="Выйти" Click="ButtonExit" />-->
     <Canvas x:Name="canvasButtons" Panel.ZIndex="2">
-        <Button Content="Кнопка 1" 
+        <!--<Button Content="Кнопка 1" 
         x:Name="kn1010012" 
         Click="ButtonClick" 
         Canvas.Top="650"
@@ -47,7 +49,7 @@
         Click="ButtonClick" 
         Canvas.Top="650"
         Canvas.Left="810"
-        Opacity="0"/>
+        Opacity="0"/>-->
     </Canvas>
     <svgc:SvgViewbox x:Name="svgMain" 
                      Height="600" 

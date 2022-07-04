@@ -229,7 +229,6 @@ namespace Traffic_Lights {
                     }
                 }
             }
-            
             if (check) {
                 foreach (var element in elements.Where(e => e.Code == code)) {
                     foreach (var state in element.States) {
