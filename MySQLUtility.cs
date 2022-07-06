@@ -11,22 +11,21 @@ using Traffic_Lights.MySQLHandler;
 namespace Traffic_Lights {
     class MySQLUtility {
         private MainWindow _mainWindow { get; set; }
-        private ExcelTaskJobRepository.DataConnectionMySQL _dataConnection { get; set; }
         private MySQLConnection _mySqlConnection;
         private ExcelTaskJobRepository _excelTaskJobRepository;
         private ConfigHandler _configHandler;
         //Запуск работы с бд MySQL
-        public MySQLUtility(MainWindow mainWindow, ExcelTaskJobRepository.DataConnectionMySQL dataConnection, MySQLConnection mySqlConnection) {
+        public MySQLUtility(MainWindow mainWindow, MySQLConnection mySqlConnection, ConfigHandler configHandler) {
             _mainWindow = mainWindow;
-            _dataConnection = dataConnection;
-            _configHandler = new ConfigHandler();
+            _mySqlConnection = mySqlConnection;
+            _configHandler = configHandler;
             _excelTaskJobRepository = new ExcelTaskJobRepository();
         }
         public void RunConnection() {
             if (_configHandler.ConfigJson.dropDatabase) {
                 var cmd = new MySqlCommand();
                 cmd.Connection = _mySqlConnection.Connection;
-                cmd.CommandText = $"drop database {_dataConnection.Database}";
+                cmd.CommandText = $"drop database {_mySqlConnection.Database}";
                 cmd.ExecuteNonQuery();
             }
             try {
@@ -45,28 +44,28 @@ namespace Traffic_Lights {
         }
         //Проверка изменений через заданный интервал
         async void CheckTables() {
-            var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(_dataConnection.UpdateInterval));
+            var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(_mySqlConnection.UpdateInterval));
             var cmd = new MySqlCommand();
             cmd.Connection = _mySqlConnection.Connection;
             while (await timer.WaitForNextTickAsync()) {
-                //if (Convert.ToString(_connection.State) == "Closed") _connection.Open();
-
+                //Почему-то здесь соединение закрыто, хотя во всем приложении открыто, видимо это особенность асинхронного потока
+                if (Convert.ToString(_mySqlConnection.Connection.State) == "Closed") _mySqlConnection.Open();
                 //Изменения в таблице 1
-                cmd.CommandText = $"select count(*) from {_dataConnection.Database}.table1_changes";
+                cmd.CommandText = $"select count(*) from {_mySqlConnection.Database}.table1_changes";
                 int checkTable1 = Convert.ToInt32(cmd.ExecuteScalar());
                 if (checkTable1 > 0) {
                     Console.WriteLine("Данные поменялись в table1");
                     CheckElement();
-                    cmd.CommandText = $"delete from {_dataConnection.Database}.table1_changes";
+                    cmd.CommandText = $"delete from {_mySqlConnection.Database}.table1_changes";
                     cmd.ExecuteNonQuery();
                 }
                 //Изменения в таблице 2
-                cmd.CommandText = $"select count(*) from {_dataConnection.Database}.table2_changes";
+                cmd.CommandText = $"select count(*) from {_mySqlConnection.Database}.table2_changes";
                 int checkTable2 = Convert.ToInt32(cmd.ExecuteScalar());
                 if (checkTable2 > 0) {
                     Console.WriteLine("Данные поменялись в table2");
                     CheckRelationsElement();
-                    cmd.CommandText = $"delete from {_dataConnection.Database}.table2_changes";
+                    cmd.CommandText = $"delete from {_mySqlConnection.Database}.table2_changes";
                     cmd.ExecuteNonQuery();
                 }
             }         
@@ -76,10 +75,10 @@ namespace Traffic_Lights {
             var cmd = new MySqlCommand();
             cmd.Connection = _mySqlConnection.Connection;
 
-            cmd.CommandText = $"create database if not exists {_dataConnection.Database}";
+            cmd.CommandText = $"create database if not exists {_mySqlConnection.Database}";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"create table if not exists {_dataConnection.Database}.table1 (" +
+            cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.table1 (" +
                 $"id varchar(45) not null," +
                 $"name varchar(45)," +
                 $"state int," +
@@ -87,7 +86,7 @@ namespace Traffic_Lights {
                 $"primary key(id))";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"create table if not exists {_dataConnection.Database}.table2 (" +
+            cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.table2 (" +
                 $"id varchar(45) not null," +
                 $"name varchar(45)," +
                 $"state int," +
@@ -95,7 +94,7 @@ namespace Traffic_Lights {
                 $"primary key(id))";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"create table if not exists {_dataConnection.Database}.table1_changes (" +
+            cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.table1_changes (" +
                 $"count int AUTO_INCREMENT," +
                 $"id varchar(45) not null," +
                 $"name varchar(45)," +
@@ -104,7 +103,7 @@ namespace Traffic_Lights {
                 $"primary key(count))";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"create table if not exists {_dataConnection.Database}.table2_changes (" +
+            cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.table2_changes (" +
                 $"count int AUTO_INCREMENT," +
                 $"id varchar(45) not null," +
                 $"name varchar(45)," +
@@ -113,13 +112,13 @@ namespace Traffic_Lights {
                 $"primary key(count))";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"select count(*) from {_dataConnection.Database}.table2";
+            cmd.CommandText = $"select count(*) from {_mySqlConnection.Database}.table2";
             int countRecords = Convert.ToInt32(cmd.ExecuteScalar());
             //Заполнение таблиц данными, если они отсутствуют
             if (countRecords == 0) {
                 Console.WriteLine("Создаётся база данных...");
                 var elements = _excelTaskJobRepository.GetElementsFromExcel(10);
-                cmd.CommandText = $"insert into {_dataConnection.Database}.table1 (id, name, state, comment) values " +
+                cmd.CommandText = $"insert into {_mySqlConnection.Database}.table1 (id, name, state, comment) values " +
                         $"(@id, @name, @state, @comment)";
                 var id = cmd.Parameters.Add("@id", MySqlDbType.String);
                 var name = cmd.Parameters.Add("@name", MySqlDbType.String);
@@ -135,7 +134,7 @@ namespace Traffic_Lights {
                 }
 
                 elements = _excelTaskJobRepository.GetElementsFromExcel(20);
-                cmd.CommandText = $"insert into {_dataConnection.Database}.table2 (id, name, state, comment) values " +
+                cmd.CommandText = $"insert into {_mySqlConnection.Database}.table2 (id, name, state, comment) values " +
                         $"(@id, @name, @state, @comment)";
 
                 foreach (var element in elements) {
@@ -147,7 +146,7 @@ namespace Traffic_Lights {
                 }
 
                 //Создание триггеров дли отслеживания изменений в таблицах
-                cmd.CommandText = $"use {_dataConnection.Database}; " +
+                cmd.CommandText = $"use {_mySqlConnection.Database}; " +
                     $"create trigger table1_update " +
                     $"after update on table1 " +
                     $"for each row begin " +
@@ -159,7 +158,7 @@ namespace Traffic_Lights {
                     @$"end;";
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = $"use {_dataConnection.Database}; " +
+                cmd.CommandText = $"use {_mySqlConnection.Database}; " +
                     $"create trigger table2_update " +
                     $"after update on table2 " +
                     $"for each row begin " +
@@ -182,7 +181,7 @@ namespace Traffic_Lights {
             foreach (var element in elements) { 
                 bool check = true;
                 foreach (var state in element.States) {
-                    cmd.CommandText = $"select state from {_dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    cmd.CommandText = $"select state from {_mySqlConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
                     //Console.WriteLine("---------------");
                     //Console.WriteLine(element.Name);
                     //Console.WriteLine(state.Key[0] + " " + state.Key[1]);
@@ -205,7 +204,7 @@ namespace Traffic_Lights {
             foreach (var element in elements) {
                 bool check = true;
                 foreach (var state in element.States) {
-                    cmd.CommandText = $"select state from {_dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    cmd.CommandText = $"select state from {_mySqlConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
                     int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
 
                     if (stateCheck != state.Value) {
@@ -214,7 +213,7 @@ namespace Traffic_Lights {
                     }
                 }
                 //Если логика верна, изменяем элемент согласно ей  
-                cmd.CommandText = $"update {_dataConnection.Database}.{element.Cell[1]} set state = {Convert.ToInt32(check)} " +
+                cmd.CommandText = $"update {_mySqlConnection.Database}.{element.Cell[1]} set state = {Convert.ToInt32(check)} " +
                         $"Where id = '{element.Cell[0]}' ";
                 cmd.ExecuteNonQuery();
             }
@@ -230,7 +229,7 @@ namespace Traffic_Lights {
 
             foreach (var element in permitElements.Where(e => e.Code == code)) {
                 foreach (var state in element.States) {
-                    cmd.CommandText = $"select state from {_dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    cmd.CommandText = $"select state from {_mySqlConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
                     int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
                     //Console.WriteLine(state.Key[1]);
                     //Console.WriteLine(state.Key[0]);
@@ -245,7 +244,7 @@ namespace Traffic_Lights {
             if (check) {
                 foreach (var element in elements.Where(e => e.Code == code)) {
                     foreach (var state in element.States) {
-                        cmd.CommandText = $"update {_dataConnection.Database}.{state.Key[1]} set state = {state.Value} " +
+                        cmd.CommandText = $"update {_mySqlConnection.Database}.{state.Key[1]} set state = {state.Value} " +
                             $"Where id = '{state.Key[0]}' ";
                         //Console.WriteLine(cmd.CommandText);
                         cmd.ExecuteNonQuery();

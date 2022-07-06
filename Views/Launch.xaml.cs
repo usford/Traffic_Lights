@@ -11,6 +11,7 @@ namespace Traffic_Lights.Views {
             var config = new ConfigHandler();
             var mySqlConnection = new MySQLConnection();
             mySqlConnection.Start();
+            mySqlConnection.Open();
             var menuTasksView = new MenuTasksView(mySqlConnection, config);
             menuTasksView.Show();
             Hide();

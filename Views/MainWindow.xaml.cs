@@ -18,13 +18,13 @@ namespace Traffic_Lights {
         public XmlDocument xamlDocument = new XmlDocument();
         public Dictionary<string, string> mapElementsSvg;
         private ConfigHandler _configHandler;
-        private MySQLConnection _mySQLConnection;
+        private MySQLConnection _mySqlConnection;
         private ExcelTaskJobRepository _excelTaskJobRepository;
         public MainWindow(MySQLConnection mySQLConnection, ConfigHandler configHandler) {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();
             _configHandler = configHandler;
-            _mySQLConnection = mySQLConnection;
+            _mySqlConnection = mySQLConnection;
             _excelTaskJobRepository = new ExcelTaskJobRepository();
             xDoc.Load((@$"{_configHandler.PathToSvgElements}\схема.svg"));
 
@@ -72,7 +72,7 @@ namespace Traffic_Lights {
             try {
                 //CreateXAML(this);
                 var dataConnection = _excelTaskJobRepository.GetConnection();
-                var mySQL = new MySQLUtility(this, dataConnection, new MySQLConnection());
+                var mySQL = new MySQLUtility(this, _mySqlConnection, _configHandler);
                 mySQL.RunConnection();
                 ChangeSvg();
             }
@@ -105,7 +105,7 @@ namespace Traffic_Lights {
             //string name = (e.OriginalSource as SvgViewBox)!.Name.Split("_")[1];
             string name = (e.OriginalSource as Button).Name;
             var dataConnection = _excelTaskJobRepository.GetConnection();
-            var mySQL = new MySQLUtility(this, dataConnection, new MySQLConnection());
+            var mySQL = new MySQLUtility(this, _mySqlConnection, _configHandler);
             //Console.WriteLine((e.OriginalSource as SvgDrawingCanvas).Children.Count);
             Console.WriteLine(name);
             mySQL.InsertStateTable2(name);

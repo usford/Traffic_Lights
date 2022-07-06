@@ -54,8 +54,10 @@ namespace Traffic_Lights.MySQLHandler {
                 $"Port={Port};" +
                 $"User id={Username};" +
                 $"Password={Password}");
-            connection.Open();
             Connection = connection;
+        }
+        public void Open() {
+            Connection!.Open();
         }
         public void Close() {
             Connection!.Close();
