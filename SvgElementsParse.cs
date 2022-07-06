@@ -7,12 +7,18 @@ using System.IO;
 using System.Xml;
 using System.Runtime;
 using System.Text.RegularExpressions;
+using Traffic_Lights.ConfigProgram;
 
 namespace Traffic_Lights {
     public class SvgElementsParse {
+        private ConfigHandler _configHandler;
+        public SvgElementsParse() {
+            _configHandler = new ConfigHandler();
+        }
         public List<XamlButtons> GetCoordinatesButtons() {
             var map = new List<XamlButtons>();
-            var fileElements = Directory.GetFiles($@"{MainWindow.pathDirectory}\Элементы схемы\Elements");
+            var fileElements = Directory.GetFiles($@"{_configHandler.PathToSvgElements}\Elements");
+            Console.WriteLine($@"{_configHandler.PathToSvgElements}\Elements");
             var xDoc = new XmlDocument();
             var listUniqueElements = new List<string>();
 
@@ -138,7 +144,7 @@ namespace Traffic_Lights {
             double y = 0.0;
             double a = 0.0;
             //Console.WriteLine(regularExpression);
-            var doubleNumberPattern = @"(-\d|\d)+?(?:[.]\d+?)?"; ;
+            var doubleNumberPattern = @"(-\d|\d)+?(?:[.]\d+?)?";
             var regexMatrix= new Regex($@"^matrix\({doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern}\)\z");
 
             //Регулярное выражение типа matrix(a,b,c,d,e,f)
@@ -156,7 +162,7 @@ namespace Traffic_Lights {
         // id элемента - наименование слоя
         public Dictionary<string, string> GetElementsMap() {
             var map = new Dictionary<string, string>();
-            var fileElements = Directory.GetFiles($@"{MainWindow.pathDirectory}\Элементы схемы\Elements");
+            var fileElements = Directory.GetFiles($@"{_configHandler.PathToSvgElements}\Elements");
             var xDoc = new XmlDocument();
 
             foreach (var fileElement in fileElements) {

@@ -9,7 +9,6 @@
         Height="100" Width="350"
         MaxHeight="100" MaxWidth="350" 
         MinHeight="100" MinWidth="350"
-        ContentRendered="Window_ContentRendered"
         WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <ProgressBar Minimum="0"

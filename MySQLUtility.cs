@@ -5,26 +5,29 @@ using MySql.Data.MySqlClient;
 using System.Threading;
 using Newtonsoft.Json;
 using System.IO;
+using Traffic_Lights.ConfigProgram;
 
 namespace Traffic_Lights {
     class MySQLUtility {
-        MainWindow mainWindow { get; set; }
-        ExcelTaskJobRepository.DataConnectionMySQL dataConnection { get; set; }
-        MySqlConnection connection { get; set; }
-        private ConfigJson _configJson;
+        private MainWindow _mainWindow { get; set; }
+        private ExcelTaskJobRepository.DataConnectionMySQL _dataConnection { get; set; }
+        private MySqlConnection _connection { get; set; }
+        private ExcelTaskJobRepository _excelTaskJobRepository;
+        private ConfigHandler _configHandler;
         //Запуск работы с бд MySQL
         public MySQLUtility(MainWindow mainWindow, ExcelTaskJobRepository.DataConnectionMySQL dataConnection) {
-            this.mainWindow = mainWindow;
-            this.dataConnection = dataConnection;
-            connection = GetDBConnection(dataConnection);
-            connection.Open();
-            _configJson = JsonConvert.DeserializeObject<ConfigJson>(File.ReadAllText(@$"{MainWindow.pathDirectory}\config.json"));
+            _mainWindow = mainWindow;
+            _dataConnection = dataConnection;
+            _connection = GetDBConnection(dataConnection);
+            _connection.Open();
+            _configHandler = new ConfigHandler();
+            _excelTaskJobRepository = new ExcelTaskJobRepository();
         }
         public void RunConnection() {
-            if (_configJson.dropDatabase) {
+            if (_configHandler.ConfigJson.dropDatabase) {
                 var cmd = new MySqlCommand();
-                cmd.Connection = connection;
-                cmd.CommandText = $"drop database {dataConnection.Database}";
+                cmd.Connection = _connection;
+                cmd.CommandText = $"drop database {_dataConnection.Database}";
                 cmd.ExecuteNonQuery();
             }
             try {
@@ -37,47 +40,47 @@ namespace Traffic_Lights {
                 
             }
             finally {
-                connection.Close();
-                connection.Dispose();
+                _connection.Close();
+                _connection.Dispose();
             }
         }
         //Проверка изменений через заданный интервал
         async void CheckTables() {
-            var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(dataConnection.UpdateInterval));
+            var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(_dataConnection.UpdateInterval));
             var cmd = new MySqlCommand();
-            cmd.Connection = connection;
+            cmd.Connection = _connection;
             while (await timer.WaitForNextTickAsync()) {
-                if (Convert.ToString(connection.State) == "Closed") connection.Open();
+                if (Convert.ToString(_connection.State) == "Closed") _connection.Open();
 
                 //Изменения в таблице 1
-                cmd.CommandText = $"select count(*) from {dataConnection.Database}.table1_changes";
+                cmd.CommandText = $"select count(*) from {_dataConnection.Database}.table1_changes";
                 int checkTable1 = Convert.ToInt32(cmd.ExecuteScalar());
                 if (checkTable1 > 0) {
                     Console.WriteLine("Данные поменялись в table1");
                     CheckElement();
-                    cmd.CommandText = $"delete from {dataConnection.Database}.table1_changes";
+                    cmd.CommandText = $"delete from {_dataConnection.Database}.table1_changes";
                     cmd.ExecuteNonQuery();
                 }
                 //Изменения в таблице 2
-                cmd.CommandText = $"select count(*) from {dataConnection.Database}.table2_changes";
+                cmd.CommandText = $"select count(*) from {_dataConnection.Database}.table2_changes";
                 int checkTable2 = Convert.ToInt32(cmd.ExecuteScalar());
                 if (checkTable2 > 0) {
                     Console.WriteLine("Данные поменялись в table2");
                     CheckRelationsElement();
-                    cmd.CommandText = $"delete from {dataConnection.Database}.table2_changes";
+                    cmd.CommandText = $"delete from {_dataConnection.Database}.table2_changes";
                     cmd.ExecuteNonQuery();
                 }
             }         
         }
         //Создание базы данных если её нет (с таблицами)
-        void CreateDB() {
+        private void CreateDB() {
             var cmd = new MySqlCommand();
-            cmd.Connection = connection;
+            cmd.Connection = _connection;
 
-            cmd.CommandText = $"create database if not exists {dataConnection.Database}";
+            cmd.CommandText = $"create database if not exists {_dataConnection.Database}";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"create table if not exists {dataConnection.Database}.table1 (" +
+            cmd.CommandText = $"create table if not exists {_dataConnection.Database}.table1 (" +
                 $"id varchar(45) not null," +
                 $"name varchar(45)," +
                 $"state int," +
@@ -85,7 +88,7 @@ namespace Traffic_Lights {
                 $"primary key(id))";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"create table if not exists {dataConnection.Database}.table2 (" +
+            cmd.CommandText = $"create table if not exists {_dataConnection.Database}.table2 (" +
                 $"id varchar(45) not null," +
                 $"name varchar(45)," +
                 $"state int," +
@@ -93,7 +96,7 @@ namespace Traffic_Lights {
                 $"primary key(id))";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"create table if not exists {dataConnection.Database}.table1_changes (" +
+            cmd.CommandText = $"create table if not exists {_dataConnection.Database}.table1_changes (" +
                 $"count int AUTO_INCREMENT," +
                 $"id varchar(45) not null," +
                 $"name varchar(45)," +
@@ -102,7 +105,7 @@ namespace Traffic_Lights {
                 $"primary key(count))";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"create table if not exists {dataConnection.Database}.table2_changes (" +
+            cmd.CommandText = $"create table if not exists {_dataConnection.Database}.table2_changes (" +
                 $"count int AUTO_INCREMENT," +
                 $"id varchar(45) not null," +
                 $"name varchar(45)," +
@@ -111,13 +114,13 @@ namespace Traffic_Lights {
                 $"primary key(count))";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"select count(*) from {dataConnection.Database}.table2";
+            cmd.CommandText = $"select count(*) from {_dataConnection.Database}.table2";
             int countRecords = Convert.ToInt32(cmd.ExecuteScalar());
             //Заполнение таблиц данными, если они отсутствуют
             if (countRecords == 0) {
                 Console.WriteLine("Создаётся база данных...");
-                var elements = ExcelTaskJobRepository.GetElementsFromExcel(10);
-                cmd.CommandText = $"insert into {dataConnection.Database}.table1 (id, name, state, comment) values " +
+                var elements = _excelTaskJobRepository.GetElementsFromExcel(10);
+                cmd.CommandText = $"insert into {_dataConnection.Database}.table1 (id, name, state, comment) values " +
                         $"(@id, @name, @state, @comment)";
                 var id = cmd.Parameters.Add("@id", MySqlDbType.String);
                 var name = cmd.Parameters.Add("@name", MySqlDbType.String);
@@ -132,8 +135,8 @@ namespace Traffic_Lights {
                     cmd.ExecuteNonQuery();
                 }
 
-                elements = ExcelTaskJobRepository.GetElementsFromExcel(20);
-                cmd.CommandText = $"insert into {dataConnection.Database}.table2 (id, name, state, comment) values " +
+                elements = _excelTaskJobRepository.GetElementsFromExcel(20);
+                cmd.CommandText = $"insert into {_dataConnection.Database}.table2 (id, name, state, comment) values " +
                         $"(@id, @name, @state, @comment)";
 
                 foreach (var element in elements) {
@@ -145,7 +148,7 @@ namespace Traffic_Lights {
                 }
 
                 //Создание триггеров дли отслеживания изменений в таблицах
-                cmd.CommandText = $"use {dataConnection.Database}; " +
+                cmd.CommandText = $"use {_dataConnection.Database}; " +
                     $"create trigger table1_update " +
                     $"after update on table1 " +
                     $"for each row begin " +
@@ -157,7 +160,7 @@ namespace Traffic_Lights {
                     @$"end;";
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = $"use {dataConnection.Database}; " +
+                cmd.CommandText = $"use {_dataConnection.Database}; " +
                     $"create trigger table2_update " +
                     $"after update on table2 " +
                     $"for each row begin " +
@@ -171,16 +174,16 @@ namespace Traffic_Lights {
             }
         }
         //Проверка элементов согласно логике в логика.xlsx
-        void CheckElement() {
+        private void CheckElement() {
             Console.WriteLine("Проверка элементов...");
             var cmd = new MySqlCommand();
-            cmd.Connection = connection;
+            cmd.Connection = _connection;
             
-            List<ExcelTaskJobRepository.ElementInfoExcel> elements = ExcelTaskJobRepository.GetLogicElement();
+            List<ExcelTaskJobRepository.ElementInfoExcel> elements = _excelTaskJobRepository.GetLogicElement();
             foreach (var element in elements) { 
                 bool check = true;
                 foreach (var state in element.States) {
-                    cmd.CommandText = $"select state from {dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    cmd.CommandText = $"select state from {_dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
                     //Console.WriteLine("---------------");
                     //Console.WriteLine(element.Name);
                     //Console.WriteLine(state.Key[0] + " " + state.Key[1]);
@@ -191,19 +194,19 @@ namespace Traffic_Lights {
                         break;
                     }                      
                 }
-                mainWindow.ChangeElement(element.Code, Convert.ToInt32(check));
+                _mainWindow.ChangeElement(element.Code, Convert.ToInt32(check));
             }
         }
         //Проверка элементов согласно логики связей состояний ячеек в логика.xlsx
-        void CheckRelationsElement() {
+        private void CheckRelationsElement() {
             var cmd = new MySqlCommand();
-            cmd.Connection = connection;
+            cmd.Connection = _connection;
 
-            List<ExcelTaskJobRepository.ElementInfoExcel> elements = ExcelTaskJobRepository.GetLogicRelations();
+            List<ExcelTaskJobRepository.ElementInfoExcel> elements = _excelTaskJobRepository.GetLogicRelations();
             foreach (var element in elements) {
                 bool check = true;
                 foreach (var state in element.States) {
-                    cmd.CommandText = $"select state from {dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    cmd.CommandText = $"select state from {_dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
                     int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
 
                     if (stateCheck != state.Value) {
@@ -212,23 +215,23 @@ namespace Traffic_Lights {
                     }
                 }
                 //Если логика верна, изменяем элемент согласно ей  
-                cmd.CommandText = $"update {dataConnection.Database}.{element.Cell[1]} set state = {Convert.ToInt32(check)} " +
+                cmd.CommandText = $"update {_dataConnection.Database}.{element.Cell[1]} set state = {Convert.ToInt32(check)} " +
                         $"Where id = '{element.Cell[0]}' ";
                 cmd.ExecuteNonQuery();
             }
         }
         //Вставка значения в таблицу 2 по нажатию кнопки
         public void InsertStateTable2(string code) {
-            List<ExcelTaskJobRepository.ElementInfoExcel> elements = ExcelTaskJobRepository.GetStateButtons();
-            List<ExcelTaskJobRepository.ElementInfoExcel> permitElements = ExcelTaskJobRepository.GetPermitStateButtons();
+            List<ExcelTaskJobRepository.ElementInfoExcel> elements = _excelTaskJobRepository.GetStateButtons();
+            List<ExcelTaskJobRepository.ElementInfoExcel> permitElements = _excelTaskJobRepository.GetPermitStateButtons();
             var cmd = new MySqlCommand();
-            cmd.Connection = connection;
+            cmd.Connection = _connection;
 
             bool check = true;
 
             foreach (var element in permitElements.Where(e => e.Code == code)) {
                 foreach (var state in element.States) {
-                    cmd.CommandText = $"select state from {dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    cmd.CommandText = $"select state from {_dataConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
                     int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
                     //Console.WriteLine(state.Key[1]);
                     //Console.WriteLine(state.Key[0]);
@@ -243,7 +246,7 @@ namespace Traffic_Lights {
             if (check) {
                 foreach (var element in elements.Where(e => e.Code == code)) {
                     foreach (var state in element.States) {
-                        cmd.CommandText = $"update {dataConnection.Database}.{state.Key[1]} set state = {state.Value} " +
+                        cmd.CommandText = $"update {_dataConnection.Database}.{state.Key[1]} set state = {state.Value} " +
                             $"Where id = '{state.Key[0]}' ";
                         //Console.WriteLine(cmd.CommandText);
                         cmd.ExecuteNonQuery();

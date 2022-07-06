@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Traffic_Lights.Interfaces;
 
 namespace Traffic_Lights.Models {
     public class TaskJob {
@@ -10,12 +11,7 @@ namespace Traffic_Lights.Models {
         public List<List<ExcelTaskJobRepository.ElementInfoDB>>? Tables { get; set; }
         public bool Enabled { get; set; }
         public ICommand ClickCommand {
-            get {
-                if (_clickCommand == null) {
-                    _clickCommand = new CommandHandler(() => MyAction(), () => CanExecute);
-                };
-                return _clickCommand;
-            }
+            get { return _clickCommand; }
         }
         public bool CanExecute {
             get { return true; }
@@ -29,6 +25,7 @@ namespace Traffic_Lights.Models {
             Comment = comment;
             Tables = tables;
             Enabled = enabled;
+            _clickCommand = new CommandHandler(() => MyAction(), () => CanExecute);
         }
     }
     public class TaskJobList {

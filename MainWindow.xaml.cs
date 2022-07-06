@@ -2,35 +2,27 @@
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using SvgViewBox = SharpVectors.Converters.SvgViewbox;
-using SvgDrawingCanvas = SharpVectors.Runtime.SvgDrawingCanvas;
 using System.IO;
-using BehaviorsLayout = Microsoft.Xaml.Behaviors.Layout;
-using Microsoft.Xaml.Behaviors;
-using System.Windows.Input;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Xml.Linq;
 using System.Xml;
-using System.Threading.Tasks;
 using System.Threading;
 using Traffic_Lights.Views;
-using SharpVectors.Converters;
-using SharpVectors.Renderers.Wpf;
-
+using Traffic_Lights.ConfigProgram;
 
 namespace Traffic_Lights {
     public partial class MainWindow : Window {
         public List<Button> buttons;
         public XmlDocument xDoc = new XmlDocument();
         public XmlDocument xamlDocument = new XmlDocument();
-        //public static string pathDirectory = new DirectoryInfo(@"..\..\..").FullName; //Директория программы
-        public static string pathDirectory = new DirectoryInfo(@"..").FullName + @"Traffic_Lights"; //Для установщика
         public Dictionary<string, string> mapElementsSvg;
+        private ConfigHandler _configHandler;
+        private ExcelTaskJobRepository _excelTaskJobRepository;
         public MainWindow() {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();
-            xDoc.Load((@$"{pathDirectory}\Элементы схемы\схема.svg"));
+            _configHandler = new ConfigHandler();
+            _excelTaskJobRepository = new ExcelTaskJobRepository();
+            xDoc.Load((@$"{_configHandler.PathToSvgElements}\схема.svg"));
 
             var svgElementsParse = new SvgElementsParse();
             mapElementsSvg = svgElementsParse.GetElementsMap();
@@ -38,7 +30,7 @@ namespace Traffic_Lights {
             ButtonRendering(svgElementsParse.GetCoordinatesButtons());
 
             buttons = new List<Button>();
-            foreach (Button btn     in canvasButtons.Children) {
+            foreach (Button btn in canvasButtons.Children) {
                 buttons.Add(btn);
             }
 
@@ -75,7 +67,7 @@ namespace Traffic_Lights {
             //}
             try {
                 //CreateXAML(this);
-                var dataConnection = ExcelTaskJobRepository.GetConnection();
+                var dataConnection = _excelTaskJobRepository.GetConnection();
                 var mySQL = new MySQLUtility(this, dataConnection);
                 mySQL.RunConnection();
                 ChangeSvg();
@@ -108,7 +100,7 @@ namespace Traffic_Lights {
         public void ButtonClick(object sender, RoutedEventArgs e) {
             //string name = (e.OriginalSource as SvgViewBox)!.Name.Split("_")[1];
             string name = (e.OriginalSource as Button).Name;
-            var dataConnection = ExcelTaskJobRepository.GetConnection();
+            var dataConnection = _excelTaskJobRepository.GetConnection();
             var mySQL = new MySQLUtility(this, dataConnection);
             //Console.WriteLine((e.OriginalSource as SvgDrawingCanvas).Children.Count);
             Console.WriteLine(name);
@@ -118,7 +110,7 @@ namespace Traffic_Lights {
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(200));
             while (await timer.WaitForNextTickAsync()) {
                 try {
-                    using (StreamReader streamReader = new StreamReader($@"{pathDirectory}\Элементы схемы\схема.svg")) {
+                    using (StreamReader streamReader = new StreamReader($@"{_configHandler.PathToSvgElements}\схема.svg")) {
                         svgMain.StreamSource = streamReader.BaseStream;
                     }
                 }
@@ -152,7 +144,7 @@ namespace Traffic_Lights {
             }
 
             try {
-                using (StreamWriter streamReader = new StreamWriter($@"{pathDirectory}\Элементы схемы\схема.svg")) {
+                using (StreamWriter streamReader = new StreamWriter($@"{_configHandler.PathToSvgElements}\схема.svg")) {
                     xDoc.Save(streamReader.BaseStream);
                 }
             }

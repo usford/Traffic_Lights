@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using ClosedXML.Excel;
+using Traffic_Lights.Interfaces;
 using Traffic_Lights.Models;
+using Traffic_Lights.ConfigProgram;
 
 namespace Traffic_Lights {
     public class ExcelTaskJobRepository : TaskJobRepository {
+        private ConfigHandler _configHandler;
         public ExcelTaskJobRepository() {
-
+            _configHandler = new ConfigHandler();
         }
         //Получение объекта, в котором хранится информация о подключении к бд MySQL
-        public static DataConnectionMySQL GetConnection() {
-            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}\Excel файлы\Подключение к бд.xlsx")) {
+        public DataConnectionMySQL GetConnection() {
+            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Подключение к бд.xlsx")) {
                 var worksheet = workbook.Worksheet(1);
                 string? host = Convert.ToString(worksheet.Cell(2, 2).Value);
                 short port = Convert.ToInt16(worksheet.Cell(3, 2).Value);
@@ -26,8 +29,8 @@ namespace Traffic_Lights {
         }
         //Взятие элементов из excel файла с шаблоном бд
         //TODO убрать этот метод, перенести в GetTaskJobs()
-        public static List<ElementInfoDB> GetElementsFromExcel(int index) {
-            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}\Excel файлы\Шаблон бд.xlsx")) {
+        public List<ElementInfoDB> GetElementsFromExcel(int index) {
+            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Шаблон бд.xlsx")) {
                 var worksheet = workbook.Worksheet(1);
                 var elements = new List<ElementInfoDB>();
                 var columns = worksheet.RangeUsed().ColumnsUsed();
@@ -58,7 +61,7 @@ namespace Traffic_Lights {
         public List<TaskJob> GetTaskJobs() {
             var taskJobList = new List<TaskJob>();
 
-            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}\Excel файлы\Шаблон бд.xlsx")) {
+            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Шаблон бд.xlsx")) {
                 var worksheet = workbook.Worksheet(1);
                 var rows = worksheet.RangeUsed().RowsUsed();
                 string nameDB = "empty";
@@ -96,8 +99,8 @@ namespace Traffic_Lights {
             return taskJobList;
         }
         //Логика состояний элементов в файле логика.xlsx
-        public static List<ElementInfoExcel> GetLogicElement() {
-            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}\Excel файлы\Логика.xlsx")) {
+        public List<ElementInfoExcel> GetLogicElement() {
+            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Логика.xlsx")) {
                 var worksheet = workbook.Worksheet(4);
                 var rows = worksheet.RangeUsed().RowsUsed();
                 var columns = worksheet.RangeUsed().ColumnsUsed();
@@ -137,8 +140,8 @@ namespace Traffic_Lights {
             }
         }
         //Логика связий ячеек table1 и table 2 в файле логика.xlsx
-        public static List<ElementInfoExcel> GetLogicRelations() {
-            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}\Excel файлы\Логика.xlsx")) {
+        public List<ElementInfoExcel> GetLogicRelations() {
+            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Логика.xlsx")) {
                 var worksheet = workbook.Worksheet(3);
                 var rows = worksheet.RangeUsed().RowsUsed();
                 var columns = worksheet.RangeUsed().ColumnsUsed();
@@ -177,8 +180,8 @@ namespace Traffic_Lights {
             }
         }
         //Логика включения кнопок управления в файле логика.xlsx
-        public static List<ElementInfoExcel> GetStateButtons() {
-            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}\Excel файлы\Логика.xlsx")) {
+        public List<ElementInfoExcel> GetStateButtons() {
+            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Логика.xlsx")) {
                 var worksheet = workbook.Worksheet(2);
                 var rows = worksheet.RangeUsed().RowsUsed();
                 var columns = worksheet.RangeUsed().ColumnsUsed();
@@ -217,8 +220,8 @@ namespace Traffic_Lights {
             }
         }
         //Логика разрешения включения кнопок управления в файле логика.xlsx
-        public static List<ElementInfoExcel> GetPermitStateButtons() {
-            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}\Excel файлы\Логика.xlsx")) {
+        public List<ElementInfoExcel> GetPermitStateButtons() {
+            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Логика.xlsx")) {
                 var worksheet = workbook.Worksheet(1);
                 var rows = worksheet.RangeUsed().RowsUsed();
                 var columns = worksheet.RangeUsed().ColumnsUsed();
@@ -257,10 +260,10 @@ namespace Traffic_Lights {
             }
         }
         //Взятие элементов из файла Все элементы.xlsx
-        public static List<ElementXAML> GetElementsXAML() {
+        public List<ElementXAML> GetElementsXAML() {
             var elements = new List<ElementXAML>();
 
-            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}\Элементы схемы\Все элементы.xlsx")) {
+            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Все элементы.xlsx")) {
                 var worksheet = workbook.Worksheet(1);
                 var rows = worksheet.RangeUsed().RowsUsed();
 
@@ -279,8 +282,8 @@ namespace Traffic_Lights {
 
             return elements;
         }
-        public static void SaveXAML(ElementXAML element) {
-            using (var workbook = new XLWorkbook($@"{MainWindow.pathDirectory}\Элементы схемы\Все элементы.xlsx")) {
+        public void SaveXAML(ElementXAML element) {
+            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Все элементы.xlsx")) {
                 var worksheet = workbook.Worksheet(1);
                 var rows = worksheet.RangeUsed().RowsUsed();
 
