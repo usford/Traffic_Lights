@@ -3,20 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using MySql.Data.MySqlClient;
 using System.Threading;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Traffic_Lights {
     class MySQLUtility {
         MainWindow mainWindow { get; set; }
         ExcelTaskJobRepository.DataConnectionMySQL dataConnection { get; set; }
         MySqlConnection connection { get; set; }
+        private ConfigJson _configJson;
         //Запуск работы с бд MySQL
         public MySQLUtility(MainWindow mainWindow, ExcelTaskJobRepository.DataConnectionMySQL dataConnection) {
             this.mainWindow = mainWindow;
             this.dataConnection = dataConnection;
             connection = GetDBConnection(dataConnection);
             connection.Open();
+            _configJson = JsonConvert.DeserializeObject<ConfigJson>(File.ReadAllText(@$"{MainWindow.pathDirectory}\config.json"));
         }
         public void RunConnection() {
+            if (_configJson.dropDatabase) {
+                var cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = $"drop database {dataConnection.Database}";
+                cmd.ExecuteNonQuery();
+            }
             try {
                 CreateDB();
                 CheckElement();
@@ -24,6 +34,7 @@ namespace Traffic_Lights {
             }
             catch (Exception ex) {
                 Console.WriteLine($"Error: {ex}");
+                
             }
             finally {
                 connection.Close();

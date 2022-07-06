@@ -8,5 +8,6 @@ namespace Traffic_Lights
 {
     public class ConfigJson {
         public bool isSetup { get; set; } //Установлена ли программа
+        public bool dropDatabase { get; set; } //Удалить ли базу данных
     }
 }
