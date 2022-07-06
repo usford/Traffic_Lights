@@ -7,12 +7,14 @@ using Traffic_Lights.Models;
 using Traffic_Lights.Views;
 using System.Threading;
 using Traffic_Lights.ConfigProgram;
+using Traffic_Lights.MySQLHandler;
 
 namespace Traffic_Lights.ViewsModels {
     public class MenuTasksViewModel : INotifyPropertyChanged {
-        private List<TaskJob>? _taskJobs;
+        private List<TaskJobButton>? _taskJobButtons;
         private string _setupState = "";
         private ConfigHandler _configHandler;
+        private MySQLConnection _mySqlConnection;
         public string SetupState {
             get { return _setupState; }
             set {
@@ -20,19 +22,20 @@ namespace Traffic_Lights.ViewsModels {
                 OnPropertyChanged("SetupState");
             }
         }
-        public List<TaskJob> TaskJobs {
-            get { return _taskJobs!; }
+        public List<TaskJobButton> TaskJobButtons {
+            get { return _taskJobButtons!; }
             set {
-                _taskJobs = value;
-                OnPropertyChanged("TaskJobs");
+                _taskJobButtons = value;
+                OnPropertyChanged("TaskJobButtons");
             }
         }
-        public MenuTasksViewModel() {
-            _configHandler = new ConfigHandler();
+        public MenuTasksViewModel(MySQLConnection mySqlConnection, ConfigHandler configHandler) {
+            _mySqlConnection = mySqlConnection;
+            _configHandler = configHandler;
             if (_configHandler.ConfigJson.isSetup) {
-                if (TaskJobs == null) TaskJobs = new TaskJobList(new ExcelTaskJobRepository()).taskList!;
+                if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
                 SetupState = "Программа успешно установлена";
-            }       
+            }
         }
         public ICommand SetupClick {
             get {
@@ -49,7 +52,7 @@ namespace Traffic_Lights.ViewsModels {
             while (await timer.WaitForNextTickAsync()) {
                 if (!setup) {
                     setup = true;
-                    if (TaskJobs == null) TaskJobs = new TaskJobList(new ExcelTaskJobRepository()).taskList!;
+                    if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
                     SetupState = "Программа успешно установлена";
                     _configHandler.ConfigJson.isSetup = true;
                     _configHandler.Update();

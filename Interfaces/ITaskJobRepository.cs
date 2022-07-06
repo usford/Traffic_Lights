@@ -2,7 +2,7 @@
 using Traffic_Lights.Models;
 
 namespace Traffic_Lights.Interfaces {
-    public interface TaskJobRepository {
-        List<TaskJob> GetTaskJobs();
+    public interface ITaskJobRepository {
+        List<TaskJobButton> GetTaskJobButtons();
     }
 }

@@ -36,16 +36,16 @@
         </Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock TextAlignment="Center">Переход в меню отдельных программ "Задачи"</TextBlock>
-            <ItemsControl ItemsSource="{Binding TaskJobs}" VerticalAlignment="Center">
+            <ItemsControl ItemsSource="{Binding TaskJobButtons}" VerticalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Button Content="{Binding Title}" 
-                                    IsEnabled="{Binding Enabled}"
+                            <Button Content="{Binding TaskJob.Title}" 
+                                    IsEnabled="{Binding TaskJob.Enabled}"
                                     Command="{Binding ClickCommand}"
                                     Margin="0, 15, 0, 0"
                             />
-                            <TextBlock Text="{Binding Comment}"   
+                            <TextBlock Text="{Binding TaskJob.Comment}"   
                                        VerticalAlignment="Center"
                                        Margin="20, 0, 0, 0"
                                        FontSize="15"

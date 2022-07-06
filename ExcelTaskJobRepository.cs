@@ -4,9 +4,10 @@ using ClosedXML.Excel;
 using Traffic_Lights.Interfaces;
 using Traffic_Lights.Models;
 using Traffic_Lights.ConfigProgram;
+using Traffic_Lights.Info;
 
 namespace Traffic_Lights {
-    public class ExcelTaskJobRepository : TaskJobRepository {
+    public class ExcelTaskJobRepository {
         private ConfigHandler _configHandler;
         public ExcelTaskJobRepository() {
             _configHandler = new ConfigHandler();
@@ -55,48 +56,6 @@ namespace Traffic_Lights {
 
                 return elements;
             }            
-        }
-        //Получения списка всех таблиц из excel файла с шаблоном бд
-        //TODO база данных должна быть одна, наименование таблиц формируется как {Name_task.name_table}
-        public List<TaskJob> GetTaskJobs() {
-            var taskJobList = new List<TaskJob>();
-
-            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Шаблон бд.xlsx")) {
-                var worksheet = workbook.Worksheet(1);
-                var rows = worksheet.RangeUsed().RowsUsed();
-                string nameDB = "empty";
-                string comment = "empty";
-                var tables = new List<List<ElementInfoDB>>();
-
-                foreach (var row in rows) {
-                    string firstCell = Convert.ToString(row.FirstCell().Value);
-
-                    if (firstCell.Contains("Наименование бд")) {
-                        nameDB = Convert.ToString(row.Cell(2).Value);
-                    }
-
-                    if (firstCell.Contains("Комментарий")) {
-                        comment = Convert.ToString(row.Cell(2).Value);
-                    }
-
-                    if (firstCell.Contains("id")) {
-                        var table = GetElementsFromExcel(row.RowNumber());
-                        tables.Add(table);
-                    }
-
-                    if (tables.Count == 2) {
-                        taskJobList.Add(new TaskJob(
-                            title: nameDB,
-                            comment: comment,
-                            tables: new List<List<ElementInfoDB>>(tables),
-                            enabled: (comment == "Неизвестно") ? false : true
-                        ));
-                        tables.Clear();
-                    }
-                }
-            }
-
-            return taskJobList;
         }
         //Логика состояний элементов в файле логика.xlsx
         public List<ElementInfoExcel> GetLogicElement() {
@@ -333,24 +292,7 @@ namespace Traffic_Lights {
                 _logicState = logicState;
             }
         }
-        //Элементы схемы в бд
-        public class ElementInfoDB {
-            public string? ID { get => _id; }
-            private string? _id;
-            public string? Name { get => _name; }
-            private string? _name;
-            public int? State { get => _state; }
-            private int? _state;
-            public string? Comment { get => _comment; }
-            private string? _comment;
-
-            public ElementInfoDB(string? id, string? name, int? state, string? comment) {
-                _id = id;
-                _name = name;
-                _state = state;
-                _comment = comment;
-            }
-        }
+        
         //Конфигурация подключения к бд MySQL
         public class DataConnectionMySQL {
             public string Host { get => _host!; }

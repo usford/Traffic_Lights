@@ -9,7 +9,7 @@ using System.Runtime;
 using System.Text.RegularExpressions;
 using Traffic_Lights.ConfigProgram;
 
-namespace Traffic_Lights {
+namespace Traffic_Lights.SvgHandler {
     public class SvgElementsParse {
         private ConfigHandler _configHandler;
         public SvgElementsParse() {
@@ -23,10 +23,10 @@ namespace Traffic_Lights {
             var listUniqueElements = new List<string>();
 
             foreach (var fileElement in fileElements) {
-                xDoc.Load((@$"{fileElement}"));
+                xDoc.Load(@$"{fileElement}");
                 var layers = xDoc.DocumentElement.ChildNodes;
                 string idElement = Path.GetFileName(fileElement.Split('.')[0]);
-                string uniqueIdElement = String.Concat(idElement.SkipLast(1));
+                string uniqueIdElement = string.Concat(idElement.SkipLast(1));
                 if (uniqueIdElement.StartsWith("kn")) {
                     if (!listUniqueElements.Contains(uniqueIdElement)) {
                         listUniqueElements.Add(uniqueIdElement);
@@ -35,7 +35,7 @@ namespace Traffic_Lights {
                             if (layer.Attributes["inkscape:label"] != null) {
                                 if (layer.Attributes["style"].Value == $"display:inline") {
                                     {
-                                        CoordinatesButtons coordinates =  GetCoordinate(layer);
+                                        CoordinatesButtons coordinates = GetCoordinate(layer);
                                         map.Add(new XamlButtons(
                                             coordinates,
                                             idElement));
@@ -43,10 +43,10 @@ namespace Traffic_Lights {
                                 }
                             }
                         }
-                    }   
-                }     
+                    }
+                }
             }
-            
+
             foreach (XamlButtons m in map) {
                 Console.WriteLine(m.ID);
                 Console.WriteLine(m.Coordinates.x + ":" + m.Coordinates.y);
@@ -145,7 +145,7 @@ namespace Traffic_Lights {
             double a = 0.0;
             //Console.WriteLine(regularExpression);
             var doubleNumberPattern = @"(-\d|\d)+?(?:[.]\d+?)?";
-            var regexMatrix= new Regex($@"^matrix\({doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern}\)\z");
+            var regexMatrix = new Regex($@"^matrix\({doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern},{doubleNumberPattern}\)\z");
 
             //Регулярное выражение типа matrix(a,b,c,d,e,f)
             if (regexMatrix.IsMatch(regularExpression)) {
@@ -166,7 +166,7 @@ namespace Traffic_Lights {
             var xDoc = new XmlDocument();
 
             foreach (var fileElement in fileElements) {
-                xDoc.Load((@$"{fileElement}"));
+                xDoc.Load(@$"{fileElement}");
                 var layers = xDoc.DocumentElement.ChildNodes;
 
                 foreach (XmlNode layer in layers) {
@@ -175,7 +175,7 @@ namespace Traffic_Lights {
                             string idElement = Path.GetFileName(fileElement.Split('.')[0]);
                             var layerName = layer.Attributes["inkscape:label"].Value;
                             map.Add(idElement, layerName);
-                        }      
+                        }
                     }
                 }
             }

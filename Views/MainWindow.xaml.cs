@@ -8,6 +8,8 @@ using System.Xml;
 using System.Threading;
 using Traffic_Lights.Views;
 using Traffic_Lights.ConfigProgram;
+using Traffic_Lights.MySQLHandler;
+using Traffic_Lights.SvgHandler;
 
 namespace Traffic_Lights {
     public partial class MainWindow : Window {
@@ -16,11 +18,13 @@ namespace Traffic_Lights {
         public XmlDocument xamlDocument = new XmlDocument();
         public Dictionary<string, string> mapElementsSvg;
         private ConfigHandler _configHandler;
+        private MySQLConnection _mySQLConnection;
         private ExcelTaskJobRepository _excelTaskJobRepository;
-        public MainWindow() {
+        public MainWindow(MySQLConnection mySQLConnection, ConfigHandler configHandler) {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();
-            _configHandler = new ConfigHandler();
+            _configHandler = configHandler;
+            _mySQLConnection = mySQLConnection;
             _excelTaskJobRepository = new ExcelTaskJobRepository();
             xDoc.Load((@$"{_configHandler.PathToSvgElements}\схема.svg"));
 
@@ -68,7 +72,7 @@ namespace Traffic_Lights {
             try {
                 //CreateXAML(this);
                 var dataConnection = _excelTaskJobRepository.GetConnection();
-                var mySQL = new MySQLUtility(this, dataConnection);
+                var mySQL = new MySQLUtility(this, dataConnection, new MySQLConnection());
                 mySQL.RunConnection();
                 ChangeSvg();
             }
@@ -92,16 +96,16 @@ namespace Traffic_Lights {
                 canvasButtons.Children.Add(button);
             }
         }
-        public void ButtonExit(object sender, RoutedEventArgs e) {
-            var menuTasksView = new MenuTasksView();
-            menuTasksView.Show();
-            Close();
-        } 
+        //public void ButtonExit(object sender, RoutedEventArgs e) {
+        //    var menuTasksView = new MenuTasksView();
+        //    menuTasksView.Show();
+        //    Close();
+        //} 
         public void ButtonClick(object sender, RoutedEventArgs e) {
             //string name = (e.OriginalSource as SvgViewBox)!.Name.Split("_")[1];
             string name = (e.OriginalSource as Button).Name;
             var dataConnection = _excelTaskJobRepository.GetConnection();
-            var mySQL = new MySQLUtility(this, dataConnection);
+            var mySQL = new MySQLUtility(this, dataConnection, new MySQLConnection());
             //Console.WriteLine((e.OriginalSource as SvgDrawingCanvas).Children.Count);
             Console.WriteLine(name);
             mySQL.InsertStateTable2(name);

@@ -6,27 +6,26 @@ using System.Threading;
 using Newtonsoft.Json;
 using System.IO;
 using Traffic_Lights.ConfigProgram;
+using Traffic_Lights.MySQLHandler;
 
 namespace Traffic_Lights {
     class MySQLUtility {
         private MainWindow _mainWindow { get; set; }
         private ExcelTaskJobRepository.DataConnectionMySQL _dataConnection { get; set; }
-        private MySqlConnection _connection { get; set; }
+        private MySQLConnection _mySqlConnection;
         private ExcelTaskJobRepository _excelTaskJobRepository;
         private ConfigHandler _configHandler;
         //Запуск работы с бд MySQL
-        public MySQLUtility(MainWindow mainWindow, ExcelTaskJobRepository.DataConnectionMySQL dataConnection) {
+        public MySQLUtility(MainWindow mainWindow, ExcelTaskJobRepository.DataConnectionMySQL dataConnection, MySQLConnection mySqlConnection) {
             _mainWindow = mainWindow;
             _dataConnection = dataConnection;
-            _connection = GetDBConnection(dataConnection);
-            _connection.Open();
             _configHandler = new ConfigHandler();
             _excelTaskJobRepository = new ExcelTaskJobRepository();
         }
         public void RunConnection() {
             if (_configHandler.ConfigJson.dropDatabase) {
                 var cmd = new MySqlCommand();
-                cmd.Connection = _connection;
+                cmd.Connection = _mySqlConnection.Connection;
                 cmd.CommandText = $"drop database {_dataConnection.Database}";
                 cmd.ExecuteNonQuery();
             }
@@ -40,17 +39,17 @@ namespace Traffic_Lights {
                 
             }
             finally {
-                _connection.Close();
-                _connection.Dispose();
+                _mySqlConnection.Close();
+                _mySqlConnection.Dispose();
             }
         }
         //Проверка изменений через заданный интервал
         async void CheckTables() {
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(_dataConnection.UpdateInterval));
             var cmd = new MySqlCommand();
-            cmd.Connection = _connection;
+            cmd.Connection = _mySqlConnection.Connection;
             while (await timer.WaitForNextTickAsync()) {
-                if (Convert.ToString(_connection.State) == "Closed") _connection.Open();
+                //if (Convert.ToString(_connection.State) == "Closed") _connection.Open();
 
                 //Изменения в таблице 1
                 cmd.CommandText = $"select count(*) from {_dataConnection.Database}.table1_changes";
@@ -75,7 +74,7 @@ namespace Traffic_Lights {
         //Создание базы данных если её нет (с таблицами)
         private void CreateDB() {
             var cmd = new MySqlCommand();
-            cmd.Connection = _connection;
+            cmd.Connection = _mySqlConnection.Connection;
 
             cmd.CommandText = $"create database if not exists {_dataConnection.Database}";
             cmd.ExecuteNonQuery();
@@ -177,7 +176,7 @@ namespace Traffic_Lights {
         private void CheckElement() {
             Console.WriteLine("Проверка элементов...");
             var cmd = new MySqlCommand();
-            cmd.Connection = _connection;
+            cmd.Connection = _mySqlConnection.Connection;
             
             List<ExcelTaskJobRepository.ElementInfoExcel> elements = _excelTaskJobRepository.GetLogicElement();
             foreach (var element in elements) { 
@@ -200,7 +199,7 @@ namespace Traffic_Lights {
         //Проверка элементов согласно логики связей состояний ячеек в логика.xlsx
         private void CheckRelationsElement() {
             var cmd = new MySqlCommand();
-            cmd.Connection = _connection;
+            cmd.Connection = _mySqlConnection.Connection;
 
             List<ExcelTaskJobRepository.ElementInfoExcel> elements = _excelTaskJobRepository.GetLogicRelations();
             foreach (var element in elements) {
@@ -225,7 +224,7 @@ namespace Traffic_Lights {
             List<ExcelTaskJobRepository.ElementInfoExcel> elements = _excelTaskJobRepository.GetStateButtons();
             List<ExcelTaskJobRepository.ElementInfoExcel> permitElements = _excelTaskJobRepository.GetPermitStateButtons();
             var cmd = new MySqlCommand();
-            cmd.Connection = _connection;
+            cmd.Connection = _mySqlConnection.Connection;
 
             bool check = true;
 
@@ -253,15 +252,6 @@ namespace Traffic_Lights {
                     }
                 }
             }      
-        }
-        //Подключение к бд MySQL
-        MySqlConnection GetDBConnection(ExcelTaskJobRepository.DataConnectionMySQL dataConnection) {
-            var connection = new MySqlConnection($"Server={dataConnection.Host};" +
-                $"Port={dataConnection.Port};" +
-                $"User id={dataConnection.Username};" +
-                $"Password={dataConnection.Password}");
-
-            return connection;
         }
     }
 }
