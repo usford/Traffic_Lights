@@ -6,16 +6,17 @@ using Traffic_Lights.Interfaces;
 using Traffic_Lights.ConfigProgram;
 using Traffic_Lights.MySQLHandler;
 using Traffic_Lights.Info;
+using Traffic_Lights.Interfaces;
 
 namespace Traffic_Lights {
     public class TaskJobRepository : ITaskJobRepository {
-        private MySQLConnection _mySqlConnection;
-        private ConfigHandler _configHandler;
+        private IMySQLConnection _mySqlConnection;
+        private IConfigHandler _configHandler;
         private ExcelTaskJobRepository _excelTaskJobRepository;
-        public TaskJobRepository(MySQLConnection mySqlConnection, ConfigHandler configHandler) {
+        public TaskJobRepository(IMySQLConnection mySqlConnection, IConfigHandler configHandler) {
             _mySqlConnection = mySqlConnection;
             _configHandler = configHandler;
-            _excelTaskJobRepository = new ExcelTaskJobRepository();
+            _excelTaskJobRepository = new ExcelTaskJobRepository(configHandler);
         }
         //Получения списка всех таблиц из excel файла с шаблоном бд
         //TODO база данных должна быть одна, наименование таблиц формируется как {Name_task.name_table}

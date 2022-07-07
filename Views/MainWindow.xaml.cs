@@ -6,10 +6,9 @@ using System.IO;
 using System.Collections.Generic;
 using System.Xml;
 using System.Threading;
-using Traffic_Lights.Views;
-using Traffic_Lights.ConfigProgram;
-using Traffic_Lights.MySQLHandler;
 using Traffic_Lights.SvgHandler;
+using Traffic_Lights.Enums;
+using Traffic_Lights.Interfaces;
 
 namespace Traffic_Lights {
     public partial class MainWindow : Window {
@@ -17,15 +16,15 @@ namespace Traffic_Lights {
         public XmlDocument xDoc = new XmlDocument();
         public XmlDocument xamlDocument = new XmlDocument();
         public Dictionary<string, string> mapElementsSvg;
-        private ConfigHandler _configHandler;
-        private MySQLConnection _mySqlConnection;
+        private IConfigHandler _configHandler;
+        private IMySQLConnection _mySqlConnection;
         private ExcelTaskJobRepository _excelTaskJobRepository;
-        public MainWindow(MySQLConnection mySQLConnection, ConfigHandler configHandler) {
+        public MainWindow(IMySQLConnection mySQLConnection, IConfigHandler configHandler) {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();
             _configHandler = configHandler;
             _mySqlConnection = mySQLConnection;
-            _excelTaskJobRepository = new ExcelTaskJobRepository();
+            _excelTaskJobRepository = new ExcelTaskJobRepository(configHandler);
             xDoc.Load((@$"{_configHandler.PathToSvgElements}\схема.svg"));
 
             var svgElementsParse = new SvgElementsParse();
@@ -107,7 +106,7 @@ namespace Traffic_Lights {
             var dataConnection = _excelTaskJobRepository.GetConnection();
             var mySQL = new MySQLUtility(this, _mySqlConnection, _configHandler);
             //Console.WriteLine((e.OriginalSource as SvgDrawingCanvas).Children.Count);
-            Console.WriteLine(name);
+            Console.WriteLine($"Нажатие на кнопку: {name}");
             mySQL.InsertStateTable2(name);
         }
         async void ChangeSvg() {
@@ -126,7 +125,7 @@ namespace Traffic_Lights {
         //Изменение элементов, где name = наименование элемента, а state = его состояние
         //TODO вынести layers
         public async void ChangeElement(string? elementCode, int state) {
-            //Console.WriteLine(elementCode + ":" + state);
+            Console.WriteLine($"Проверяется элемент: {elementCode}, состояние {state}");
             if (elementCode.StartsWith("kn")) {
                 if (state == 1) {
                     int index = (int)Char.GetNumericValue(elementCode[7]) - 1;
@@ -157,8 +156,5 @@ namespace Traffic_Lights {
             }
         }
     }
-    public enum VisibleElement {
-        none,
-        inline
-    }
+    
 }

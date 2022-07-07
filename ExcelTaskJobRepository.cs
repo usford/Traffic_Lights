@@ -8,9 +8,9 @@ using Traffic_Lights.Info;
 
 namespace Traffic_Lights {
     public class ExcelTaskJobRepository {
-        private ConfigHandler _configHandler;
-        public ExcelTaskJobRepository() {
-            _configHandler = new ConfigHandler();
+        private IConfigHandler _configHandler;
+        public ExcelTaskJobRepository(IConfigHandler configHandler) {
+            _configHandler = configHandler;
         }
         //Получение объекта, в котором хранится информация о подключении к бд MySQL
         public DataConnectionMySQL GetConnection() {

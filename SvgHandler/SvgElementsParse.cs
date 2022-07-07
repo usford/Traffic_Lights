@@ -48,8 +48,8 @@ namespace Traffic_Lights.SvgHandler {
             }
 
             foreach (XamlButtons m in map) {
-                Console.WriteLine(m.ID);
-                Console.WriteLine(m.Coordinates.x + ":" + m.Coordinates.y);
+                //Console.WriteLine(m.ID);
+                //Console.WriteLine(m.Coordinates.x + ":" + m.Coordinates.y);
             }
             return map;
         }

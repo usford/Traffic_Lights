@@ -7,14 +7,21 @@ namespace Traffic_Lights.Views {
     public partial class Launch : Window {
         public Launch() {
             InitializeComponent();
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-            var config = new ConfigHandler();
-            var mySqlConnection = new MySQLConnection();
-            mySqlConnection.Start();
-            mySqlConnection.Open();
-            var menuTasksView = new MenuTasksView(mySqlConnection, config);
-            menuTasksView.Show();
-            Hide();
+            try {
+                Console.OutputEncoding = System.Text.Encoding.UTF8;
+                var config = new ConfigHandler();
+                var mySqlConnection = new MySQLConnection(config);
+                mySqlConnection.Start();
+                mySqlConnection.Open();
+                var menuTasksView = new MenuTasksView(mySqlConnection, config);
+                menuTasksView.Show();
+                Hide();
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex);
+                //Console.ReadLine();
+            }
+            
         }
     }
 }

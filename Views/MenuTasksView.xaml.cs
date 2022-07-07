@@ -4,12 +4,13 @@ using System.Windows;
 using Traffic_Lights.ViewsModels;
 using Traffic_Lights.ConfigProgram;
 using Traffic_Lights.MySQLHandler;
+using Traffic_Lights.Interfaces;
 
 namespace Traffic_Lights.Views {
     public partial class MenuTasksView : Window {
-        private MySQLConnection _mySqlConnection;
-        private ConfigHandler _configHandler;
-        public MenuTasksView(MySQLConnection mySqlConnection, ConfigHandler configHandler)  {
+        private IMySQLConnection _mySqlConnection;
+        private IConfigHandler _configHandler;
+        public MenuTasksView(IMySQLConnection mySqlConnection, IConfigHandler configHandler)  {
             InitializeComponent();
             Console.OutputEncoding = Encoding.UTF8;
             _mySqlConnection = mySqlConnection;

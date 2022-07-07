@@ -8,13 +8,14 @@ using Traffic_Lights.Views;
 using System.Threading;
 using Traffic_Lights.ConfigProgram;
 using Traffic_Lights.MySQLHandler;
+using Traffic_Lights.Interfaces;
 
 namespace Traffic_Lights.ViewsModels {
     public class MenuTasksViewModel : INotifyPropertyChanged {
         private List<TaskJobButton>? _taskJobButtons;
         private string _setupState = "";
-        private ConfigHandler _configHandler;
-        private MySQLConnection _mySqlConnection;
+        private IConfigHandler _configHandler;
+        private IMySQLConnection _mySqlConnection;
         public string SetupState {
             get { return _setupState; }
             set {
@@ -29,7 +30,7 @@ namespace Traffic_Lights.ViewsModels {
                 OnPropertyChanged("TaskJobButtons");
             }
         }
-        public MenuTasksViewModel(MySQLConnection mySqlConnection, ConfigHandler configHandler) {
+        public MenuTasksViewModel(IMySQLConnection mySqlConnection, IConfigHandler configHandler) {
             _mySqlConnection = mySqlConnection;
             _configHandler = configHandler;
             if (_configHandler.ConfigJson.isSetup) {

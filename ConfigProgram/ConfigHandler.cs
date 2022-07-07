@@ -1,28 +1,34 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
+using Traffic_Lights.Interfaces;
 
 namespace Traffic_Lights.ConfigProgram {
-    public class ConfigHandler {
-        public ConfigJson ConfigJson { get; set; }
-        //Для разработки
-        public readonly string PathToDirectory = new DirectoryInfo(@"..\..\..").FullName;
-        //Для установки
-        //public readonly string PathToDirectory = new DirectoryInfo(@"..").FullName + @"Traffic_Lights";
-        public readonly string PathToSvgElements;
-        public readonly string PathToExcelFiles;
-        private readonly string _pathToConfig;
+    public class ConfigHandler : IConfigHandler {
+        public ConfigJson ConfigJson { get; set; }      
+        public string PathToDirectory { get; }  
+        public string PathToSvgElements { get; }
+        public string PathToExcelFiles { get; }
+        public string PathToConfig { get; }
         public ConfigHandler() {
+            //Для разработки
+            //PathToDirectory = new DirectoryInfo(@"..\..\..").FullName;
+            PathToDirectory = new DirectoryInfo(@"..").FullName + @"Traffic_Lights";
+            //Для установки
             PathToSvgElements = $@"{PathToDirectory}\Элементы схемы";
             PathToExcelFiles = $@"{PathToDirectory}\Excel файлы";
-            _pathToConfig = $@"{PathToDirectory}\ConfigProgram\config.json";
+            PathToConfig = $@"{PathToDirectory}\ConfigProgram\config.json";
 
-            ConfigJson = JsonConvert.DeserializeObject<ConfigJson>(File.ReadAllText(_pathToConfig))
+            ConfigJson = Initialize();
+        }
+        public ConfigJson Initialize() {
+            var configJson = JsonConvert.DeserializeObject<ConfigJson>(File.ReadAllText(PathToConfig))
                 ?? throw new ArgumentNullException(nameof(ConfigJson));
+            return configJson;
         }
         public void Update() {
             string output = JsonConvert.SerializeObject(ConfigJson, Formatting.Indented);
-            File.WriteAllText(_pathToConfig, output);
+            File.WriteAllText(PathToConfig, output);
         }
     }
 }

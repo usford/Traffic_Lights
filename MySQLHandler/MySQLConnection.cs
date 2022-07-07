@@ -2,9 +2,10 @@
 using MySql.Data.MySqlClient;
 using ClosedXML.Excel;
 using Traffic_Lights.ConfigProgram;
+using Traffic_Lights.Interfaces;
 
 namespace Traffic_Lights.MySQLHandler {
-    public class MySQLConnection {
+    public class MySQLConnection : IMySQLConnection {
         public string Host { get { return _host; } }
         private string _host = "";
         public short Port { get { return _port; } }
@@ -17,14 +18,14 @@ namespace Traffic_Lights.MySQLHandler {
         private string _database = "";
         public short UpdateInterval { get { return _updateInterval; } }
         private short _updateInterval;
-        private ConfigHandler _configHandler;
+        public IConfigHandler ConfigHandler { get; }
         public MySqlConnection? Connection { get; set; }
-        public MySQLConnection() {
-            _configHandler = new ConfigHandler();
+        public MySQLConnection(IConfigHandler configHandler) {
+            ConfigHandler = configHandler;
             GetConnectionFromExcel();
         }
         public void GetConnectionFromExcel() {
-            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Подключение к бд.xlsx")) {
+            using (var workbook = new XLWorkbook($@"{ConfigHandler.PathToExcelFiles}\Подключение к бд.xlsx")) {
                 var worksheet = workbook.Worksheet(1);
                 string host = Convert.ToString(worksheet.Cell(2, 2).Value) 
                     ?? throw new ArgumentNullException(nameof(host));

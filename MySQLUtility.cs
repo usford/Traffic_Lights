@@ -7,25 +7,27 @@ using Newtonsoft.Json;
 using System.IO;
 using Traffic_Lights.ConfigProgram;
 using Traffic_Lights.MySQLHandler;
+using Traffic_Lights.Interfaces;
 
 namespace Traffic_Lights {
     class MySQLUtility {
         private MainWindow _mainWindow { get; set; }
-        private MySQLConnection _mySqlConnection;
+        private IMySQLConnection _mySqlConnection;
+        private IConfigHandler _configHandler;
         private ExcelTaskJobRepository _excelTaskJobRepository;
-        private ConfigHandler _configHandler;
+        
         //Запуск работы с бд MySQL
-        public MySQLUtility(MainWindow mainWindow, MySQLConnection mySqlConnection, ConfigHandler configHandler) {
+        public MySQLUtility(MainWindow mainWindow, IMySQLConnection mySqlConnection, IConfigHandler configHandler) {
             _mainWindow = mainWindow;
             _mySqlConnection = mySqlConnection;
             _configHandler = configHandler;
-            _excelTaskJobRepository = new ExcelTaskJobRepository();
+            _excelTaskJobRepository = new ExcelTaskJobRepository(configHandler);
         }
         public void RunConnection() {
             if (_configHandler.ConfigJson.dropDatabase) {
                 var cmd = new MySqlCommand();
                 cmd.Connection = _mySqlConnection.Connection;
-                cmd.CommandText = $"drop database {_mySqlConnection.Database}";
+                cmd.CommandText = $"drop database if exists {_mySqlConnection.Database}";
                 cmd.ExecuteNonQuery();
             }
             try {
@@ -169,6 +171,7 @@ namespace Traffic_Lights {
                     $"comment = NEW.comment;" +
                     @$"end;";
                 cmd.ExecuteNonQuery();
+                Console.WriteLine("База данных установлена");
             }
         }
         //Проверка элементов согласно логике в логика.xlsx

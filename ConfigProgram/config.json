@@ -1,4 +1,4 @@
 {
   "isSetup": true,
-  "dropDatabase": false
+  "dropDatabase": true
 }
