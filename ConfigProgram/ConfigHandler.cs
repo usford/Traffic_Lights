@@ -12,9 +12,10 @@ namespace Traffic_Lights.ConfigProgram {
         public string PathToConfig { get; }
         public ConfigHandler() {
             //Для разработки
-            //PathToDirectory = new DirectoryInfo(@"..\..\..").FullName;
-            PathToDirectory = new DirectoryInfo(@"..").FullName + @"Traffic_Lights";
+            PathToDirectory = new DirectoryInfo(@"..\..\..").FullName;
             //Для установки
+            //PathToDirectory = new DirectoryInfo(@"..").FullName + @"Traffic_Lights";
+            
             PathToSvgElements = $@"{PathToDirectory}\Элементы схемы";
             PathToExcelFiles = $@"{PathToDirectory}\Excel файлы";
             PathToConfig = $@"{PathToDirectory}\ConfigProgram\config.json";
