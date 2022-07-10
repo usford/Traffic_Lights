@@ -11,16 +11,17 @@ namespace Traffic_Lights.ConfigProgram {
         public string PathToExcelFiles { get; }
         public string PathToConfig { get; }
         public ConfigHandler() {
-            //Для разработки
-            PathToDirectory = new DirectoryInfo(@"..\..\..").FullName;
-            //Для установки
-            //PathToDirectory = new DirectoryInfo(@"..").FullName + @"Traffic_Lights";
-            
+            bool isDevelopment = false;
+
+            PathToDirectory = isDevelopment
+                ? new DirectoryInfo(@"..\..\..").FullName
+                : new DirectoryInfo(@"..").FullName + @"Traffic_Lights";
+
             PathToSvgElements = $@"{PathToDirectory}\Элементы схемы";
             PathToExcelFiles = $@"{PathToDirectory}\Excel файлы";
             PathToConfig = $@"{PathToDirectory}\ConfigProgram\config.json";
 
-            ConfigJson = Initialize();
+            ConfigJson = Initialize(); 
         }
         public ConfigJson Initialize() {
             var configJson = JsonConvert.DeserializeObject<ConfigJson>(File.ReadAllText(PathToConfig))
