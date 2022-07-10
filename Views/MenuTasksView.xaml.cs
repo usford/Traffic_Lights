@@ -8,15 +8,13 @@ using Traffic_Lights.Interfaces;
 
 namespace Traffic_Lights.Views {
     public partial class MenuTasksView : Window {
-        private IMySQLConnection _mySqlConnection;
         private IConfigHandler _configHandler;
-        public MenuTasksView(IMySQLConnection mySqlConnection, IConfigHandler configHandler)  {
+        public MenuTasksView(IConfigHandler configHandler)  {
             InitializeComponent();
             Console.OutputEncoding = Encoding.UTF8;
-            _mySqlConnection = mySqlConnection;
             _configHandler = configHandler;
 
-            DataContext = new MenuTasksViewModel(_mySqlConnection, _configHandler);
+            DataContext = new MenuTasksViewModel(_configHandler);
         }
         public void ButtonClose (object sender, RoutedEventArgs e) {
             Close();

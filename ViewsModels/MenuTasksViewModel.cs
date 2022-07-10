@@ -16,7 +16,6 @@ namespace Traffic_Lights.ViewsModels {
         private List<TaskJobButton>? _taskJobButtons;
         private string _setupState = "";
         private IConfigHandler _configHandler;
-        private IMySQLConnection _mySqlConnection;
         public string SetupState {
             get { return _setupState; }
             set {
@@ -31,11 +30,10 @@ namespace Traffic_Lights.ViewsModels {
                 OnPropertyChanged("TaskJobButtons");
             }
         }
-        public MenuTasksViewModel(IMySQLConnection mySqlConnection, IConfigHandler configHandler) {
-            _mySqlConnection = mySqlConnection;
+        public MenuTasksViewModel(IConfigHandler configHandler) {
             _configHandler = configHandler;
             if (_configHandler.ConfigJson.isSetup) {
-                if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
+                if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_configHandler)).taskList!;
                 SetupState = "Программа успешно установлена";
             }
         }
@@ -55,7 +53,7 @@ namespace Traffic_Lights.ViewsModels {
             while (await timer.WaitForNextTickAsync()) {
                 if (!setup) {
                     setup = true;
-                    if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
+                    if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_configHandler)).taskList!;
                     SetupState = "Программа успешно установлена";
                     _configHandler.ConfigJson.isSetup = true;
                     _configHandler.Update();

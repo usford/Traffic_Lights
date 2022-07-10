@@ -10,11 +10,9 @@ using Traffic_Lights.Interfaces;
 
 namespace Traffic_Lights {
     public class TaskJobRepository : ITaskJobRepository {
-        private IMySQLConnection _mySqlConnection;
         private IConfigHandler _configHandler;
         private ExcelTaskJobRepository _excelTaskJobRepository;
-        public TaskJobRepository(IMySQLConnection mySqlConnection, IConfigHandler configHandler) {
-            _mySqlConnection = mySqlConnection;
+        public TaskJobRepository(IConfigHandler configHandler) {
             _configHandler = configHandler;
             _excelTaskJobRepository = new ExcelTaskJobRepository(configHandler);
         }
@@ -54,7 +52,6 @@ namespace Traffic_Lights {
                                 tables: new List<List<ElementInfoDB>>(tables),
                                 enabled: (comment == "Неизвестно") ? false : true
                             ),
-                            _mySqlConnection,
                             _configHandler
                         ));
                         tables.Clear();

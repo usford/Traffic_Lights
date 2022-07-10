@@ -10,10 +10,7 @@ namespace Traffic_Lights.Views {
             try {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
                 var config = new ConfigHandler();
-                var mySqlConnection = new MySQLConnection(config);
-                mySqlConnection.Start();
-                mySqlConnection.Open();
-                var menuTasksView = new MenuTasksView(mySqlConnection, config);
+                var menuTasksView = new MenuTasksView(config);
                 menuTasksView.Show();
                 Hide();
             }

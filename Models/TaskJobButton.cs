@@ -8,11 +8,9 @@ namespace Traffic_Lights.Models {
     public class TaskJobButton {
         private ICommand _clickCommand;
         public TaskJob TaskJob { get; set; }
-        private IMySQLConnection _mySQLConnection;
         private IConfigHandler _configHandler;
-        public TaskJobButton(TaskJob taskJob, IMySQLConnection mySqlConnection, IConfigHandler configHandler) {
+        public TaskJobButton(TaskJob taskJob, IConfigHandler configHandler) {
             TaskJob = taskJob;
-            _mySQLConnection = mySqlConnection;
             _configHandler = configHandler;
             _clickCommand = new CommandHandler(() => MyAction(), () => CanExecute);
         }
@@ -23,7 +21,10 @@ namespace Traffic_Lights.Models {
             get { return true; }
         }
         public void MyAction() {
-            MainWindow mw = new MainWindow(_mySQLConnection, _configHandler);
+            var mySqlConnection = new MySQLConnection(_configHandler);
+            mySqlConnection.Start();
+            mySqlConnection.Open();
+            MainWindow mw = new MainWindow(mySqlConnection, _configHandler);
             mw.Show();
         }
     }
