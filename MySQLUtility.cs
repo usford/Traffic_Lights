@@ -15,13 +15,15 @@ namespace Traffic_Lights {
         private IMySQLConnection _mySqlConnection;
         private IConfigHandler _configHandler;
         private ExcelTaskJobRepository _excelTaskJobRepository;
+        private string _titleTask;
         
         //Запуск работы с бд MySQL
-        public MySQLUtility(MainWindow mainWindow, IMySQLConnection mySqlConnection, IConfigHandler configHandler) {
+        public MySQLUtility(MainWindow mainWindow, IMySQLConnection mySqlConnection, IConfigHandler configHandler, string titleTask) {
+            _titleTask = titleTask;
             _mainWindow = mainWindow;
             _mySqlConnection = mySqlConnection;
             _configHandler = configHandler;
-            _excelTaskJobRepository = new ExcelTaskJobRepository(configHandler);
+            _excelTaskJobRepository = new ExcelTaskJobRepository(configHandler); 
         }
         public void RunConnection() {
             if (_configHandler.ConfigJson.dropDatabase) {
@@ -31,7 +33,7 @@ namespace Traffic_Lights {
                 cmd.ExecuteNonQuery();
             }
             try {
-                CreateDB();
+                //CreateDB();
                 CheckElement();
                 CheckTables();
             }
@@ -53,21 +55,21 @@ namespace Traffic_Lights {
                 //Почему-то здесь соединение закрыто, хотя во всем приложении открыто, видимо это особенность асинхронного потока
                 if (Convert.ToString(_mySqlConnection.Connection.State) == "Closed") _mySqlConnection.Open();
                 //Изменения в таблице 1
-                cmd.CommandText = $"select count(*) from {_mySqlConnection.Database}.table1_changes";
+                cmd.CommandText = $"select count(*) from {_mySqlConnection.Database}.{_titleTask}_table1_changes";
                 int checkTable1 = Convert.ToInt32(cmd.ExecuteScalar());
                 if (checkTable1 > 0) {
                     Console.WriteLine("Данные поменялись в table1");
                     CheckElement();
-                    cmd.CommandText = $"delete from {_mySqlConnection.Database}.table1_changes";
+                    cmd.CommandText = $"delete from {_mySqlConnection.Database}.{_titleTask}_table1_changes";
                     cmd.ExecuteNonQuery();
                 }
                 //Изменения в таблице 2
-                cmd.CommandText = $"select count(*) from {_mySqlConnection.Database}.table2_changes";
+                cmd.CommandText = $"select count(*) from {_mySqlConnection.Database}.{_titleTask}_table2_changes";
                 int checkTable2 = Convert.ToInt32(cmd.ExecuteScalar());
                 if (checkTable2 > 0) {
                     Console.WriteLine("Данные поменялись в table2");
                     CheckRelationsElement();
-                    cmd.CommandText = $"delete from {_mySqlConnection.Database}.table2_changes";
+                    cmd.CommandText = $"delete from {_mySqlConnection.Database}.{_titleTask}_table2_changes";
                     cmd.ExecuteNonQuery();
                 }
             }         
@@ -184,7 +186,7 @@ namespace Traffic_Lights {
             foreach (var element in elements) { 
                 bool check = true;
                 foreach (var state in element.States) {
-                    cmd.CommandText = $"select state from {_mySqlConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    cmd.CommandText = $"select state from {_mySqlConnection.Database}.{_titleTask}_{state.Key[1]} Where id = '{state.Key[0]}'";
                     //Console.WriteLine("---------------");
                     //Console.WriteLine(element.Name);
                     //Console.WriteLine(state.Key[0] + " " + state.Key[1]);
@@ -207,7 +209,7 @@ namespace Traffic_Lights {
             foreach (var element in elements) {
                 bool check = true;
                 foreach (var state in element.States) {
-                    cmd.CommandText = $"select state from {_mySqlConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    cmd.CommandText = $"select state from {_mySqlConnection.Database}.{_titleTask}_{state.Key[1]} Where id = '{state.Key[0]}'";
                     int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
 
                     if (stateCheck != state.Value) {
@@ -216,7 +218,7 @@ namespace Traffic_Lights {
                     }
                 }
                 //Если логика верна, изменяем элемент согласно ей  
-                cmd.CommandText = $"update {_mySqlConnection.Database}.{element.Cell[1]} set state = {Convert.ToInt32(check)} " +
+                cmd.CommandText = $"update {_mySqlConnection.Database}.{_titleTask}_{element.Cell[1]} set state = {Convert.ToInt32(check)} " +
                         $"Where id = '{element.Cell[0]}' ";
                 cmd.ExecuteNonQuery();
             }
@@ -232,7 +234,7 @@ namespace Traffic_Lights {
 
             foreach (var element in permitElements.Where(e => e.Code == code)) {
                 foreach (var state in element.States) {
-                    cmd.CommandText = $"select state from {_mySqlConnection.Database}.{state.Key[1]} Where id = '{state.Key[0]}'";
+                    cmd.CommandText = $"select state from {_mySqlConnection.Database}.{_titleTask}_{state.Key[1]} Where id = '{state.Key[0]}'";
                     int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
                     //Console.WriteLine(state.Key[1]);
                     //Console.WriteLine(state.Key[0]);
@@ -247,7 +249,7 @@ namespace Traffic_Lights {
             if (check) {
                 foreach (var element in elements.Where(e => e.Code == code)) {
                     foreach (var state in element.States) {
-                        cmd.CommandText = $"update {_mySqlConnection.Database}.{state.Key[1]} set state = {state.Value} " +
+                        cmd.CommandText = $"update {_mySqlConnection.Database}.{_titleTask}_{state.Key[1]} set state = {state.Value} " +
                             $"Where id = '{state.Key[0]}' ";
                         //Console.WriteLine(cmd.CommandText);
                         cmd.ExecuteNonQuery();

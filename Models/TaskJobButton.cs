@@ -23,7 +23,9 @@ namespace Traffic_Lights.Models {
             get { return true; }
         }
         public void MyAction() {
-            MainWindow mw = new MainWindow(_mySqlConnection, _configHandler);
+            Database db = new Database(_mySqlConnection, TaskJob);
+            db.Create();
+            MainWindow mw = new MainWindow(_mySqlConnection, _configHandler, TaskJob.Title);
             mw.Show();
         }
     }

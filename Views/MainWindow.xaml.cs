@@ -17,12 +17,14 @@ namespace Traffic_Lights {
         public XmlDocument xDoc = new XmlDocument();
         public XmlDocument xamlDocument = new XmlDocument();
         public Dictionary<string, string> mapElementsSvg;
+        private string _titleTask;
         private IConfigHandler _configHandler;
         private IMySQLConnection _mySqlConnection;
         private ExcelTaskJobRepository _excelTaskJobRepository;
-        public MainWindow(IMySQLConnection mySQLConnection, IConfigHandler configHandler) {
+        public MainWindow(IMySQLConnection mySQLConnection, IConfigHandler configHandler, string titleTask) {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();
+            _titleTask = titleTask;
             _configHandler = configHandler;
             _mySqlConnection = mySQLConnection;
             _excelTaskJobRepository = new ExcelTaskJobRepository(configHandler);
@@ -40,7 +42,7 @@ namespace Traffic_Lights {
 
             try {
                 var dataConnection = _excelTaskJobRepository.GetConnection();
-                var mySQL = new MySQLUtility(this, _mySqlConnection, _configHandler);
+                var mySQL = new MySQLUtility(this, _mySqlConnection, _configHandler, _titleTask);
                 mySQL.RunConnection();
                 ChangeSvg();
             }
@@ -73,7 +75,7 @@ namespace Traffic_Lights {
             //string name = (e.OriginalSource as SvgViewBox)!.Name.Split("_")[1];
             string name = (e.OriginalSource as Button).Name;
             var dataConnection = _excelTaskJobRepository.GetConnection();
-            var mySQL = new MySQLUtility(this, _mySqlConnection, _configHandler);
+            var mySQL = new MySQLUtility(this, _mySqlConnection, _configHandler, _titleTask);
             //Console.WriteLine((e.OriginalSource as SvgDrawingCanvas).Children.Count);
             Console.WriteLine($"Нажатие на кнопку: {name}");
             mySQL.InsertStateTable2(name);
