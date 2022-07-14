@@ -58,6 +58,7 @@ namespace Traffic_Lights.MySQLHandler {
             Connection = connection;
         }
         public void Open() {
+            Console.WriteLine($"Запустился сервер. Host: {Host}, Port={Port}");
             Connection!.Open();
         }
         public void Close() {

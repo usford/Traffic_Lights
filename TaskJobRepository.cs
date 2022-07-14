@@ -6,14 +6,15 @@ using Traffic_Lights.Interfaces;
 using Traffic_Lights.ConfigProgram;
 using Traffic_Lights.MySQLHandler;
 using Traffic_Lights.Info;
-using Traffic_Lights.Interfaces;
 
 namespace Traffic_Lights {
     public class TaskJobRepository : ITaskJobRepository {
         private IConfigHandler _configHandler;
+        private IMySQLConnection _mySqlConnection;
         private ExcelTaskJobRepository _excelTaskJobRepository;
-        public TaskJobRepository(IConfigHandler configHandler) {
+        public TaskJobRepository(IMySQLConnection mySqlConnection, IConfigHandler configHandler) {
             _configHandler = configHandler;
+            _mySqlConnection = mySqlConnection;
             _excelTaskJobRepository = new ExcelTaskJobRepository(configHandler);
         }
         //Получения списка всех таблиц из excel файла с шаблоном бд
@@ -52,6 +53,7 @@ namespace Traffic_Lights {
                                 tables: new List<List<ElementInfoDB>>(tables),
                                 enabled: (comment == "Неизвестно") ? false : true
                             ),
+                            _mySqlConnection,
                             _configHandler
                         ));
                         tables.Clear();

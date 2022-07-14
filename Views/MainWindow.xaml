@@ -8,9 +8,8 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
         mc:Ignorable="d" 
         Title="MainWindow" 
-        Height="840" Width="1060"
-        MaxHeight="840" MaxWidth="1060"
         MinHeight="840" MinWidth="1060"
+        WindowState="Maximized"
         WindowStartupLocation="CenterScreen">
   <Window.Resources>
     <Style TargetType="Button">
@@ -24,8 +23,8 @@
     </Style>
   </Window.Resources>
   <Canvas x:Name="mainCanvas">
-    <!--<Button Content="Выйти" Click="ButtonExit" />-->
-    <Canvas x:Name="canvasButtons" Panel.ZIndex="2">
+        <Button Content="Выйти" Click="ButtonExit" />
+        <Canvas x:Name="canvasButtons" Panel.ZIndex="2">
         <!--<Button Content="Кнопка 1" 
         x:Name="kn1010012" 
         Click="ButtonClick" 

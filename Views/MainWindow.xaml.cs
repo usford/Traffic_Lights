@@ -9,6 +9,7 @@ using System.Threading;
 using Traffic_Lights.SvgHandler;
 using Traffic_Lights.Enums;
 using Traffic_Lights.Interfaces;
+using Traffic_Lights.Views;
 
 namespace Traffic_Lights {
     public partial class MainWindow : Window {
@@ -37,39 +38,7 @@ namespace Traffic_Lights {
                 buttons.Add(btn);
             }
 
-            //xamlDocument.Load(@$"{pathDirectory}\MainWindow.xaml");
-
-
-            //WpfDrawingSettings settings = new WpfDrawingSettings();
-            //settings.IncludeRuntime = false;
-            //settings.TextAsGeometry = true;
-            //FileSvgConverter converter = new FileSvgConverter(settings);
-            //string svgTestFile = @$"{pathDirectory}\Элементы схемы\схема.svg";
-            //converter.Convert(svgTestFile);
-
-            //var canvas = xamlDocument.DocumentElement.LastChild.LastChild.LastChild.LastChild.LastChild;
-            //canvas.RemoveAll();
-            //var child = xDoc.DocumentElement.FirstChild;
-            //var layers = child.ChildNodes;
-            //foreach (XmlNode layer in layers) {
-            //    if (layer.Attributes["x:Name"] != null) {
-            //        if (layer.Attributes["x:Name"].Value == "layer2") {
-            //            //XmlAttribute nameAttr = xDoc.CreateAttribute("ButtonBase.Click");
-            //            //nameAttr.Value = "ButtonExit";
-            //            //layer.Attributes.Append(nameAttr);
-            //        }
-            //    }
-            //    //ButtonBase.Click="ButtonExit"
-            //}
-            //XmlNode importNode = canvas.OwnerDocument.ImportNode(child, true);
-
-            //canvas.AppendChild(importNode);
-
-            //using (StreamWriter streamReader = new StreamWriter(@$"{pathDirectory}\MainWindow.xaml")) {
-            //    xamlDocument.Save(streamReader.BaseStream);
-            //}
             try {
-                //CreateXAML(this);
                 var dataConnection = _excelTaskJobRepository.GetConnection();
                 var mySQL = new MySQLUtility(this, _mySqlConnection, _configHandler);
                 mySQL.RunConnection();
@@ -95,11 +64,11 @@ namespace Traffic_Lights {
                 canvasButtons.Children.Add(button);
             }
         }
-        //public void ButtonExit(object sender, RoutedEventArgs e) {
-        //    var menuTasksView = new MenuTasksView();
-        //    menuTasksView.Show();
-        //    Close();
-        //} 
+        public void ButtonExit(object sender, RoutedEventArgs e) {
+            var menuTasksView = new MenuTasksView(_configHandler);
+            menuTasksView.Show();
+            Close();
+        }
         public void ButtonClick(object sender, RoutedEventArgs e) {
             //string name = (e.OriginalSource as SvgViewBox)!.Name.Split("_")[1];
             string name = (e.OriginalSource as Button).Name;

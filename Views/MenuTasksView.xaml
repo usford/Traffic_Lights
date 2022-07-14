@@ -6,10 +6,9 @@
         xmlns:local="clr-namespace:Traffic_Lights.ViewsModels"
         mc:Ignorable="d"
         Title="Задачи" 
-        Height="900" Width="1200"
-        MaxHeight="900" MaxWidth="1200" 
         MinHeight="900" MinWidth="1200"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
@@ -43,6 +42,7 @@
                             <Button Content="{Binding TaskJob.Title}" 
                                     IsEnabled="{Binding TaskJob.Enabled}"
                                     Command="{Binding ClickCommand}"
+                                    Click="ButtonClose"
                                     Margin="0, 15, 0, 0"
                             />
                             <TextBlock Text="{Binding TaskJob.Comment}"   

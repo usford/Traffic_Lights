@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.Generic;
 using System.Windows.Input;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace Traffic_Lights.ViewsModels {
         private List<TaskJobButton>? _taskJobButtons;
         private string _setupState = "";
         private IConfigHandler _configHandler;
+        private IMySQLConnection _mySqlConnection;
         public string SetupState {
             get { return _setupState; }
             set {
@@ -33,8 +35,12 @@ namespace Traffic_Lights.ViewsModels {
         public MenuTasksViewModel(IConfigHandler configHandler) {
             _configHandler = configHandler;
             if (_configHandler.ConfigJson.isSetup) {
-                if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_configHandler)).taskList!;
-                SetupState = "Программа успешно установлена";
+                var mySqlConnection = new MySQLConnection(_configHandler);
+                mySqlConnection.Start();
+                mySqlConnection.Open();
+                _mySqlConnection = mySqlConnection;
+                if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
+                SetupState = "Программа успешно установлена"; 
             }
         }
         public ICommand SetupClick {
@@ -44,8 +50,8 @@ namespace Traffic_Lights.ViewsModels {
         }
         private async void SetupClickAction() {
             if (_configHandler.ConfigJson.isSetup) return;
-            System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
-            Console.WriteLine("Установка программы");
+            //System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
+            //Console.WriteLine("Установка программы");
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(3000));
             bool setup = false;
             SetupBar setupBar = new SetupBar();
@@ -53,7 +59,7 @@ namespace Traffic_Lights.ViewsModels {
             while (await timer.WaitForNextTickAsync()) {
                 if (!setup) {
                     setup = true;
-                    if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_configHandler)).taskList!;
+                    if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
                     SetupState = "Программа успешно установлена";
                     _configHandler.ConfigJson.isSetup = true;
                     _configHandler.Update();
@@ -61,6 +67,7 @@ namespace Traffic_Lights.ViewsModels {
                 }         
             }        
         }
+
         private bool SetupClickCanExecute {
             get { return true; }
         }
