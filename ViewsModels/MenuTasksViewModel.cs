@@ -50,15 +50,20 @@ namespace Traffic_Lights.ViewsModels {
         }
         private async void SetupClickAction() {
             if (_configHandler.ConfigJson.isSetup) return;
-            //System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
+            var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
+            //var sqlStart = System.Diagnostics.Process.Start(@$"E:\mysqlserver.exe");
             //Console.WriteLine("Установка программы");
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(3000));
             bool setup = false;
             SetupBar setupBar = new SetupBar();
             setupBar.Show();
             while (await timer.WaitForNextTickAsync()) {
-                if (!setup) {
+                if (!setup && sqlStart.HasExited) {
                     setup = true;
+                    var mySqlConnection = new MySQLConnection(_configHandler);
+                    mySqlConnection.Start();
+                    mySqlConnection.Open();
+                    _mySqlConnection = mySqlConnection;
                     if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
                     SetupState = "Программа успешно установлена";
                     _configHandler.ConfigJson.isSetup = true;
