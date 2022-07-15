@@ -165,7 +165,7 @@
       </g>
     </g>
   </g>
-  <g inkscape:groupmode="layer" id="layer19" inkscape:label="Слой 3" style="display:inline" sodipodi:insensitive="true">
+  <g inkscape:groupmode="layer" id="layer19" inkscape:label="Слой 3" style="display:none" sodipodi:insensitive="true">
     <g id="el1010011" style="stroke:#090e08;stroke-opacity:0.90598294">
       <title id="title1134">лн</title>
       <g style="fill:none;fill-opacity:0.934673;stroke:#090e08;stroke-width:1.00541663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.90598294" id="g5533">
@@ -261,7 +261,7 @@
       <path style="display:inline;fill:none;stroke:#f60012;stroke-width:0.62264055;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="m 64.617234,83.357151 v 0 0.0898 h 7.550682 v -0.0898" id="path1329-1-2-1-6-7-2" inkscape:connector-curvature="0" />
     </g>
   </g>
-  <g inkscape:groupmode="layer" id="layer4" inkscape:label="Слой 5" style="display:none" transform="translate(0,34.595642)" sodipodi:insensitive="true">
+  <g inkscape:groupmode="layer" id="layer4" inkscape:label="Слой 5" style="display:inline" transform="translate(0,34.595642)" sodipodi:insensitive="true">
     <g id="el1010031">
       <title id="title1791">лн2 вкл</title>
       <g style="display:inline;fill:#fffff5;fill-opacity:0.94472405;stroke:#161a2d;stroke-width:4.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.82914602" transform="matrix(0.26458333,0,0,0.26458333,13.874511,-94.176947)" id="g18-3">
@@ -366,7 +366,7 @@
       </text>
     </g>
   </g>
-  <g inkscape:groupmode="layer" id="layer8" inkscape:label="Слой 9" style="display:none" transform="translate(0,34.595642)" sodipodi:insensitive="true">
+  <g inkscape:groupmode="layer" id="layer8" inkscape:label="Слой 9" style="display:inline" transform="translate(0,34.595642)" sodipodi:insensitive="true">
     <g style="display:inline" id="kn1010031" transform="matrix(0.26458333,0,0,0.26458333,17.74603,-29.822099)" inkscape:label="#kn1010031">
       <title id="title1803">кн2 вкл</title>
       <desc id="desc22-0">button</desc>
@@ -376,7 +376,7 @@
       </text>
     </g>
   </g>
-  <g inkscape:groupmode="layer" id="layer9" inkscape:label="Слой 10" style="display:inline" transform="translate(0,34.595642)" sodipodi:insensitive="true">
+  <g inkscape:groupmode="layer" id="layer9" inkscape:label="Слой 10" style="display:none" transform="translate(0,34.595642)" sodipodi:insensitive="true">
     <g id="kn1010032" transform="translate(14.134745,0.17029362)">
       <title id="title1805">кн2 выкл</title>
       <rect style="display:inline;fill:url(#c);fill-opacity:1;stroke:#000000;stroke-width:0.59461927;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.946341" width="30.613087" height="9.4337187" x="88.57534" y="110.7453" ry="0.36062708" id="rect12-4" />
@@ -430,7 +430,7 @@
       <title id="title1793-7">лн1 выкл</title>
     </path>
   </g>
-  <g inkscape:groupmode="layer" id="layer13" inkscape:label="Слой 16" style="display:inline" transform="translate(0,34.595642)" sodipodi:insensitive="true">
+  <g inkscape:groupmode="layer" id="layer13" inkscape:label="Слой 16" style="display:none" transform="translate(0,34.595642)" sodipodi:insensitive="true">
     <path style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802" d="m 123.38102,41.78292 h 6.81192 v -0.170298 0 0.170298 h 0.1703" id="el1010032" inkscape:connector-curvature="0">
       <title id="title1793">лн2 выкл</title>
     </path>
@@ -440,7 +440,7 @@
       <title id="title1797">лн3 выкл</title>
     </path>
   </g>
-  <g inkscape:groupmode="layer" id="layer17" inkscape:label="Слой 18" style="display:none" sodipodi:insensitive="true">
+  <g inkscape:groupmode="layer" id="layer17" inkscape:label="Слой 18" style="display:inline" sodipodi:insensitive="true">
     <path style="display:inline;fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M 62.584573,66.229076 H 101.1571 v -0.170299" id="el1010012" inkscape:connector-curvature="0">
       <title id="title1678">лн нет</title>
     </path>

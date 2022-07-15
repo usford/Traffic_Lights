@@ -28,35 +28,6 @@ namespace Traffic_Lights {
                 return connection;
             }
         }
-        //Взятие элементов из excel файла с шаблоном бд
-        //TODO убрать этот метод, перенести в GetTaskJobs()
-        public List<ElementInfoDB> GetElementsFromExcel(int index) {
-            using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Шаблон бд.xlsx")) {
-                var worksheet = workbook.Worksheet(1);
-                var elements = new List<ElementInfoDB>();
-                var columns = worksheet.RangeUsed().ColumnsUsed();
-                int counter = 0;
-                index--;
-                foreach(var column in columns) {
-                    if (counter++ == 0) continue;
-
-                    var cellID = column.Cell(index).Value;
-                    var cellName = column.Cell(index + 1).Value;
-                    var cellState = column.Cell(index + 2).Value;
-                    var cellComment = column.Cell(index + 3).Value;
-
-                    string? id = (cellID != "") ? Convert.ToString(cellID) : null;
-                    string? name = (cellName != "") ? Convert.ToString(cellName) : null;
-                    int? state = (cellState != "") ? Convert.ToInt32(cellState) : null;
-                    string? comment = (cellComment != "") ? Convert.ToString(cellComment) : null;
-
-                    var element = new ElementInfoDB(id, name, state, comment);
-                    elements.Add(element);
-                }
-
-                return elements;
-            }            
-        }
         //Логика состояний элементов в файле логика.xlsx
         public List<ElementInfoExcel> GetLogicElement() {
             using (var workbook = new XLWorkbook($@"{_configHandler.PathToExcelFiles}\Логика.xlsx")) {

@@ -50,7 +50,7 @@ namespace Traffic_Lights.ViewsModels {
         }
         private async void SetupClickAction() {
             if (_configHandler.ConfigJson.isSetup) return;
-            var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
+            //var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
             //var sqlStart = System.Diagnostics.Process.Start(@$"E:\mysqlserver.exe");
             //Console.WriteLine("Установка программы");
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(3000));
@@ -58,7 +58,7 @@ namespace Traffic_Lights.ViewsModels {
             SetupBar setupBar = new SetupBar();
             setupBar.Show();
             while (await timer.WaitForNextTickAsync()) {
-                if (!setup && sqlStart.HasExited) {
+                if (!setup /*&& sqlStart.HasExited*/) {
                     setup = true;
                     var mySqlConnection = new MySQLConnection(_configHandler);
                     mySqlConnection.Start();

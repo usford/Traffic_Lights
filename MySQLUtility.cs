@@ -33,7 +33,6 @@ namespace Traffic_Lights {
                 cmd.ExecuteNonQuery();
             }
             try {
-                //CreateDB();
                 CheckElement();
                 CheckTables();
             }
@@ -73,108 +72,6 @@ namespace Traffic_Lights {
                     cmd.ExecuteNonQuery();
                 }
             }         
-        }
-        //Создание базы данных если её нет (с таблицами)
-        private void CreateDB() {
-            var cmd = new MySqlCommand();
-            cmd.Connection = _mySqlConnection.Connection;
-
-            cmd.CommandText = $"create database if not exists {_mySqlConnection.Database}";
-            cmd.ExecuteNonQuery();
-
-            cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.table1 (" +
-                $"id varchar(45) not null," +
-                $"name varchar(45)," +
-                $"state int," +
-                $"comment varchar(45)," +
-                $"primary key(id))";
-            cmd.ExecuteNonQuery();
-
-            cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.table2 (" +
-                $"id varchar(45) not null," +
-                $"name varchar(45)," +
-                $"state int," +
-                $"comment varchar(45)," +
-                $"primary key(id))";
-            cmd.ExecuteNonQuery();
-
-            cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.table1_changes (" +
-                $"count int AUTO_INCREMENT," +
-                $"id varchar(45) not null," +
-                $"name varchar(45)," +
-                $"state int," +
-                $"comment varchar(45)," +
-                $"primary key(count))";
-            cmd.ExecuteNonQuery();
-
-            cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.table2_changes (" +
-                $"count int AUTO_INCREMENT," +
-                $"id varchar(45) not null," +
-                $"name varchar(45)," +
-                $"state int," +
-                $"comment varchar(45)," +
-                $"primary key(count))";
-            cmd.ExecuteNonQuery();
-
-            cmd.CommandText = $"select count(*) from {_mySqlConnection.Database}.table2";
-            int countRecords = Convert.ToInt32(cmd.ExecuteScalar());
-            //Заполнение таблиц данными, если они отсутствуют
-            if (countRecords == 0) {
-                Console.WriteLine("Создаётся база данных...");
-                var elements = _excelTaskJobRepository.GetElementsFromExcel(10);
-                cmd.CommandText = $"insert into {_mySqlConnection.Database}.table1 (id, name, state, comment) values " +
-                        $"(@id, @name, @state, @comment)";
-                var id = cmd.Parameters.Add("@id", MySqlDbType.String);
-                var name = cmd.Parameters.Add("@name", MySqlDbType.String);
-                var state = cmd.Parameters.Add("@state", MySqlDbType.Int32);
-                var comment = cmd.Parameters.Add("@comment", MySqlDbType.String);
-
-                foreach (var element in elements) {
-                    id.Value = element.ID;
-                    name.Value = element.Name;
-                    state.Value = element.State;
-                    comment.Value = element.Comment;
-                    cmd.ExecuteNonQuery();
-                }
-
-                elements = _excelTaskJobRepository.GetElementsFromExcel(20);
-                cmd.CommandText = $"insert into {_mySqlConnection.Database}.table2 (id, name, state, comment) values " +
-                        $"(@id, @name, @state, @comment)";
-
-                foreach (var element in elements) {
-                    id.Value = element.ID;
-                    name.Value = element.Name;
-                    state.Value = element.State;
-                    comment.Value = element.Comment;
-                    cmd.ExecuteNonQuery();
-                }
-
-                //Создание триггеров дли отслеживания изменений в таблицах
-                cmd.CommandText = $"use {_mySqlConnection.Database}; " +
-                    $"create trigger table1_update " +
-                    $"after update on table1 " +
-                    $"for each row begin " +
-                    $"insert into table1_changes Set " +
-                    $"id = NEW.id," +
-                    $"name = NEW.name," +
-                    $"state = NEW.state," +
-                    $"comment = NEW.comment;" +
-                    @$"end;";
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandText = $"use {_mySqlConnection.Database}; " +
-                    $"create trigger table2_update " +
-                    $"after update on table2 " +
-                    $"for each row begin " +
-                    $"insert into table2_changes Set " +
-                    $"id = NEW.id," +
-                    $"name = NEW.name," +
-                    $"state = NEW.state," +
-                    $"comment = NEW.comment;" +
-                    @$"end;";
-                cmd.ExecuteNonQuery();
-                Console.WriteLine("База данных установлена");
-            }
         }
         //Проверка элементов согласно логике в логика.xlsx
         private void CheckElement() {
