@@ -21,6 +21,7 @@ namespace Traffic_Lights {
         private IConfigHandler _configHandler;
         private IMySQLConnection _mySqlConnection;
         private ExcelTaskJobRepository _excelTaskJobRepository;
+        public int Size;
         public MainWindow(IMySQLConnection mySQLConnection, IConfigHandler configHandler, string titleTask) {
             Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();

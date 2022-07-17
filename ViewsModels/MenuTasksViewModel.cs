@@ -16,6 +16,7 @@ namespace Traffic_Lights.ViewsModels {
     public class MenuTasksViewModel : INotifyPropertyChanged {
         private List<TaskJobButton>? _taskJobButtons;
         private string _setupState = "";
+        private string _textMenuTasks = "";
         private IConfigHandler _configHandler;
         private IMySQLConnection _mySqlConnection;
         public string SetupState {
@@ -23,6 +24,13 @@ namespace Traffic_Lights.ViewsModels {
             set {
                 _setupState = value;
                 OnPropertyChanged("SetupState");
+            }
+        }
+        public string TextMenuTasks {
+            get { return _textMenuTasks; }
+            set {
+                _textMenuTasks = value;
+                OnPropertyChanged("TextMenuTasks");
             }
         }
         public List<TaskJobButton> TaskJobButtons {
@@ -40,7 +48,8 @@ namespace Traffic_Lights.ViewsModels {
                 mySqlConnection.Open();
                 _mySqlConnection = mySqlConnection;
                 if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
-                SetupState = "Программа успешно установлена"; 
+                SetupState = "Программа успешно установлена";
+                TextMenuTasks = "Переход в меню отдельных программ Задачи";
             }
         }
         public ICommand SetupClick {
@@ -50,15 +59,32 @@ namespace Traffic_Lights.ViewsModels {
         }
         private async void SetupClickAction() {
             if (_configHandler.ConfigJson.isSetup) return;
-            //var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
+            var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
             //var sqlStart = System.Diagnostics.Process.Start(@$"E:\mysqlserver.exe");
             //Console.WriteLine("Установка программы");
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(3000));
+            var timerProgress = new PeriodicTimer(TimeSpan.FromMilliseconds(900));
             bool setup = false;
             SetupBar setupBar = new SetupBar();
             setupBar.Show();
+
+            string[] progressDescription = { 
+                "Установка MySQL сервера...",
+                "Чтение файла Шаблон БД...",
+                "Подключение к MySQL серверу..."
+            };
+
+            int countIndex = 0;
+            while (await timerProgress.WaitForNextTickAsync()) {
+                if (countIndex == progressDescription.Length) {
+                    break;
+                }
+                (setupBar.DataContext as SetupBarViewModel).SetupState = "Установка компонентов: \n" + progressDescription[countIndex++];
+            }
+            
+
             while (await timer.WaitForNextTickAsync()) {
-                if (!setup /*&& sqlStart.HasExited*/) {
+                if (!setup && sqlStart.HasExited) {
                     setup = true;
                     var mySqlConnection = new MySQLConnection(_configHandler);
                     mySqlConnection.Start();
@@ -66,9 +92,10 @@ namespace Traffic_Lights.ViewsModels {
                     _mySqlConnection = mySqlConnection;
                     if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
                     SetupState = "Программа успешно установлена";
+                    TextMenuTasks = "Переход в меню отдельных программ Задачи";
                     _configHandler.ConfigJson.isSetup = true;
                     _configHandler.Update();
-                    setupBar.Hide();
+                    setupBar.Close();
                 }         
             }        
         }

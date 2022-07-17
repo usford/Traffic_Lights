@@ -50,16 +50,18 @@ namespace Traffic_Lights {
                     }
 
                     if (tables.Count == 2) {
-                        taskJobList.Add(new TaskJobButton(
+                        if (comment != "") {
+                            taskJobList.Add(new TaskJobButton(
                             new TaskJob(
                                 title: nameDB,
                                 comment: comment,
                                 tables: new List<List<ElementInfoDB>>(tables),
-                                enabled: (comment == "Неизвестно") ? false : true
+                                enabled: true
                             ),
                             _mySqlConnection,
                             _configHandler
                         ));
+                        }       
                         tables.Clear();
                     }
                     //Console.WriteLine("Идёт загрузка.. " + timer.Elapsed);

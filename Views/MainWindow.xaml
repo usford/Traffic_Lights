@@ -25,33 +25,9 @@
   <Canvas x:Name="mainCanvas">
         <Button Content="Выйти" Click="ButtonExit" />
         <Canvas x:Name="canvasButtons" Panel.ZIndex="2">
-        <!--<Button Content="Кнопка 1" 
-        x:Name="kn1010012" 
-        Click="ButtonClick" 
-        Canvas.Top="650"
-        Canvas.Left="160"
-        Opacity="0"/>
-        <Button Content="Кнопка 2" 
-        x:Name="kn1010022" 
-        Click="ButtonClick" 
-        Canvas.Top="650"
-        Canvas.Left="380"
-        Opacity="0"/>
-        <Button Content="Кнопка 3" 
-        x:Name="kn1010032" 
-        Click="ButtonClick" 
-        Canvas.Top="650"
-        Canvas.Left="600"
-        Opacity="0"/>
-        <Button Content="Кнопка 4" 
-        x:Name="kn1010042" 
-        Click="ButtonClick" 
-        Canvas.Top="650"
-        Canvas.Left="810"
-        Opacity="0"/>-->
-    </Canvas>
+        </Canvas>
     <svgc:SvgViewbox x:Name="svgMain" 
-                     Height="600" 
+                     Height="600"
                      Canvas.Top="100" 
                      Canvas.Left="100" 
                      Panel.ZIndex="1"/>

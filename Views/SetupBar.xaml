@@ -6,14 +6,17 @@
         xmlns:local="clr-namespace:Traffic_Lights.Views"
         mc:Ignorable="d"
         Title="Установка программы"
-        Height="100" Width="350"
-        MaxHeight="100" MaxWidth="350" 
-        MinHeight="100" MinWidth="350"
+        Height="200" Width="350"
+        MaxHeight="200" MaxWidth="350" 
+        MinHeight="200" MinWidth="350"
         WindowStartupLocation="CenterScreen">
-    <Grid Margin="20">
+    <StackPanel>
         <ProgressBar Minimum="0"
                      Maximum="100"
                      Name="pbStatus" 
-                     IsIndeterminate="True" />
-    </Grid>
+                     IsIndeterminate="True" Height="25"
+                     Margin="20, 10, 20, 0"/>
+        <TextBlock Margin="10, 20, 0, 0" 
+                   Text="{Binding SetupState}"/>
+    </StackPanel>
 </Window>

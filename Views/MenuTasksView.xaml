@@ -34,7 +34,7 @@
                        />
         </Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock TextAlignment="Center">Переход в меню отдельных программ "Задачи"</TextBlock>
+            <TextBlock TextAlignment="Center" Text="{Binding TextMenuTasks}"></TextBlock>
             <ItemsControl ItemsSource="{Binding TaskJobButtons}" VerticalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
