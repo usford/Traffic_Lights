@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Traffic_Lights.ConfigProgram;
 using Traffic_Lights.MySQLHandler;
 using Traffic_Lights.Interfaces;
+using Traffic_Lights.Views;
 
 namespace Traffic_Lights.Models {
     public class TaskJobButton {
@@ -24,7 +25,14 @@ namespace Traffic_Lights.Models {
         }
         public void MyAction() {
             Database db = new Database(_mySqlConnection, TaskJob);
-            db.Create();
+            try {
+                db.Create();
+            }
+            catch (Exception e) {
+                var errorWindow = new ErrorWindow("Ошибка в создании базы данных.\n Проверьте правильность файла Шаблон.бд");
+                errorWindow.ShowDialog();
+            }
+            
             MainWindow mw = new MainWindow(_mySqlConnection, _configHandler, TaskJob.Title);
             mw.Show();
         }

@@ -15,4 +15,10 @@
     <PackageReference Include="SharpVectors" Version="1.7.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Views\ErrorWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
 </Project>
