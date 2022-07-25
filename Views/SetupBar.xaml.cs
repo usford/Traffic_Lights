@@ -9,7 +9,7 @@ namespace Traffic_Lights.Views {
     public partial class SetupBar : Window {
         public SetupBar() {
             InitializeComponent();
-            Console.OutputEncoding = Encoding.UTF8;
+            //Console.OutputEncoding = Encoding.UTF8;
             DataContext = new SetupBarViewModel();
         }
     }

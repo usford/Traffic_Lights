@@ -18,7 +18,7 @@ namespace Traffic_Lights.SvgHandler {
         public List<XamlButtons> GetCoordinatesButtons() {
             var map = new List<XamlButtons>();
             var fileElements = Directory.GetFiles($@"{_configHandler.PathToSvgElements}\Elements");
-            Console.WriteLine($@"{_configHandler.PathToSvgElements}\Elements");
+            //Console.WriteLine($@"{_configHandler.PathToSvgElements}\Elements");
             var xDoc = new XmlDocument();
             var listUniqueElements = new List<string>();
 

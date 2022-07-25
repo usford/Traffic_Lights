@@ -56,7 +56,7 @@ namespace Traffic_Lights.MySQLHandler {
             int countRecords = Convert.ToInt32(cmd.ExecuteScalar());
             //Заполнение таблиц данными, если они отсутствуют
             if (countRecords == 0) {
-                Console.WriteLine("Создаётся база данных...");
+                //Console.WriteLine("Создаётся база данных...");
                 //var elements = _excelTaskJobRepository.GetElementsFromExcel(10);
                 cmd.CommandText = $"insert into {_mySqlConnection.Database}.{_taskJob.Title}_table1 (id, name, state, comment) values " +
                         $"(@id, @name, @state, @comment)";
@@ -109,7 +109,7 @@ namespace Traffic_Lights.MySQLHandler {
                     $"comment = NEW.comment;" +
                     @$"end;";
                 cmd.ExecuteNonQuery();
-                Console.WriteLine("База данных установлена");
+               // Console.WriteLine("База данных установлена");
             }
         }
 

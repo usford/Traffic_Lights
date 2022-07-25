@@ -42,6 +42,12 @@ namespace Traffic_Lights.ViewsModels {
         }
         public MenuTasksViewModel(IConfigHandler configHandler) {
             _configHandler = configHandler;
+
+            if (Directory.Exists(@"C:\MySQL Server 8.0")) {
+                _configHandler.ConfigJson.isSetup = true;
+                _configHandler.Update();
+            }
+
             if (_configHandler.ConfigJson.isSetup) {
                 var mySqlConnection = new MySQLConnection(_configHandler);
                 mySqlConnection.Start();
@@ -59,7 +65,7 @@ namespace Traffic_Lights.ViewsModels {
         }
         private async void SetupClickAction() {
             if (_configHandler.ConfigJson.isSetup) return;
-            //var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
+            var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
             //var sqlStart = System.Diagnostics.Process.Start(@$"E:\mysqlserver.exe");
             //Console.WriteLine("Установка программы");
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(3000));
@@ -84,7 +90,7 @@ namespace Traffic_Lights.ViewsModels {
             
 
             while (await timer.WaitForNextTickAsync()) {
-                if (!setup /*&& sqlStart.HasExited*/) {
+                if (!setup && sqlStart.HasExited) {
                     setup = true;
                     var mySqlConnection = new MySQLConnection(_configHandler);
                     mySqlConnection.Start();

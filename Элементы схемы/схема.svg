@@ -177,7 +177,7 @@
       <text transform="scale(0.87307102,1.1453822)" id="text66-5" y="76.031769" x="113.93552" style="font-style:normal;font-weight:400;font-size:4.66948px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:#f200ac;stroke-width:0.161925;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.933333" xml:space="preserve">         <tspan id="tspan64-0" y="76.031769" x="113.93552" style="stroke:#f200ac;stroke-width:0.161925;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.933333">I1</tspan>      </text>
     </g>
   </g>
-  <g inkscape:groupmode="layer" id="layer4" inkscape:label="Слой 5" style="display:none" transform="translate(0,34.595642)">
+  <g inkscape:groupmode="layer" id="layer4" inkscape:label="Слой 5" style="display:inline" transform="translate(0,34.595642)">
     <g id="el1010031">
       <g style="display:inline;fill:#fffff5;fill-opacity:0.944724;stroke:#161a2d;stroke-width:4.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.829146" transform="matrix(0.26458333,0,0,0.26458333,13.874511,-94.176947)" id="g18-3">
         <ellipse style="fill:#fffff5;fill-opacity:0.944724;stroke:#161a2d;stroke-width:4.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.829146" cx="479.065" cy="427.33401" rx="42.425999" ry="41.366001" id="ellipse12" />
@@ -317,7 +317,7 @@
       <title id="title1793-7">лн1 выкл</title>
     </path>
   </g>
-  <g inkscape:groupmode="layer" id="layer13" inkscape:label="Слой 16" style="display:inline" transform="translate(0,34.595642)">
+  <g inkscape:groupmode="layer" id="layer13" inkscape:label="Слой 16" style="display:none" transform="translate(0,34.595642)">
     <path style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802" d="m 123.38102,41.78292 h 6.81192 v -0.170298 0 0.170298 h 0.1703" id="el1010032" inkscape:connector-curvature="0">
       <title id="title1793">лн2 выкл</title>
     </path>

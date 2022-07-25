@@ -31,13 +31,15 @@ namespace Traffic_Lights {
                 cmd.Connection = _mySqlConnection.Connection;
                 cmd.CommandText = $"drop database if exists {_mySqlConnection.Database}";
                 cmd.ExecuteNonQuery();
+                _configHandler.ConfigJson.dropDatabase = true;
+                _configHandler.Update();
             }
             try {
                 CheckElement();
                 CheckTables();
             }
             catch (Exception ex) {
-                Console.WriteLine($"Error: {ex}");
+                //Console.WriteLine($"Error: {ex}");
                 
             }
             finally {
@@ -57,7 +59,7 @@ namespace Traffic_Lights {
                 cmd.CommandText = $"select count(*) from {_mySqlConnection.Database}.{_titleTask}_table1_changes";
                 int checkTable1 = Convert.ToInt32(cmd.ExecuteScalar());
                 if (checkTable1 > 0) {
-                    Console.WriteLine("Данные поменялись в table1");
+                    //Console.WriteLine("Данные поменялись в table1");
                     CheckElement();
                     cmd.CommandText = $"delete from {_mySqlConnection.Database}.{_titleTask}_table1_changes";
                     cmd.ExecuteNonQuery();
@@ -66,7 +68,7 @@ namespace Traffic_Lights {
                 cmd.CommandText = $"select count(*) from {_mySqlConnection.Database}.{_titleTask}_table2_changes";
                 int checkTable2 = Convert.ToInt32(cmd.ExecuteScalar());
                 if (checkTable2 > 0) {
-                    Console.WriteLine("Данные поменялись в table2");
+                    //Console.WriteLine("Данные поменялись в table2");
                     CheckRelationsElement();
                     cmd.CommandText = $"delete from {_mySqlConnection.Database}.{_titleTask}_table2_changes";
                     cmd.ExecuteNonQuery();
@@ -75,7 +77,7 @@ namespace Traffic_Lights {
         }
         //Проверка элементов согласно логике в логика.xlsx
         private void CheckElement() {
-            Console.WriteLine("Проверка элементов...");
+            //Console.WriteLine("Проверка элементов...");
             var cmd = new MySqlCommand();
             cmd.Connection = _mySqlConnection.Connection;
             

@@ -23,7 +23,7 @@ namespace Traffic_Lights {
         private ExcelTaskJobRepository _excelTaskJobRepository;
         public int Size;
         public MainWindow(IMySQLConnection mySQLConnection, IConfigHandler configHandler, string titleTask) {
-            Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
+            //Console.OutputEncoding = Encoding.UTF8; //Кодировка для правильного отображения различных символов в консоли
             InitializeComponent();
             _titleTask = titleTask;
             _configHandler = configHandler;
@@ -48,8 +48,8 @@ namespace Traffic_Lights {
                 ChangeSvg();
             }
             catch (Exception e) {
-                Console.WriteLine("Ошибка в чтении схемы");
-                Console.WriteLine(e);
+                //Console.WriteLine("Ошибка в чтении схемы");
+                //Console.WriteLine(e);
             }
 
         }
@@ -78,7 +78,7 @@ namespace Traffic_Lights {
             var dataConnection = _excelTaskJobRepository.GetConnection();
             var mySQL = new MySQLUtility(this, _mySqlConnection, _configHandler, _titleTask);
             //Console.WriteLine((e.OriginalSource as SvgDrawingCanvas).Children.Count);
-            Console.WriteLine($"Нажатие на кнопку: {name}");
+            //Console.WriteLine($"Нажатие на кнопку: {name}");
             mySQL.InsertStateTable2(name);
         }
         async void ChangeSvg() {
@@ -90,14 +90,14 @@ namespace Traffic_Lights {
                     }
                 }
                 catch (Exception e) {
-                    Console.WriteLine(e);
+                    //Console.WriteLine(e);
                 }
             }
         }
         //Изменение элементов, где name = наименование элемента, а state = его состояние
         //TODO вынести layers
         public async void ChangeElement(string? elementCode, int state) {
-            Console.WriteLine($"Проверяется элемент: {elementCode}, состояние {state}");
+            //Console.WriteLine($"Проверяется элемент: {elementCode}, состояние {state}");
             if (elementCode.StartsWith("kn")) {
                 if (state == 1) {
                     int index = (int)Char.GetNumericValue(elementCode[7]) - 1;
@@ -124,7 +124,7 @@ namespace Traffic_Lights {
                 }
             }
             catch (Exception e) {
-                Console.WriteLine(e);
+               // Console.WriteLine(e);
             }
         }
     }

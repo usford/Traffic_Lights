@@ -11,7 +11,7 @@ namespace Traffic_Lights.Views {
         private IConfigHandler _configHandler;
         public MenuTasksView(IConfigHandler configHandler)  {
             InitializeComponent();
-            Console.OutputEncoding = Encoding.UTF8;
+            //Console.OutputEncoding = Encoding.UTF8;
             _configHandler = configHandler;
 
             DataContext = new MenuTasksViewModel(_configHandler);

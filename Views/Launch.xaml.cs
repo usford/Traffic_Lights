@@ -8,17 +8,14 @@ namespace Traffic_Lights.Views {
         public Launch() {
             InitializeComponent();
             try {
-                Console.OutputEncoding = System.Text.Encoding.UTF8;
+                //Console.OutputEncoding = System.Text.Encoding.UTF8;
                 var config = new ConfigHandler();
                 var menuTasksView = new MenuTasksView(config);
                 menuTasksView.Show();
                 Hide();
-            }
-            catch (Exception ex) {
-                Console.WriteLine(ex);
-                //Console.ReadLine();
-            }
-            
+            }catch (Exception e) {
+                //Console.WriteLine(e);
+            }  
         }
     }
 }
