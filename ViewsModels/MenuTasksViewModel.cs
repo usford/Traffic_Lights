@@ -43,10 +43,8 @@ namespace Traffic_Lights.ViewsModels {
         public MenuTasksViewModel(IConfigHandler configHandler) {
             _configHandler = configHandler;
 
-            if (Directory.Exists(@"C:\MySQL Server 8.0")) {
-                _configHandler.ConfigJson.isSetup = true;
-                _configHandler.Update();
-            }
+            _configHandler.ConfigJson.isSetup = Directory.Exists(@"C:\MySQL Server 8.0");
+            _configHandler.Update();
 
             if (_configHandler.ConfigJson.isSetup) {
                 var mySqlConnection = new MySQLConnection(_configHandler);
