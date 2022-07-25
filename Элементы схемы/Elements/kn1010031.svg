@@ -18,8 +18,6 @@
    id="svg5"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    sodipodi:docname="kn1010031.svg">
-  <title
-     id="title1130">кн2 вкл</title>
   <metadata
      id="metadata210">
     <rdf:RDF>
@@ -28,7 +26,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title>кн2 вкл</dc:title>
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -43,8 +41,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.0985948"
-     inkscape:cx="408.10625"
-     inkscape:cy="288.12338"
+     inkscape:cx="503.34811"
+     inkscape:cy="297.29019"
      inkscape:window-width="1920"
      inkscape:window-height="1018"
      inkscape:window-x="-8"
@@ -611,10 +609,7 @@
      style="display:none"
      sodipodi:insensitive="true">
     <g
-       id="el1010011"
-       style="stroke:#090e08;stroke-opacity:0.90598294">
-      <title
-         id="title1134">лн</title>
+       id="el1010011">
       <g
          style="fill:none;fill-opacity:0.934673;stroke:#090e08;stroke-width:1.00541663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.90598294"
          id="g5533">
@@ -736,71 +731,6 @@
          cy="108.89557"
          rx="1.216025"
          ry="1.122627" />
-      <path
-         d="M 74.274329,82.70928 87.264458,73.999431"
-         style="fill:none;stroke:#090e08;stroke-width:0.93356848;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.90598294"
-         id="path58-1"
-         inkscape:connector-curvature="0" />
-    </g>
-    <g
-       transform="translate(0,34.595641)"
-       style="display:inline"
-       id="g5571"
-       inkscape:label="#kn1010012">
-      <title
-         id="title1132">кн откл</title>
-      <ellipse
-         style="fill:none;fill-opacity:0.2964824;stroke:#000000;stroke-width:0.52916664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.7035176"
-         id="path4564-7"
-         cx="63.388737"
-         cy="48.59864"
-         rx="1.2160763"
-         ry="1.1225319" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.7035176"
-         d="M 52.569691,44.199302 V 40.64462 h 2.057974 v 5.238482 h 0.18709"
-         id="path4682"
-         inkscape:connector-curvature="0" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.7035176"
-         d="m 51.029533,42.629328 v -2.057974 h 5.051393 v 2.806329 0"
-         id="path4692"
-         inkscape:connector-curvature="0" />
-      <ellipse
-         style="display:inline;fill:none;fill-opacity:0.2964824;stroke:#050504;stroke-width:0.52916664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.83082072"
-         id="path4564-6-2-0-4-8-4-1-3-2-7-7-9"
-         cx="58.895042"
-         cy="48.654953"
-         rx="1.2160763"
-         ry="1.1225319" />
-      <path
-         style="display:inline;fill:none;stroke:#050504;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.83082072"
-         d="m 60.429279,48.265794 v 0 0.256863 h 1.576668 v -0.256863"
-         id="path1329-1-2-1-6-6-9"
-         inkscape:connector-curvature="0" />
-      <path
-         style="display:inline;fill:none;stroke:#050504;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.83082072"
-         d="M 48.844863,42.512451 57.470425,48.079644 57.42448,48.261"
-         id="path1356-9-2-0-1-1-9"
-         inkscape:connector-curvature="0"
-         inkscape:transform-center-x="-0.5284984"
-         inkscape:transform-center-y="-8.8878661" />
-      <g
-         style="stroke:#0b1823;stroke-width:0.47095832;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.92462302"
-         id="g5314">
-        <ellipse
-           ry="1.122627"
-           rx="1.216025"
-           cy="48.727161"
-           cx="73.367134"
-           style="display:inline;fill:none;fill-opacity:0.29648198;stroke:#0b1823;stroke-width:0.47095832;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.92462302"
-           id="ellipse24" />
-        <path
-           style="display:inline;fill:none;stroke:#0b1823;stroke-width:0.47095832;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.92462302"
-           d="m 64.617234,48.761509 h 7.550682"
-           id="path26-1"
-           inkscape:connector-curvature="0" />
-      </g>
     </g>
   </g>
   <g
@@ -821,10 +751,13 @@
        id="path12"
        d="M 212.27708,45.636822 Z"
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       style="fill:none;stroke:#ed00a9;stroke-width:0.66145831;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 45.879633,89.676628 8.429329,1.20419"
+       id="path1330"
+       inkscape:connector-curvature="0" />
     <g
        id="el1010021">
-      <title
-         id="title1787">лн1</title>
       <g
          transform="matrix(0.26458333,0,0,0.26458333,14.248632,-93.989887)"
          style="display:inline;fill:#f32144;fill-opacity:0.934673;stroke:#091a2d;stroke-width:4.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94472405"
@@ -952,20 +885,10 @@
            id="ellipse54" />
       </g>
       <path
-         d="M 74.274329,48.113639 87.264458,39.40379"
-         style="fill:none;stroke:#f20000;stroke-width:0.93356848;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="path58"
-         inkscape:connector-curvature="0" />
-      <path
          inkscape:connector-curvature="0"
          id="path1326"
          d="m 45.759212,52.346743 29.74349,0.120417 14.45028,-10.717289 23.602118,0.120419 -0.12041,-19.869132 13.12566,0.120419 v 9.151843 l 28.05763,0.240838 0.12042,-7.22514 8.30891,-0.120419 0.60209,65.38751 -117.769767,0.120419 8.670167,-1.324609"
          style="fill:none;stroke:#f03f8d;stroke-width:0.79427916;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path1330"
-         d="m 45.879633,89.676628 8.429329,1.20419"
-         style="fill:none;stroke:#ed00a9;stroke-width:0.66145831;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <text
          transform="scale(0.87307102,1.1453822)"
          id="text66-5"
@@ -978,72 +901,6 @@
            x="113.93552"
            style="stroke:#f200ac;stroke-width:0.16192502;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.93333333">I1</tspan></text>
     </g>
-    <g
-       transform="translate(0,-34.505842)"
-       style="display:inline"
-       id="g5350-0"
-       inkscape:label="#kn1010011">
-      <title
-         id="title1136">кн вкл</title>
-      <ellipse
-         style="display:inline;fill:none;fill-opacity:0.2964824;stroke:#f11a2d;stroke-width:0.52916664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.92462314"
-         id="path4564-95-9-3-1-2-7"
-         cx="73.320099"
-         cy="83.325249"
-         rx="1.2160763"
-         ry="1.1225319" />
-      <ellipse
-         style="display:inline;fill:none;fill-opacity:0.2964824;stroke:#f11a2d;stroke-width:0.52916664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.92462314"
-         id="path4564-7-9-0-21-7-8-3-3-4-3"
-         cx="63.530243"
-         cy="83.428833"
-         rx="1.2160763"
-         ry="1.1225319" />
-      <ellipse
-         style="display:inline;fill:none;fill-opacity:0.2964824;stroke:#ee2000;stroke-width:0.52916664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.87437188"
-         id="path4564-6-2-0-4-8-4-1-3-2-7-5"
-         cx="59.15963"
-         cy="83.118301"
-         rx="1.2160763"
-         ry="1.1225319" />
-      <path
-         style="display:inline;fill:none;stroke:#f60012;stroke-width:0.48106205;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 60.429279,82.861436 v 0 0.256863 h 1.576668 v -0.256863"
-         id="path1329-1-2-1-6-3"
-         inkscape:connector-curvature="0" />
-      <path
-         style="fill:none;stroke:#f50008;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 48.218451,80.012715 9.72861,3.278434 v 0.187086"
-         id="path1356-9-2-0-1-9"
-         inkscape:connector-curvature="0"
-         inkscape:transform-center-x="1.7545416"
-         inkscape:transform-center-y="-8.7241511" />
-      <g
-         id="g1419-4-7-3-8"
-         style="stroke:#f50005;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         transform="matrix(0.26458333,0,0,0.26458333,-24.215761,18.80073)">
-        <path
-           inkscape:connector-curvature="0"
-           id="path1410-9-3-1-9"
-           d="m 284.25692,233.23342 v -9.19239 h 19.79899 v 9.89949 h -0.70711"
-           style="fill:none;stroke:#f50005;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-        <path
-           inkscape:connector-curvature="0"
-           id="path1412-9-1-2-6"
-           d="m 290.62088,224.04103 v 12.02081"
-           style="fill:none;stroke:#f50005;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-        <path
-           inkscape:connector-curvature="0"
-           id="path1414-7-9-2-8"
-           d="m 296.98484,224.04103 v 14.14213"
-           style="fill:none;stroke:#f50005;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      </g>
-      <path
-         style="display:inline;fill:none;stroke:#f60012;stroke-width:0.62264055;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 64.617234,83.357151 v 0 0.0898 h 7.550682 v -0.0898"
-         id="path1329-1-2-1-6-7-2"
-         inkscape:connector-curvature="0" />
-    </g>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -1054,8 +911,6 @@
      sodipodi:insensitive="true">
     <g
        id="el1010031">
-      <title
-         id="title1791">лн2 вкл</title>
       <g
          style="display:inline;fill:#fffff5;fill-opacity:0.94472405;stroke:#161a2d;stroke-width:4.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.82914602"
          transform="matrix(0.26458333,0,0,0.26458333,13.874511,-94.176947)"
@@ -1202,7 +1057,7 @@
            style="fill:none;stroke:#f200ac;stroke-width:2.50200009;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.93333333" />
       </g>
       <text
-         transform="scale(0.87307105,1.1453822)"
+         transform="scale(0.87307103,1.1453822)"
          id="text66"
          y="76.082855"
          x="113.87675"
@@ -1212,11 +1067,6 @@
            y="76.082855"
            x="113.87675"
            style="stroke:#f200ac;stroke-width:0.161925;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.93333333">I2</tspan></text>
-      <path
-         inkscape:connector-curvature="0"
-         id="path1383"
-         d="M 88.146696,46.446212 74.900609,48.252496"
-         style="fill:none;stroke:#e90000;stroke-width:0.92604166;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
   </g>
   <g
@@ -1240,8 +1090,6 @@
        xml:space="preserve" />
     <g
        id="el1010041">
-      <title
-         id="title1795">лн3 вкл</title>
       <g
          transform="matrix(0.26458333,0,0,0.26458333,3.226884,-32.679844)"
          style="display:inline"
@@ -1380,11 +1228,6 @@
            style="display:inline;fill:none;fill-opacity:0.29648198;stroke:#0f0000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.874372"
            id="ellipse58" />
       </g>
-      <path
-         d="M 74.693752,47.547642 87.305645,54.23578"
-         style="display:inline;fill:none;stroke:#f00000;stroke-width:0.79427916;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94974898"
-         id="path62-1"
-         inkscape:connector-curvature="0" />
       <g
          style="stroke:#f200ac;stroke-width:0.66145831;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.92964825"
          id="g1425">
@@ -1420,15 +1263,11 @@
      transform="translate(0,34.595642)"
      sodipodi:insensitive="true">
     <g
-       id="kn1010021"
-       transform="translate(14.645641)"
-       inkscape:label="#kn1010021">
-      <title
-         id="title1799">кн1 вкл</title>
+       id="kn1010021">
       <rect
          ry="0.36062708"
          y="110.83631"
-         x="46.638004"
+         x="61.283646"
          height="9.4337187"
          width="30.613087"
          style="display:inline;fill:#333333;fill-opacity:0.39698498;stroke:#000000;stroke-width:0.59461927;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.946341"
@@ -1436,11 +1275,11 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-weight:400;font-size:2.82223105px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         x="58.350582"
+         x="72.996223"
          y="116.4386"
          id="text16"><tspan
            style="stroke-width:0.26458332"
-           x="58.350582"
+           x="72.996223"
            y="116.4386"
            id="tspan14">ВКЛ</tspan></text>
     </g>
@@ -1554,44 +1393,39 @@
      style="display:none"
      transform="translate(0,34.595642)"
      sodipodi:insensitive="true">
+    <text
+       id="text10-7"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:400;font-size:3.52776885px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="71.018829"
+       y="115.10889" />
     <g
-       style="display:inline"
-       id="kn1010041"
-       transform="matrix(0.26458333,0,0,0.26458333,17.821178,-30.35002)">
-      <title
-         id="title1807">кн3 вкл</title>
-      <desc
-         id="desc26-8">button</desc>
-      <text
-         y="549.76599"
-         x="201.062"
-         style="font-style:normal;font-weight:400;font-size:13.33329964px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none"
-         xml:space="preserve"
-         id="text10-7" />
+       id="kn1010041">
       <rect
-         style="display:inline;fill:#333333;fill-opacity:0.482412;stroke:#000000;stroke-width:2.24738002;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.946341"
-         width="115.703"
-         height="35.654999"
-         x="470.16599"
-         y="532.63"
-         ry="1.363"
+         style="display:inline;fill:#333333;fill-opacity:0.482412;stroke:#000000;stroke-width:0.59461927;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.946341"
+         width="30.613087"
+         height="9.4337187"
+         x="142.21925"
+         y="110.575"
+         ry="0.36062708"
          id="rect12-1" />
       <text
          xml:space="preserve"
-         style="font-style:normal;font-weight:400;font-size:10.66670036px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none"
-         x="510.896"
-         y="553.37"
+         style="font-style:normal;font-weight:400;font-size:2.82223105px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="152.99574"
+         y="116.06245"
          id="text16-8"><tspan
-           x="510.896"
-           y="553.37"
+           style="stroke-width:0.26458332"
+           x="152.99574"
+           y="116.06245"
            id="tspan14-76">ВКЛ</tspan></text>
-      <text
-         y="552.65503"
-         x="355.617"
-         style="font-style:normal;font-weight:400;font-size:13.33329964px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none"
-         xml:space="preserve"
-         id="text18" />
     </g>
+    <text
+       id="text18"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:400;font-size:3.52776885px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="111.91151"
+       y="115.87329" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -1656,7 +1490,7 @@
            style="stroke-width:0.26458332"
            x="58.350582"
            y="116.4386"
-           id="tspan14-9">ВКЛ</tspan></text>
+           id="tspan14-9">ВыКЛ</tspan></text>
     </g>
   </g>
   <g
@@ -1739,7 +1573,7 @@
        id="el1010042"
        inkscape:connector-curvature="0">
       <title
-         id="title1797">кн3 выкл</title>
+         id="title1797">лн3 выкл</title>
     </path>
   </g>
   <g
@@ -1749,12 +1583,324 @@
      style="display:none"
      sodipodi:insensitive="true">
     <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 62.584573,66.229076 H 101.1571 v -0.170299"
+       transform="translate(0,34.595641)"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.31838751;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802"
+       d="m 55.772653,31.633434 h 6.81192 v 0.230206 0 -0.230206 h 0.1703"
        id="el1010012"
        inkscape:connector-curvature="0">
       <title
-         id="title1678">лн нет</title>
+         id="title1797-4">лн выкл</title>
+    </path>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer11"
+     inkscape:label="Слой 19"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <g
+       transform="translate(0,34.595641)"
+       style="display:inline"
+       id="el1010052"
+       inkscape:label="#el1010052">
+      <title
+         id="title1132">кн откл</title>
+      <ellipse
+         style="fill:none;fill-opacity:0.2964824;stroke:#000000;stroke-width:0.52916664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.7035176"
+         id="path4564-7"
+         cx="63.388737"
+         cy="48.59864"
+         rx="1.2160763"
+         ry="1.1225319" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.7035176"
+         d="M 52.569691,44.199302 V 40.64462 h 2.057974 v 5.238482 h 0.18709"
+         id="path4682"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.7035176"
+         d="m 51.029533,42.629328 v -2.057974 h 5.051393 v 2.806329 0"
+         id="path4692"
+         inkscape:connector-curvature="0" />
+      <ellipse
+         style="display:inline;fill:none;fill-opacity:0.2964824;stroke:#050504;stroke-width:0.52916664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.83082072"
+         id="path4564-6-2-0-4-8-4-1-3-2-7-7-9"
+         cx="58.895042"
+         cy="48.654953"
+         rx="1.2160763"
+         ry="1.1225319" />
+      <path
+         style="display:inline;fill:none;stroke:#050504;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.83082072"
+         d="m 60.429279,48.265794 v 0 0.256863 h 1.576668 v -0.256863"
+         id="path1329-1-2-1-6-6-9"
+         inkscape:connector-curvature="0" />
+      <path
+         style="display:inline;fill:none;stroke:#050504;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.83082072"
+         d="M 48.844863,42.512451 57.470425,48.079644 57.42448,48.261"
+         id="path1356-9-2-0-1-1-9"
+         inkscape:connector-curvature="0"
+         inkscape:transform-center-x="-0.5284984"
+         inkscape:transform-center-y="-8.8878661" />
+      <g
+         style="stroke:#0b1823;stroke-width:0.47095832;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.92462302"
+         id="g5314">
+        <ellipse
+           ry="1.122627"
+           rx="1.216025"
+           cy="48.727161"
+           cx="73.367134"
+           style="display:inline;fill:none;fill-opacity:0.29648198;stroke:#0b1823;stroke-width:0.47095832;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.92462302"
+           id="ellipse24" />
+        <path
+           style="display:inline;fill:none;stroke:#0b1823;stroke-width:0.47095832;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.92462302"
+           d="m 64.617234,48.761509 h 7.550682"
+           id="path26-1"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer15"
+     inkscape:label="Слой 20"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <g
+       transform="translate(0,0.0898)"
+       style="display:inline"
+       id="el1010051"
+       inkscape:label="#el1010051">
+      <title
+         id="title1136">кн вкл</title>
+      <ellipse
+         style="display:inline;fill:none;fill-opacity:0.2964824;stroke:#f11a2d;stroke-width:0.52916664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.92462314"
+         id="path4564-95-9-3-1-2-7"
+         cx="73.320099"
+         cy="83.325249"
+         rx="1.2160763"
+         ry="1.1225319" />
+      <ellipse
+         style="display:inline;fill:none;fill-opacity:0.2964824;stroke:#f11a2d;stroke-width:0.52916664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.92462314"
+         id="path4564-7-9-0-21-7-8-3-3-4-3"
+         cx="63.530243"
+         cy="83.428833"
+         rx="1.2160763"
+         ry="1.1225319" />
+      <ellipse
+         style="display:inline;fill:none;fill-opacity:0.2964824;stroke:#ee2000;stroke-width:0.52916664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.87437188"
+         id="path4564-6-2-0-4-8-4-1-3-2-7-5"
+         cx="59.15963"
+         cy="83.118301"
+         rx="1.2160763"
+         ry="1.1225319" />
+      <path
+         style="display:inline;fill:none;stroke:#f60012;stroke-width:0.48106205;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 60.429279,82.861436 v 0 0.256863 h 1.576668 v -0.256863"
+         id="path1329-1-2-1-6-3"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#f50008;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 48.218451,80.012715 9.72861,3.278434 v 0.187086"
+         id="path1356-9-2-0-1-9"
+         inkscape:connector-curvature="0"
+         inkscape:transform-center-x="1.7545416"
+         inkscape:transform-center-y="-8.7241511" />
+      <g
+         id="g1419-4-7-3-8"
+         style="stroke:#f50005;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(0.26458333,0,0,0.26458333,-24.215761,18.80073)">
+        <path
+           inkscape:connector-curvature="0"
+           id="path1410-9-3-1-9"
+           d="m 284.25692,233.23342 v -9.19239 h 19.79899 v 9.89949 h -0.70711"
+           style="fill:none;stroke:#f50005;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path1412-9-1-2-6"
+           d="m 290.62088,224.04103 v 12.02081"
+           style="fill:none;stroke:#f50005;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path1414-7-9-2-8"
+           d="m 296.98484,224.04103 v 14.14213"
+           style="fill:none;stroke:#f50005;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+      <path
+         style="display:inline;fill:none;stroke:#f60012;stroke-width:0.62264055;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 64.617234,83.357151 v 0 0.0898 h 7.550682 v -0.0898"
+         id="path1329-1-2-1-6-7-2"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer16"
+     inkscape:label="Слой 21"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       transform="translate(0,34.595641)"
+       inkscape:connector-curvature="0"
+       id="el1010061"
+       style="display:inline;fill:none;stroke:#f20000;stroke-width:0.93356848;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 74.274329,48.113639 87.264458,39.40379" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer18"
+     inkscape:label="Слой 22"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       transform="translate(0,34.595641)"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802"
+       d="m 62.754873,31.633434 h 6.81192 v -0.170298 0 0.170298 h 0.1703"
+       id="el1010062"
+       inkscape:connector-curvature="0">
+      <title
+         id="title1797-9">лн3 выкл</title>
+    </path>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer22"
+     inkscape:label="Слой 23"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       inkscape:connector-curvature="0"
+       id="el1010071"
+       style="display:inline;fill:none;stroke:#090e08;stroke-width:0.93356848;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.90598294"
+       d="M 74.274329,82.70928 87.264458,73.999431" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer23"
+     inkscape:label="Слой 24"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       transform="translate(0,34.595641)"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802"
+       d="m 69.737093,31.633434 h 6.81192 v -0.170298 0 0.170298 h 0.1703"
+       id="el1010072"
+       inkscape:connector-curvature="0">
+      <title
+         id="title1797-7">лн3 выкл</title>
+    </path>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer24"
+     inkscape:label="Слой 25"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       transform="translate(0,34.595641)"
+       style="display:inline;fill:none;stroke:#e90000;stroke-width:0.92604166;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 88.146696,46.446212 74.900609,48.252496"
+       id="el1010081"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer25"
+     inkscape:label="Слой 26"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       transform="translate(0,34.595641)"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802"
+       d="m 76.719313,31.633434 h 6.81192 v -0.170298 0 0.170298 h 0.1703"
+       id="el1010082"
+       inkscape:connector-curvature="0">
+      <title
+         id="title1797-0">лн3 выкл</title>
+    </path>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer26"
+     inkscape:label="Слой 27"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       style="display:inline;fill:none;stroke:#080000;stroke-width:0.92604166;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.93162393"
+       d="m 88.146696,81.041853 -13.24609,1.80629"
+       id="el1010091"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer27"
+     inkscape:label="Слой 28"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       transform="translate(0,34.595641)"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802"
+       d="m 83.701533,31.633434 h 6.811923 v -0.170298 0 0.170298 h 0.1703"
+       id="el1010092"
+       inkscape:connector-curvature="0">
+      <title
+         id="title1797-8">лн3 выкл</title>
+    </path>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer28"
+     inkscape:label="Слой 29"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       transform="translate(0,34.595641)"
+       inkscape:connector-curvature="0"
+       id="el1010101"
+       style="display:inline;fill:none;stroke:#f00000;stroke-width:0.79427916;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94974898"
+       d="M 74.693752,47.547642 87.305645,54.23578" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer29"
+     inkscape:label="Слой 30"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       transform="translate(0,34.595641)"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802"
+       d="m 90.683756,31.633434 h 6.811923 v -0.170298 0 0.170298 h 0.1703"
+       id="el1010102"
+       inkscape:connector-curvature="0">
+      <title
+         id="title1797-71">лн3 выкл</title>
+    </path>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer30"
+     inkscape:label="Слой 31"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       inkscape:connector-curvature="0"
+       id="el1010111"
+       style="display:inline;fill:none;stroke:#050000;stroke-width:0.79427922;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.95299144"
+       d="m 74.693752,82.143283 12.61189,6.68814" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer31"
+     inkscape:label="Слой 32"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       transform="translate(0,34.595641)"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802"
+       d="m 97.665979,31.633434 h 6.811921 v -0.170298 0 0.170298 h 0.1703"
+       id="el1010112"
+       inkscape:connector-curvature="0">
+      <title
+         id="title1797-1">лн3 выкл</title>
     </path>
   </g>
 </svg>
