@@ -43,8 +43,8 @@ namespace Traffic_Lights {
                 
             }
             finally {
-                _mySqlConnection.Close();
-                _mySqlConnection.Dispose();
+                //_mySqlConnection.Close();
+                //_mySqlConnection.Dispose();
             }
         }
         //Проверка изменений через заданный интервал
@@ -135,10 +135,6 @@ namespace Traffic_Lights {
                 foreach (var state in element.States) {
                     cmd.CommandText = $"select state from {_mySqlConnection.Database}.{_titleTask}_{state.Key[1]} Where id = '{state.Key[0]}'";
                     int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
-                    //Console.WriteLine(state.Key[1]);
-                    //Console.WriteLine(state.Key[0]);
-                    //Console.WriteLine(cmd.CommandText);
-                    //Console.WriteLine(stateCheck);
                     if (stateCheck != state.Value) {
                         check = false;
                         break;

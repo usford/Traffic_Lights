@@ -177,7 +177,7 @@
       <text transform="scale(0.87307102,1.1453822)" id="text66-5" y="76.031769" x="113.93552" style="font-style:normal;font-weight:400;font-size:4.66948px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:#f200ac;stroke-width:0.161925;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.933333" xml:space="preserve">         <tspan id="tspan64-0" y="76.031769" x="113.93552" style="stroke:#f200ac;stroke-width:0.161925;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.933333">I1</tspan>      </text>
     </g>
   </g>
-  <g inkscape:groupmode="layer" id="layer4" inkscape:label="Слой 5" style="display:none" transform="translate(0,34.595642)">
+  <g inkscape:groupmode="layer" id="layer4" inkscape:label="Слой 5" style="display:inline" transform="translate(0,34.595642)">
     <g id="el1010031">
       <g style="display:inline;fill:#fffff5;fill-opacity:0.944724;stroke:#161a2d;stroke-width:4.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.829146" transform="matrix(0.26458333,0,0,0.26458333,13.874511,-94.176947)" id="g18-3">
         <ellipse style="fill:#fffff5;fill-opacity:0.944724;stroke:#161a2d;stroke-width:4.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.829146" cx="479.065" cy="427.33401" rx="42.425999" ry="41.366001" id="ellipse12" />
@@ -214,7 +214,7 @@
       <text transform="scale(0.87307103,1.1453822)" id="text66" y="76.082855" x="113.87675" style="font-style:normal;font-weight:400;font-size:4.66948px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;fill:#000000;fill-opacity:1;stroke:#f200ac;stroke-width:0.161925;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.933333" xml:space="preserve">         <tspan id="tspan64" y="76.082855" x="113.87675" style="stroke:#f200ac;stroke-width:0.161925;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.933333">I2</tspan>      </text>
     </g>
   </g>
-  <g inkscape:groupmode="layer" id="layer5" inkscape:label="Слой 6" style="display:inline" transform="translate(0,34.595642)">
+  <g inkscape:groupmode="layer" id="layer5" inkscape:label="Слой 6" style="display:none" transform="translate(0,34.595642)">
     <text id="text10-4" y="112.77908" x="56.424538" style="font-style:normal;font-weight:400;font-size:3.52777px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583" xml:space="preserve" />
     <text id="text12" y="113.54346" x="97.317215" style="font-style:normal;font-weight:400;font-size:3.52777px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583" xml:space="preserve" />
     <g id="el1010041">
@@ -269,20 +269,20 @@
       <text xml:space="preserve" style="font-style:normal;font-weight:400;font-size:10.6667px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none" x="214.927" y="550.59497" id="text14-6">         <tspan x="214.927" y="550.59497" style="font-size:13.3333px" id="tspan12-8">вкл</tspan>      </text>
     </g>
   </g>
-  <g inkscape:groupmode="layer" id="layer8" inkscape:label="Слой 9" style="display:none" transform="translate(0,34.595642)">
+  <g inkscape:groupmode="layer" id="layer8" inkscape:label="Слой 9" style="display:inline" transform="translate(0,34.595642)">
     <g id="kn1010031">
       <rect style="display:inline;fill:#333333;fill-opacity:0.371859;stroke:#000000;stroke-width:0.594619;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.946341" width="30.613087" height="9.4337187" x="102.71008" y="110.9156" ry="0.36062708" id="rect10-1" />
       <text xml:space="preserve" style="font-style:normal;font-weight:400;font-size:2.82223px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583" x="112.32029" y="116.12445" id="text14-2">         <tspan style="stroke-width:0.264583" x="112.32029" y="116.12445" id="tspan12-4">ВКЛ</tspan>      </text>
     </g>
   </g>
-  <g inkscape:groupmode="layer" id="layer9" inkscape:label="Слой 10" style="display:inline" transform="translate(0,34.595642)">
+  <g inkscape:groupmode="layer" id="layer9" inkscape:label="Слой 10" style="display:none" transform="translate(0,34.595642)">
     <g id="kn1010032" transform="translate(14.134745,0.17029362)">
       <title id="title1805">кн2 выкл</title>
       <rect style="display:inline;fill:url(#c);fill-opacity:1;stroke:#000000;stroke-width:0.59461927;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.946341" width="30.613087" height="9.4337187" x="88.57534" y="110.7453" ry="0.36062708" id="rect12-4" />
       <text y="116.43066" x="99.360023" style="font-style:normal;font-weight:400;font-size:2.82223px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583" xml:space="preserve" id="text16-6">         <tspan style="font-size:3.52777px;stroke-width:0.264583" y="116.43066" x="99.360023" id="tspan14-7">вкл</tspan>      </text>
     </g>
   </g>
-  <g inkscape:groupmode="layer" id="layer10" inkscape:label="Слой 11" style="display:inline" transform="translate(0,34.595642)">
+  <g inkscape:groupmode="layer" id="layer10" inkscape:label="Слой 11" style="display:none" transform="translate(0,34.595642)">
     <text id="text10-7" xml:space="preserve" style="font-style:normal;font-weight:400;font-size:3.52777px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583" x="71.018829" y="115.10889" />
     <g id="kn1010041">
       <rect style="display:inline;fill:#333333;fill-opacity:0.482412;stroke:#000000;stroke-width:0.594619;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.946341" width="30.613087" height="9.4337187" x="142.21925" y="110.575" ry="0.36062708" id="rect12-1" />
@@ -290,7 +290,7 @@
     </g>
     <text id="text18" xml:space="preserve" style="font-style:normal;font-weight:400;font-size:3.52777px;line-height:1.25;font-family:sans-serif;letter-spacing:0;word-spacing:0;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583" x="111.91151" y="115.87329" />
   </g>
-  <g inkscape:groupmode="layer" id="layer12" inkscape:label="Слой 12" style="display:none" transform="translate(0,34.595642)">
+  <g inkscape:groupmode="layer" id="layer12" inkscape:label="Слой 12" style="display:inline" transform="translate(0,34.595642)">
     <g transform="translate(53.64392,-0.17030032)" style="display:inline" id="kn1010042">
       <title id="title1805-8">кн3 выкл</title>
       <rect style="display:inline;fill:url(#linearGradient1557);fill-opacity:1;stroke:#000000;stroke-width:0.59461927;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.946341" width="30.613087" height="9.4337187" x="88.57534" y="110.7453" ry="0.36062708" id="rect12-4-5" />
@@ -317,12 +317,12 @@
       <title id="title1793-7">лн1 выкл</title>
     </path>
   </g>
-  <g inkscape:groupmode="layer" id="layer13" inkscape:label="Слой 16" style="display:inline" transform="translate(0,34.595642)">
+  <g inkscape:groupmode="layer" id="layer13" inkscape:label="Слой 16" style="display:none" transform="translate(0,34.595642)">
     <path style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802" d="m 123.38102,41.78292 h 6.81192 v -0.170298 0 0.170298 h 0.1703" id="el1010032" inkscape:connector-curvature="0">
       <title id="title1793">лн2 выкл</title>
     </path>
   </g>
-  <g inkscape:groupmode="layer" id="layer14" inkscape:label="Слой 17" style="display:none" transform="translate(0,34.595642)">
+  <g inkscape:groupmode="layer" id="layer14" inkscape:label="Слой 17" style="display:inline" transform="translate(0,34.595642)">
     <path style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802" d="m 123.72161,68.690029 h 6.81192 v -0.170298 0 0.170298 h 0.1703" id="el1010042" inkscape:connector-curvature="0">
       <title id="title1797">лн3 выкл</title>
     </path>
@@ -379,10 +379,10 @@
       <title id="title1797-7">лн3 выкл</title>
     </path>
   </g>
-  <g inkscape:groupmode="layer" id="layer24" inkscape:label="Слой 25" style="display:none">
+  <g inkscape:groupmode="layer" id="layer24" inkscape:label="Слой 25" style="display:inline">
     <path transform="translate(0,34.595641)" style="display:inline;fill:none;stroke:#e90000;stroke-width:0.926042;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="M 88.146696,46.446212 74.900609,48.252496" id="el1010081" inkscape:connector-curvature="0" />
   </g>
-  <g inkscape:groupmode="layer" id="layer25" inkscape:label="Слой 26" style="display:inline">
+  <g inkscape:groupmode="layer" id="layer25" inkscape:label="Слой 26" style="display:none">
     <path transform="translate(0,34.595641)" style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802" d="m 76.719313,31.633434 h 6.81192 v -0.170298 0 0.170298 h 0.1703" id="el1010082" inkscape:connector-curvature="0">
       <title id="title1797-0">лн3 выкл</title>
     </path>
@@ -395,10 +395,10 @@
       <title id="title1797-8">лн3 выкл</title>
     </path>
   </g>
-  <g inkscape:groupmode="layer" id="layer28" inkscape:label="Слой 29" style="display:inline">
+  <g inkscape:groupmode="layer" id="layer28" inkscape:label="Слой 29" style="display:none">
     <path transform="translate(0,34.595641)" inkscape:connector-curvature="0" id="el1010101" style="display:inline;fill:none;stroke:#f00000;stroke-width:0.794279;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.949749" d="M 74.693752,47.547642 87.305645,54.23578" />
   </g>
-  <g inkscape:groupmode="layer" id="layer29" inkscape:label="Слой 30" style="display:none">
+  <g inkscape:groupmode="layer" id="layer29" inkscape:label="Слой 30" style="display:inline">
     <path transform="translate(0,34.595641)" style="display:inline;fill:none;stroke:#000000;stroke-width:0.27384374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89949802" d="m 90.683756,31.633434 h 6.811923 v -0.170298 0 0.170298 h 0.1703" id="el1010102" inkscape:connector-curvature="0">
       <title id="title1797-71">лн3 выкл</title>
     </path>
