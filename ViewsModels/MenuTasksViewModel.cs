@@ -11,12 +11,15 @@ using Traffic_Lights.ConfigProgram;
 using Traffic_Lights.MySQLHandler;
 using Traffic_Lights.Interfaces;
 using System.IO;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Traffic_Lights.ViewsModels {
     public class MenuTasksViewModel : INotifyPropertyChanged {
         private List<TaskJobButton>? _taskJobButtons;
         private string _setupState = "";
         private string _textMenuTasks = "";
+        private string _setupText = "";
         private IConfigHandler _configHandler;
         private IMySQLConnection _mySqlConnection;
         public string SetupState {
@@ -24,6 +27,13 @@ namespace Traffic_Lights.ViewsModels {
             set {
                 _setupState = value;
                 OnPropertyChanged("SetupState");
+            }
+        }
+        public string SetupText {
+            get { return _setupText; }
+            set {
+                _setupText = value;
+                OnPropertyChanged("SetupText");
             }
         }
         public string TextMenuTasks {
@@ -54,6 +64,10 @@ namespace Traffic_Lights.ViewsModels {
                 if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
                 SetupState = "Программа успешно установлена";
                 TextMenuTasks = "Переход в меню отдельных программ Задачи";
+                SetupText = "Удалить";
+            }
+            else {
+                SetupText = "Установить";
             }
         }
         public ICommand SetupClick {
@@ -62,7 +76,21 @@ namespace Traffic_Lights.ViewsModels {
             }
         }
         private async void SetupClickAction() {
-            if (_configHandler.ConfigJson.isSetup) return;
+            //Удаление сервера
+            if (_configHandler.ConfigJson.isSetup) {
+                _configHandler.ConfigJson.isSetup = false;
+                _configHandler.Update();
+                SetupText = "Установить";
+                TextMenuTasks = "";
+                SetupState = "";
+                TaskJobButtons = null;
+                Process proc = new Process();
+                proc.StartInfo.FileName = @$"{new DirectoryInfo(@"..\..\..\..").FullName}\uninstallServer.bat";
+                proc.StartInfo.UseShellExecute = true;
+                proc.StartInfo.Verb = "runas";
+                proc.Start();
+                return;
+            }
             var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
             //var sqlStart = System.Diagnostics.Process.Start(@$"E:\mysqlserver.exe");
             //Console.WriteLine("Установка программы");
@@ -100,6 +128,9 @@ namespace Traffic_Lights.ViewsModels {
                     _configHandler.ConfigJson.isSetup = true;
                     _configHandler.Update();
                     setupBar.Close();
+                    var createDb = new CreateDb(_mySqlConnection, _taskJobButtons);
+                    createDb.ShowDialog();
+                    createDb.Close();
                 }         
             }        
         }

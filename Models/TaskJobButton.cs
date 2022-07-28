@@ -24,14 +24,14 @@ namespace Traffic_Lights.Models {
             get { return true; }
         }
         public void MyAction() {
-            Database db = new Database(_mySqlConnection, TaskJob);
-            try {
-                db.Create();
-            }
-            catch (Exception e) {
-                var errorWindow = new ErrorWindow("Ошибка в создании базы данных.\n Проверьте правильность файла Шаблон.бд");
-                errorWindow.ShowDialog();
-            }
+            //Database db = new Database(_mySqlConnection, TaskJob);
+            //try {
+            //    db.Create();
+            //}
+            //catch (Exception e) {
+            //    var errorWindow = new ErrorWindow("Ошибка в создании базы данных.\n Проверьте правильность файла Шаблон.бд");
+            //    errorWindow.ShowDialog();
+            //}
             
             MainWindow mw = new MainWindow(_mySqlConnection, _configHandler, TaskJob.Title);
             mw.Show();

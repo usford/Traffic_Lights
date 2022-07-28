@@ -24,8 +24,9 @@
         <Grid>
             <StackPanel>
                 <TextBlock HorizontalAlignment="Center"
-                       Margin="0, 0, 0, 15">Установить программу задачи</TextBlock>
-                <Button Content="Установить"
+                       Margin="0, 0, 0, 15"></TextBlock>
+                <Button
+                    Content="{Binding SetupText}"
                     Command="{Binding SetupClick}"/>
             </StackPanel>
             <TextBlock Text="{Binding SetupState}"
