@@ -8,6 +8,7 @@ namespace Traffic_Lights.Interfaces {
         public string PathToExcelFiles { get; }
         public string PathToConfig { get; }
         public string PathToSvgElements { get; }
+        public string PathToProject{ get; }
         public ConfigJson Initialize();
         public void Update();
     }

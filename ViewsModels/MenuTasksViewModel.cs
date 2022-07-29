@@ -85,14 +85,14 @@ namespace Traffic_Lights.ViewsModels {
                 SetupState = "";
                 TaskJobButtons = null;
                 Process proc = new Process();
-                proc.StartInfo.FileName = @$"{new DirectoryInfo(@"..\..\..\..").FullName}\uninstallServer.bat";
+                proc.StartInfo.FileName = @$"{_configHandler.PathToProject}\uninstallServer.bat";
                 proc.StartInfo.UseShellExecute = true;
                 proc.StartInfo.Verb = "runas";
                 proc.Start();
                 return;
             }
-            var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
-            //var sqlStart = System.Diagnostics.Process.Start(@$"E:\mysqlserver.exe");
+            //var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
+            var sqlStart = Process.Start(@$"{_configHandler.PathToProject}\mysqlserver.exe");
             //Console.WriteLine("Установка программы");
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(3000));
             var timerProgress = new PeriodicTimer(TimeSpan.FromMilliseconds(900));
