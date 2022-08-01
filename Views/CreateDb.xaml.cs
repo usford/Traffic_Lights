@@ -19,7 +19,6 @@ namespace Traffic_Lights.Views {
             _taskJobButtons = taskJobButtons;
             Create();
             if (_taskJobButtons.Count > 0) {
-                text_block.Text = "Установка баз данных:\n";
                 text_block.Text += $"Устанавливается бд {_taskJobButtons[0].TaskJob.Title}\n";
             }else {
                 text_block.Text = "Нет доступных баз данных\n";
@@ -48,9 +47,9 @@ namespace Traffic_Lights.Views {
         }
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             var taskJobButton = _taskJobButtons[count - 1];
-            text_block.Text += $"Установка {taskJobButton.TaskJob.Title} прошла успешно\n";
+            //text_block.Text += $"Установка {taskJobButton.TaskJob.Title} прошла успешно\n";
             if (count != _taskJobButtons.Count) {
-                text_block.Text += $"Устанавливается бд {_taskJobButtons[count].TaskJob.Title}\n";
+                text_block.Text = $"Устанавливается бд {_taskJobButtons[count].TaskJob.Title}\n";
                 worker.RunWorkerAsync();
             }
             if (count == _taskJobButtons.Count) {

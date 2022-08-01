@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:Traffic_Lights.Views"
         mc:Ignorable="d"
         Title="Установка программы"
-        Height="200" Width="350"
-        MaxHeight="200" MaxWidth="350" 
-        MinHeight="200" MinWidth="350"
-        WindowStartupLocation="CenterScreen">
+        Height="120" Width="350"
+        MaxHeight="120" MaxWidth="350" 
+        MinHeight="120" MinWidth="350"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
     <StackPanel>
         <ProgressBar Minimum="0"
                      Maximum="100"

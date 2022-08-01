@@ -6,16 +6,14 @@
         xmlns:local="clr-namespace:Traffic_Lights.Views"
         mc:Ignorable="d"
         Title="Критическая ошибка"
-        Height="200" Width="350"
-        MaxHeight="200" MaxWidth="350" 
-        MinHeight="200" MinWidth="350"
+        Height="720" Width="1280"
         WindowStartupLocation="CenterScreen">
     <StackPanel>
         <TextBlock Name="error_title"/>
         <TextBlock  
             Name="error_text_block"
             Margin="0, 10, 0, 0" 
-            Height="142" 
-            Width="336"/>
+            Height="648" 
+            Width="1246"/>
     </StackPanel>
 </Window>

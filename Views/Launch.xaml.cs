@@ -15,9 +15,9 @@ namespace Traffic_Lights.Views {
                 Hide();
             }catch (Exception e) {
                 //Console.WriteLine(e);
-                var errorWindow = new ErrorWindow("Произошла ошибка в Launch");
+                var errorWindow = new ErrorWindow(e.ToString());
                 errorWindow.ShowDialog();
-            }  
+            }
         }
     }
 }

@@ -17,16 +17,16 @@ using System.Diagnostics;
 namespace Traffic_Lights.ViewsModels {
     public class MenuTasksViewModel : INotifyPropertyChanged {
         private List<TaskJobButton>? _taskJobButtons;
-        private string _setupState = "";
         private string _textMenuTasks = "";
         private string _setupText = "";
+        private bool _installInProgress = false;
         private IConfigHandler _configHandler;
         private IMySQLConnection _mySqlConnection;
-        public string SetupState {
-            get { return _setupState; }
+        public bool InstallInProgress {
+            get { return !_installInProgress; }
             set {
-                _setupState = value;
-                OnPropertyChanged("SetupState");
+                _installInProgress = value;
+                OnPropertyChanged("InstallInProgress");
             }
         }
         public string SetupText {
@@ -62,7 +62,6 @@ namespace Traffic_Lights.ViewsModels {
                 mySqlConnection.Open();
                 _mySqlConnection = mySqlConnection;
                 if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
-                SetupState = "Программа успешно установлена";
                 TextMenuTasks = "Переход в меню отдельных программ Задачи";
                 SetupText = "Удалить";
             }
@@ -82,7 +81,6 @@ namespace Traffic_Lights.ViewsModels {
                 _configHandler.Update();
                 SetupText = "Установить";
                 TextMenuTasks = "";
-                SetupState = "";
                 TaskJobButtons = null;
                 Process proc = new Process();
                 proc.StartInfo.FileName = @$"{_configHandler.PathToProject}\uninstallServer.bat";
@@ -91,6 +89,7 @@ namespace Traffic_Lights.ViewsModels {
                 proc.Start();
                 return;
             }
+            InstallInProgress = true;
             //var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
             var sqlStart = Process.Start(@$"{_configHandler.PathToProject}\mysqlserver.exe");
             //Console.WriteLine("Установка программы");
@@ -116,21 +115,23 @@ namespace Traffic_Lights.ViewsModels {
             
 
             while (await timer.WaitForNextTickAsync()) {
-                if (!setup && sqlStart.HasExited) {
-                    setup = true;
+                if (!setup && sqlStart.HasExited) {   
                     var mySqlConnection = new MySQLConnection(_configHandler);
                     mySqlConnection.Start();
                     mySqlConnection.Open();
-                    _mySqlConnection = mySqlConnection;
-                    if (TaskJobButtons == null) TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
-                    SetupState = "Программа успешно установлена";
-                    TextMenuTasks = "Переход в меню отдельных программ Задачи";
-                    _configHandler.ConfigJson.isSetup = true;
-                    _configHandler.Update();
+                    _mySqlConnection = mySqlConnection;                    
                     setupBar.Close();
+                    if (TaskJobButtons == null) _taskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
                     var createDb = new CreateDb(_mySqlConnection, _taskJobButtons);
                     createDb.ShowDialog();
                     createDb.Close();
+                    TaskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
+                    _configHandler.ConfigJson.isSetup = true;
+                    _configHandler.Update();
+                    setup = true;
+                    InstallInProgress = false;
+                    SetupText = "Удалить";
+                    TextMenuTasks = "Переход в меню отдельных программ Задачи";
                 }         
             }        
         }
