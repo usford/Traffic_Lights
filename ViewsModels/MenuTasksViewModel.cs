@@ -83,7 +83,7 @@ namespace Traffic_Lights.ViewsModels {
                 TextMenuTasks = "";
                 TaskJobButtons = null;
                 Process proc = new Process();
-                proc.StartInfo.FileName = @$"{_configHandler.PathToProject}\uninstallServer.bat";
+                proc.StartInfo.FileName = @$"{_configHandler.PathToDirectory}\uninstallServer.bat";
                 proc.StartInfo.UseShellExecute = true;
                 proc.StartInfo.Verb = "runas";
                 proc.Start();
@@ -91,7 +91,7 @@ namespace Traffic_Lights.ViewsModels {
             }
             InstallInProgress = true;
             //var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
-            var sqlStart = Process.Start(@$"{_configHandler.PathToProject}\mysqlserver.exe");
+            var sqlStart = Process.Start(@$"{_configHandler.PathToDirectory}\mysqlserver.exe");
             //Console.WriteLine("Установка программы");
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(3000));
             var timerProgress = new PeriodicTimer(TimeSpan.FromMilliseconds(900));
