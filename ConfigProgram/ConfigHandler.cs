@@ -23,6 +23,7 @@ namespace Traffic_Lights.ConfigProgram {
             PathToExcelFiles = $@"{PathToDirectory}\Excel файлы";
             PathToConfig = $@"{PathToDirectory}\ConfigProgram\config.json";
             PathToProject = new DirectoryInfo(@"..").FullName + @"Светофор";
+            //task1
             //Для разработки
             //PathToProject = @"E:\";
             ConfigJson = Initialize(); 
