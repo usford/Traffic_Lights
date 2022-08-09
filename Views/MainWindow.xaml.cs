@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Text;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.IO;
@@ -45,7 +45,6 @@ namespace Traffic_Lights {
                 var dataConnection = _excelTaskJobRepository.GetConnection();
                 var mySQL = new MySQLUtility(this, _mySqlConnection, _configHandler, _titleTask);
                 mySQL.RunConnection();
-                ChangeSvg();
             }
             catch (Exception e) {
                 //Console.WriteLine("Ошибка в чтении схемы");
@@ -81,50 +80,51 @@ namespace Traffic_Lights {
             //Console.WriteLine($"Нажатие на кнопку: {name}");
             mySQL.InsertStateTable2(name);
         }
-        async void ChangeSvg() {
-            var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(200));
-            while (await timer.WaitForNextTickAsync()) {
-                try {
-                    using (StreamReader streamReader = new StreamReader($@"{_configHandler.PathToSvgElements}\схема.svg")) {
-                        svgMain.StreamSource = streamReader.BaseStream;
-                    }
-                }
-                catch (Exception e) {
-                    //Console.WriteLine(e);
-                }
-            }
-        }
         //Изменение элементов, где name = наименование элемента, а state = его состояние
         //TODO вынести layers
-        public async void ChangeElement(string? elementCode, int state) {
-            //Console.WriteLine($"Проверяется элемент: {elementCode}, состояние {state}");
-            if (elementCode.StartsWith("kn")) {
-                if (state == 1) {
-                    int index = (int)Char.GetNumericValue(elementCode[7]) - 1;
-                    //Console.WriteLine("------------------------");
-                    //Console.WriteLine("Текущее id кнопки: " + buttons[index].Name);
-                    //Console.WriteLine("Новое id кнопки: " + elementCode);
-                    buttons[index].Name = elementCode;
-                    canvasButtons.InvalidateVisual();
+        public async void ChangeElement(Dictionary<string, int> changedElements) {
+            foreach (var changeElement in changedElements)
+            {
+                string elementCode = changeElement.Key;
+                int state = changeElement.Value;
+                //Console.WriteLine($"Проверяется элемент: {elementCode}, состояние {state}");
+                if (elementCode.StartsWith("kn"))
+                {
+                    if (state == 1)
+                    {
+                        int index = (int)Char.GetNumericValue(elementCode[7]) - 1;
+                        //Console.WriteLine("------------------------");
+                        //Console.WriteLine("Текущее id кнопки: " + buttons[index].Name);
+                        //Console.WriteLine("Новое id кнопки: " + elementCode);
+                        buttons[index].Name = elementCode;
+                        canvasButtons.InvalidateVisual();
+                    }
                 }
-            }
-            string layerName = mapElementsSvg[elementCode];
-            var layers = xDoc.DocumentElement.ChildNodes;
-            foreach (XmlNode layer in layers) {
-                if (layer.Attributes["inkscape:label"] != null) {
-                    if (layer.Attributes["inkscape:label"].Value == layerName) {
-                        layer.Attributes["style"].Value = $"display:{(VisibleElement)state}";
+                string layerName = mapElementsSvg[elementCode];
+                var layers = xDoc.DocumentElement.ChildNodes;
+                foreach (XmlNode layer in layers)
+                {
+                    if (layer.Attributes["inkscape:label"] != null)
+                    {
+                        if (layer.Attributes["inkscape:label"].Value == layerName)
+                        {
+                            layer.Attributes["style"].Value = $"display:{(VisibleElement)state}";
+                        }
                     }
                 }
             }
-
+            
             try {
                 using (StreamWriter streamReader = new StreamWriter($@"{_configHandler.PathToSvgElements}\схема.svg")) {
                     xDoc.Save(streamReader.BaseStream);
                 }
+                using (StreamReader streamReader = new StreamReader($@"{_configHandler.PathToSvgElements}\схема.svg"))
+                {
+                    svgMain.StreamSource = streamReader.BaseStream;
+                }
             }
             catch (Exception e) {
-               // Console.WriteLine(e);
+               Console.WriteLine($"Ошибка в чтении/записи схемы.svg: {e}");
             }
         }
     }
