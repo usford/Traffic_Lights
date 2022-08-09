@@ -99,7 +99,7 @@ namespace Traffic_Lights {
                 }
                 if (!string.IsNullOrEmpty(element.Code))
                 {
-                    listChangeElements.Add(element.Code!, Convert.ToInt32(check));
+                    listChangeElements.Add(element.Code, Convert.ToInt32(check));
                 }
                 
                 //_mainWindow.ChangeElement(element.Code, Convert.ToInt32(check));
