@@ -82,8 +82,8 @@ namespace Traffic_Lights {
         }
         //Изменение элементов, где name = наименование элемента, а state = его состояние
         //TODO вынести layers
-        public async void ChangeElement(Dictionary<string, int> listChangeElements) {
-            foreach (var changeElement in listChangeElements)
+        public async void ChangeElement(Dictionary<string, int> changedElements) {
+            foreach (var changeElement in changedElements)
             {
                 string elementCode = changeElement.Key;
                 int state = changeElement.Value;

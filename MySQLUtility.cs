@@ -81,7 +81,7 @@ namespace Traffic_Lights {
             var cmd = new MySqlCommand();
             cmd.Connection = _mySqlConnection.Connection;
 
-            var listChangeElements = new Dictionary<string, int>();
+            var changedElements = new Dictionary<string, int>();
             List<ExcelTaskJobRepository.ElementInfoExcel> elements = _excelTaskJobRepository.GetLogicElement();
             foreach (var element in elements) { 
                 bool check = true;
@@ -99,12 +99,12 @@ namespace Traffic_Lights {
                 }
                 if (!string.IsNullOrEmpty(element.Code))
                 {
-                    listChangeElements.Add(element.Code, Convert.ToInt32(check));
+                    changedElements.Add(element.Code, Convert.ToInt32(check));
                 }
                 
                 //_mainWindow.ChangeElement(element.Code, Convert.ToInt32(check));
             }
-            _mainWindow.ChangeElement(listChangeElements);
+            _mainWindow.ChangeElement(changedElements);
         }
         //Проверка элементов согласно логики связей состояний ячеек в логика.xlsx
         private void CheckRelationsElement() {
