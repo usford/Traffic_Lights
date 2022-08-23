@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using MySql.Data.MySqlClient;
 using System.Threading;
+using System.Text;
 using Newtonsoft.Json;
 using System.IO;
 using Traffic_Lights.ConfigProgram;
 using Traffic_Lights.MySQLHandler;
 using Traffic_Lights.Interfaces;
+using Traffic_Lights.Views;
 
 namespace Traffic_Lights {
     class MySQLUtility {
@@ -134,8 +136,8 @@ namespace Traffic_Lights {
             List<ExcelTaskJobRepository.ElementInfoExcel> elements = _excelTaskJobRepository.GetStateButtons();
             List<ExcelTaskJobRepository.ElementInfoExcel> permitElements = _excelTaskJobRepository.GetPermitStateButtons();
             var cmd = new MySqlCommand();
+            var sbUpdate = new StringBuilder();
             cmd.Connection = _mySqlConnection.Connection;
-
             bool check = true;
 
             foreach (var element in permitElements.Where(e => e.Code == code)) {
@@ -151,12 +153,12 @@ namespace Traffic_Lights {
             if (check) {
                 foreach (var element in elements.Where(e => e.Code == code)) {
                     foreach (var state in element.States) {
-                        cmd.CommandText = $"update {_mySqlConnection.Database}.{_titleTask}_{state.Key[1]} set state = {state.Value} " +
-                            $"Where id = '{state.Key[0]}' ";
-                        //Console.WriteLine(cmd.CommandText);
-                        cmd.ExecuteNonQuery();
+                        sbUpdate.Append($"update {_mySqlConnection.Database}.{_titleTask}_{state.Key[1]} set state = {state.Value} " +
+                            $"Where id = '{state.Key[0]}'; \n");                       
                     }
                 }
+                cmd.CommandText = sbUpdate.ToString();
+                cmd.ExecuteNonQuery();
             }      
         }
     }
