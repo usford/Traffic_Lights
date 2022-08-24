@@ -74,7 +74,6 @@ namespace Traffic_Lights {
         public void ButtonClick(object sender, RoutedEventArgs e) {
             //string name = (e.OriginalSource as SvgViewBox)!.Name.Split("_")[1];
             string name = (e.OriginalSource as Button).Name;
-            var dataConnection = _excelTaskJobRepository.GetConnection();
             var mySQL = new MySQLUtility(this, _mySqlConnection, _configHandler, _titleTask);
             //Console.WriteLine((e.OriginalSource as SvgDrawingCanvas).Children.Count);
             //Console.WriteLine($"Нажатие на кнопку: {name}");
