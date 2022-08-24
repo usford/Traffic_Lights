@@ -7,7 +7,7 @@
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
         mc:Ignorable="d" 
-        Title="MainWindow" 
+        Title="Задача. Версия 0.0.2" 
         MinHeight="840" MinWidth="1060"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen">

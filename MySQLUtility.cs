@@ -4,6 +4,7 @@ using System.Linq;
 using MySql.Data.MySqlClient;
 using System.Threading;
 using System.Text;
+using System.Diagnostics;
 using Newtonsoft.Json;
 using System.IO;
 using Traffic_Lights.ConfigProgram;
@@ -133,6 +134,8 @@ namespace Traffic_Lights {
         }
         //Вставка значения в таблицу 2 по нажатию кнопки
         public void InsertStateTable2(string code) {
+            var sw = new Stopwatch();
+            sw.Start();
             List<ExcelTaskJobRepository.ElementInfoExcel> elements = _excelTaskJobRepository.GetStateButtons();
             List<ExcelTaskJobRepository.ElementInfoExcel> permitElements = _excelTaskJobRepository.GetPermitStateButtons();
             var cmd = new MySqlCommand();
@@ -159,7 +162,13 @@ namespace Traffic_Lights {
                 }
                 cmd.CommandText = sbUpdate.ToString();
                 cmd.ExecuteNonQuery();
-            }      
+            }
+            sw.Stop();
+            using (var file = new StreamWriter("DebugTL.txt", true))
+            {
+                file.WriteAsync($"Время: {DateTime.Now}\n");
+                file.WriteAsync($"Время работы вставки значений в таблицу 2: {sw.Elapsed}\n\n");
+            }
         }
     }
 }
