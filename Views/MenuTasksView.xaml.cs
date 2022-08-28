@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Windows;
+using System.ComponentModel;
+using System.Diagnostics;
 using Traffic_Lights.ViewsModels;
 using Traffic_Lights.ConfigProgram;
 using Traffic_Lights.MySQLHandler;

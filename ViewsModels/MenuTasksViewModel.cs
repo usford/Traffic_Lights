@@ -23,7 +23,7 @@ namespace Traffic_Lights.ViewsModels {
         private IConfigHandler _configHandler;
         private IMySQLConnection _mySqlConnection;
         public bool InstallInProgress {
-            get { return !_installInProgress; }
+            get { return _installInProgress; }
             set {
                 _installInProgress = value;
                 OnPropertyChanged("InstallInProgress");
@@ -52,9 +52,6 @@ namespace Traffic_Lights.ViewsModels {
         }
         public MenuTasksViewModel(IConfigHandler configHandler) {
             _configHandler = configHandler;
-
-            _configHandler.ConfigJson.isSetup = Directory.Exists(@"C:\MySQL Server 8.0");
-            _configHandler.Update();
 
             if (_configHandler.ConfigJson.isSetup) {
                 var mySqlConnection = new MySQLConnection(_configHandler);
@@ -91,7 +88,17 @@ namespace Traffic_Lights.ViewsModels {
             }
             InstallInProgress = true;
             //var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
-            var sqlStart = Process.Start(@$"{_configHandler.PathToDirectory}\mysqlserver.exe");
+            Process? sqlStart = null;
+            bool sqlSetup = false;
+            if (!Directory.Exists(@"C:\MySQL Server 8.0"))
+            {
+                sqlStart = Process.Start(@$"{_configHandler.PathToDirectory}\MySQLHandler\mysqlserver.exe");
+            }
+            else
+            {
+                sqlSetup = true;
+            }
+            
             //Console.WriteLine("Установка программы");
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(3000));
             var timerProgress = new PeriodicTimer(TimeSpan.FromMilliseconds(900));
@@ -115,7 +122,8 @@ namespace Traffic_Lights.ViewsModels {
             
 
             while (await timer.WaitForNextTickAsync()) {
-                if (!setup && sqlStart.HasExited) {   
+                if (sqlStart != null) sqlSetup = sqlStart.HasExited;
+                if (!setup && sqlSetup) {   
                     var mySqlConnection = new MySQLConnection(_configHandler);
                     mySqlConnection.Start();
                     mySqlConnection.Open();

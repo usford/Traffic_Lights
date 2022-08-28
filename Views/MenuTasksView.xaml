@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Traffic_Lights.ViewsModels"
         mc:Ignorable="d"
-        Title="Светофор. Версия 0.0.2" 
+        Title="Светофор. Версия 0.0.5" 
         MinHeight="900" MinWidth="1200"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
@@ -28,7 +28,7 @@
                 <Button
                     Content="{Binding SetupText}"
                     Command="{Binding SetupClick}"
-                    IsEnabled="{Binding InstallInProgress}" Cursor="Hand"/>
+                    IsCancel="{Binding InstallInProgress}" Cursor="Hand"/>
             </StackPanel>
         </Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
