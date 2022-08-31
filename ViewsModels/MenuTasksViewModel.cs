@@ -88,16 +88,7 @@ namespace Traffic_Lights.ViewsModels {
             }
             InstallInProgress = true;
             //var sqlStart = System.Diagnostics.Process.Start(@$"{new DirectoryInfo(@"..\..\..\..").FullName}\mysqlserver.exe");
-            Process? sqlStart = null;
-            bool sqlSetup = false;
-            if (!Directory.Exists(@"C:\MySQL Server 8.0"))
-            {
-                sqlStart = Process.Start(@$"{_configHandler.PathToDirectory}\MySQLHandler\mysqlserver.exe");
-            }
-            else
-            {
-                sqlSetup = true;
-            }
+            Process? sqlStart = Process.Start(@$"{_configHandler.PathToDirectory}\MySQLHandler\mysqlserver.exe");
             
             //Console.WriteLine("Установка программы");
             var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(3000));
@@ -122,8 +113,7 @@ namespace Traffic_Lights.ViewsModels {
             
 
             while (await timer.WaitForNextTickAsync()) {
-                if (sqlStart != null) sqlSetup = sqlStart.HasExited;
-                if (!setup && sqlSetup) {   
+                if (!setup && sqlStart.HasExited) {   
                     var mySqlConnection = new MySQLConnection(_configHandler);
                     mySqlConnection.Start();
                     mySqlConnection.Open();
