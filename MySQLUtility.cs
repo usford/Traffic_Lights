@@ -19,14 +19,19 @@ namespace Traffic_Lights {
         private IConfigHandler _configHandler;
         private ExcelTaskJobRepository _excelTaskJobRepository;
         private string _titleTask;
-        
+        List<ExcelTaskJobRepository.ElementInfoExcel> _stateButtons;
+        List<ExcelTaskJobRepository.ElementInfoExcel> _permitStateButtons;
+
         //Запуск работы с бд MySQL
         public MySQLUtility(MainWindow mainWindow, IMySQLConnection mySqlConnection, IConfigHandler configHandler, string titleTask) {
             _titleTask = titleTask;
             _mainWindow = mainWindow;
             _mySqlConnection = mySqlConnection;
             _configHandler = configHandler;
-            _excelTaskJobRepository = new ExcelTaskJobRepository(configHandler); 
+            _excelTaskJobRepository = new ExcelTaskJobRepository(configHandler);
+
+            _stateButtons = _excelTaskJobRepository.GetStateButtons();
+            _permitStateButtons = _excelTaskJobRepository.GetPermitStateButtons();
         }
         public void RunConnection() {
             if (_configHandler.ConfigJson.dropDatabase) {
@@ -134,16 +139,16 @@ namespace Traffic_Lights {
         }
         //Вставка значения в таблицу 2 по нажатию кнопки
         public void InsertStateTable2(string code) {
-            var sw = new Stopwatch();
-            sw.Start();
-            List<ExcelTaskJobRepository.ElementInfoExcel> elements = _excelTaskJobRepository.GetStateButtons();
-            List<ExcelTaskJobRepository.ElementInfoExcel> permitElements = _excelTaskJobRepository.GetPermitStateButtons();
+            var debugLogger = new DebugLogger();
+            debugLogger.Start();
+            
             var cmd = new MySqlCommand();
             var sbUpdate = new StringBuilder();
             cmd.Connection = _mySqlConnection.Connection;
             bool check = true;
+            debugLogger.Write("Чтение excel файлов:");
 
-            foreach (var element in permitElements.Where(e => e.Code == code)) {
+            foreach (var element in _permitStateButtons.Where(e => e.Code == code)) {
                 foreach (var state in element.States) {
                     cmd.CommandText = $"select state from {_mySqlConnection.Database}.{_titleTask}_{state.Key[1]} Where id = '{state.Key[0]}'";
                     int stateCheck = Convert.ToInt32(cmd.ExecuteScalar());
@@ -153,8 +158,9 @@ namespace Traffic_Lights {
                     }
                 }
             }
+            debugLogger.Write("foreach (){}:");        
             if (check) {
-                foreach (var element in elements.Where(e => e.Code == code)) {
+                foreach (var element in _stateButtons.Where(e => e.Code == code)) {
                     foreach (var state in element.States) {
                         sbUpdate.Append($"update {_mySqlConnection.Database}.{_titleTask}_{state.Key[1]} set state = {state.Value} " +
                             $"Where id = '{state.Key[0]}'; \n");                       
@@ -163,12 +169,9 @@ namespace Traffic_Lights {
                 cmd.CommandText = sbUpdate.ToString();
                 cmd.ExecuteNonQuery();
             }
-            sw.Stop();
-            using (var file = new StreamWriter("DebugTL.txt", true))
-            {
-                file.WriteAsync($"Время: {DateTime.Now}\n");
-                file.WriteAsync($"Время работы вставки значений в таблицу 2: {sw.Elapsed}\n\n");
-            }
+            debugLogger.Write("if (check){}:");
+            debugLogger.Stop();
+            debugLogger.Write("Время работы вставки значений в таблицу 2:");
         }
     }
 }
