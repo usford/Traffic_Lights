@@ -14,16 +14,20 @@ namespace Traffic_Lights.MySQLHandler {
         public void Create() {
             var cmd = new MySqlCommand();
             cmd.Connection = _mySqlConnection.Connection;
-
             cmd.CommandText = $"create database if not exists {_mySqlConnection.Database}";
             cmd.ExecuteNonQuery();
+
+            
+            cmd.CommandText = $"SHOW TABLES FROM {_mySqlConnection.Database} LIKE '{_taskJob.Title}_table1';";
+
+            var tablesExists = cmd.ExecuteScalar();
 
             cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.{_taskJob.Title}_table1 (" +
                 $"id varchar(45) not null," +
                 $"name varchar(45)," +
                 $"state int," +
                 $"comment varchar(45)," +
-                $"primary key(id))";
+                $"primary key(id)) ENGINE=MEMORY";
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.{_taskJob.Title}_table2 (" +
@@ -31,7 +35,7 @@ namespace Traffic_Lights.MySQLHandler {
                 $"name varchar(45)," +
                 $"state int," +
                 $"comment varchar(45)," +
-                $"primary key(id))";
+                $"primary key(id)) ENGINE=MEMORY";
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.{_taskJob.Title}_table1_changes (" +
@@ -40,7 +44,7 @@ namespace Traffic_Lights.MySQLHandler {
                 $"name varchar(45)," +
                 $"state int," +
                 $"comment varchar(45)," +
-                $"primary key(count))";
+                $"primary key(count)) ENGINE=MEMORY";
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = $"create table if not exists {_mySqlConnection.Database}.{_taskJob.Title}_table2_changes (" +
@@ -49,7 +53,7 @@ namespace Traffic_Lights.MySQLHandler {
                 $"name varchar(45)," +
                 $"state int," +
                 $"comment varchar(45)," +
-                $"primary key(count))";
+                $"primary key(count)) ENGINE=MEMORY";
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = $"select count(*) from {_mySqlConnection.Database}.{_taskJob.Title}_table2";
@@ -84,7 +88,7 @@ namespace Traffic_Lights.MySQLHandler {
                     comment.Value = element.Comment;
                     cmd.ExecuteNonQuery();
                 }
-
+                if (tablesExists != null) return;
                 //Создание триггеров дли отслеживания изменений в таблицах
                 cmd.CommandText = $"use {_mySqlConnection.Database}; " +
                     $"create trigger {_taskJob.Title}_table1_update " +

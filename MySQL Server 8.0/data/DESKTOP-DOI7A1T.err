@@ -1,0 +1,43 @@
+2022-09-04T21:42:16.570018Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-04T21:42:16.571281Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 39148
+2022-09-04T21:42:16.604159Z 0 [Warning] [MY-010075] [Server] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 71e9126c-2c9a-11ed-837e-b42e99cef39c.
+2022-09-04T21:42:16.615118Z 1 [ERROR] [MY-011011] [Server] Failed to find valid data directory.
+2022-09-04T21:42:16.616064Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2022-09-04T21:42:16.616356Z 0 [ERROR] [MY-010119] [Server] Aborting
+2022-09-04T21:42:16.617028Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-04T21:42:36.468742Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-04T21:42:36.469725Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 38468
+2022-09-04T21:42:36.479814Z 1 [ERROR] [MY-011011] [Server] Failed to find valid data directory.
+2022-09-04T21:42:36.480243Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2022-09-04T21:42:36.480520Z 0 [ERROR] [MY-010119] [Server] Aborting
+2022-09-04T21:42:36.481029Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-04T21:42:47.984325Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-04T21:42:47.985295Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 8656
+2022-09-04T21:42:47.995494Z 1 [ERROR] [MY-011011] [Server] Failed to find valid data directory.
+2022-09-04T21:42:47.995925Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2022-09-04T21:42:47.996203Z 0 [ERROR] [MY-010119] [Server] Aborting
+2022-09-04T21:42:47.996791Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-04T21:50:49.640325Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-04T21:50:49.641248Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 43156
+2022-09-04T21:50:49.651107Z 1 [ERROR] [MY-011011] [Server] Failed to find valid data directory.
+2022-09-04T21:50:49.651622Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2022-09-04T21:50:49.651900Z 0 [ERROR] [MY-010119] [Server] Aborting
+2022-09-04T21:50:49.652436Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-04T21:51:43.906999Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-04T21:51:43.907899Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 37908
+2022-09-04T21:51:43.919566Z 1 [ERROR] [MY-011011] [Server] Failed to find valid data directory.
+2022-09-04T21:51:43.919991Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2022-09-04T21:51:43.920300Z 0 [ERROR] [MY-010119] [Server] Aborting
+2022-09-04T21:51:43.920821Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-04T21:51:51.749316Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-04T21:51:51.750279Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 7580
+2022-09-04T21:51:51.760644Z 1 [ERROR] [MY-011011] [Server] Failed to find valid data directory.
+2022-09-04T21:51:51.761066Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2022-09-04T21:51:51.761340Z 0 [ERROR] [MY-010119] [Server] Aborting
+2022-09-04T21:51:51.761823Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-04T21:52:45.406731Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-04T21:52:45.407645Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 34968
+2022-09-04T21:52:45.430876Z 1 [ERROR] [MY-011011] [Server] Failed to find valid data directory.
+2022-09-04T21:52:45.431426Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2022-09-04T21:52:45.431703Z 0 [ERROR] [MY-010119] [Server] Aborting
+2022-09-04T21:52:45.432220Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
