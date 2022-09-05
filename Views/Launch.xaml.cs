@@ -16,7 +16,6 @@ namespace Traffic_Lights.Views {
                 var sb = new StringBuilder();
                 using (var streamReader = new StreamReader(@$"{config.PathToDirectory}\MySQL Server 8.0\data\my.ini"))
                 {
-
                     var line = streamReader.ReadLine();
                     int counter = 0;
                     while (line != null)

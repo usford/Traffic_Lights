@@ -13,16 +13,16 @@ namespace Traffic_Lights.ConfigProgram {
         public string PathToConfig { get; }
         public string PathToProject { get; }
         public ConfigHandler() {
-            bool isDevelopment = true;
+            bool isDevelopment = false;
 
             PathToDirectory = isDevelopment
                 ? new DirectoryInfo(@"..\..\..").FullName
-                : new DirectoryInfo(@"..").FullName + @"Светофор\Traffic_Lights";
+                : new DirectoryInfo(@"..").FullName + @"Traffic\Traffic_Lights";
 
             PathToSvgElements = $@"{PathToDirectory}\Элементы схемы";
             PathToExcelFiles = $@"{PathToDirectory}\Excel файлы";
             PathToConfig = $@"{PathToDirectory}\ConfigProgram\config.json";
-            PathToProject = new DirectoryInfo(@"..").FullName + @"Светофор";
+            PathToProject = new DirectoryInfo(@"..").FullName + @"Traffic";
             //Для разработки
             //PathToProject = @"E:\";
             ConfigJson = Initialize(); 
