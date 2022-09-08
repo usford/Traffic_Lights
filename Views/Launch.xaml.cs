@@ -3,6 +3,7 @@ using System.Windows;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
 using Traffic_Lights.ConfigProgram;
 using Traffic_Lights.MySQLHandler;
 
@@ -45,6 +46,11 @@ namespace Traffic_Lights.Views {
                 proc.StartInfo.UseShellExecute = true;
                 proc.StartInfo.Verb = "runas";
                 proc.Start();
+
+                while (!proc.HasExited)
+                {
+                    Thread.Sleep(100);
+                }
                 //Process proc = new Process();
                 //proc.StartInfo.FileName = @$"{config.PathToDirectory}\uninstallServer.bat";
                 //proc.StartInfo.UseShellExecute = true;

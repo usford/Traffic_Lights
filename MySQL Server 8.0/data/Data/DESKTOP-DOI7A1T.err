@@ -505,3 +505,91 @@
 2022-09-04T23:48:45.712222Z 0 [System] [MY-010931] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
 2022-09-04T23:49:49.973582Z 0 [System] [MY-013105] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Normal shutdown.
 2022-09-04T23:49:50.350266Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-08T17:17:26.310278Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-08T17:17:26.311137Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 13560
+2022-09-08T17:17:26.365979Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-09-08T17:17:26.577215Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-09-08T17:17:26.791052Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-09-08T17:17:26.791354Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-09-08T17:17:26.835437Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-09-08T17:17:26.835564Z 0 [System] [MY-010931] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2022-09-08T17:19:06.737483Z 0 [System] [MY-013105] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Normal shutdown.
+2022-09-08T17:19:07.807404Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-08T17:19:10.545653Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-08T17:19:10.546696Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 14268
+2022-09-08T17:19:10.563484Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-09-08T17:19:10.762893Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-09-08T17:19:10.937659Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-09-08T17:19:10.937947Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-09-08T17:19:10.968013Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-09-08T17:19:10.968135Z 0 [System] [MY-010931] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2022-09-08T18:22:04.776618Z 0 [System] [MY-013105] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Normal shutdown.
+2022-09-08T18:22:05.401631Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-08T18:22:08.667745Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-08T18:22:08.668577Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 888
+2022-09-08T18:22:08.678544Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-09-08T18:22:08.855295Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-09-08T18:22:09.026123Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-09-08T18:22:09.026424Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-09-08T18:22:09.054662Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-09-08T18:22:09.054817Z 0 [System] [MY-010931] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2022-09-08T18:22:29.777273Z 0 [System] [MY-013105] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Normal shutdown.
+2022-09-08T18:22:30.385394Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-08T18:22:33.716469Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-08T18:22:33.717499Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 19352
+2022-09-08T18:22:33.728380Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-09-08T18:22:33.918749Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-09-08T18:22:34.153469Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-09-08T18:22:34.153790Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-09-08T18:22:34.183025Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-09-08T18:22:34.183183Z 0 [System] [MY-010931] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2022-09-08T18:45:56.464439Z 0 [System] [MY-013105] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Normal shutdown.
+2022-09-08T18:45:57.749210Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-08T18:46:00.371959Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-08T18:46:00.372822Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 17644
+2022-09-08T18:46:00.408621Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-09-08T18:46:00.618968Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-09-08T18:46:00.813358Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-09-08T18:46:00.813659Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-09-08T18:46:00.850703Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-09-08T18:46:00.850838Z 0 [System] [MY-010931] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2022-09-08T18:46:37.069609Z 0 [System] [MY-013105] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Normal shutdown.
+2022-09-08T18:46:38.214312Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-08T18:46:40.575272Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-08T18:46:40.576204Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 20992
+2022-09-08T18:46:40.586326Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-09-08T18:46:40.856522Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-09-08T18:46:41.036546Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-09-08T18:46:41.036844Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-09-08T18:46:41.065707Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-09-08T18:46:41.065838Z 0 [System] [MY-010931] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2022-09-08T18:47:28.759050Z 0 [System] [MY-013105] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Normal shutdown.
+2022-09-08T18:47:29.631603Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-08T18:47:32.308800Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-08T18:47:32.309698Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 19356
+2022-09-08T18:47:32.321066Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-09-08T18:47:32.518726Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-09-08T18:47:32.699388Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-09-08T18:47:32.699686Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-09-08T18:47:32.730406Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-09-08T18:47:32.730626Z 0 [System] [MY-010931] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2022-09-08T21:16:51.513310Z 0 [System] [MY-013105] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Normal shutdown.
+2022-09-08T21:16:51.962188Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-08T21:16:55.028662Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-08T21:16:55.029518Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 17760
+2022-09-08T21:16:55.040500Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-09-08T21:16:55.226075Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-09-08T21:16:55.456802Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-09-08T21:16:55.457102Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-09-08T21:16:55.486852Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-09-08T21:16:55.487006Z 0 [System] [MY-010931] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2022-09-08T21:17:25.638321Z 0 [System] [MY-013105] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Normal shutdown.
+2022-09-08T21:17:26.762502Z 0 [System] [MY-010910] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-08T21:17:29.184547Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-08T21:17:29.185394Z 0 [System] [MY-010116] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 4136
+2022-09-08T21:17:29.195623Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-09-08T21:17:29.383033Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-09-08T21:17:29.559200Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-09-08T21:17:29.559500Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-09-08T21:17:29.589137Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-09-08T21:17:29.589274Z 0 [System] [MY-010931] [Server] E:\VS projects\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
