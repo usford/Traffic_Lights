@@ -14,9 +14,22 @@ namespace Traffic_Lights.Views {
         public MenuTasksView(IConfigHandler configHandler)  {
             InitializeComponent();
             //Console.OutputEncoding = Encoding.UTF8;
-            _configHandler = configHandler;
+            try
+            {
+                _configHandler = configHandler;
 
-            DataContext = new MenuTasksViewModel(_configHandler);
+                DataContext = new MenuTasksViewModel(_configHandler);
+            }
+            catch (Exception e)
+            {
+                var errorWindow = new ErrorWindow(e.ToString());
+                var debugLogger = new DebugLogger();
+                errorWindow.ShowDialog();
+                debugLogger.Start();
+                debugLogger.Write("критическая ошибка:\n" + e.Message);
+                debugLogger.Stop();
+            }
+            
         }
         public void ButtonClose (object sender, RoutedEventArgs e) {
             Close();

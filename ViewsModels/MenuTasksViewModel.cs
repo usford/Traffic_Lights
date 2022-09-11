@@ -52,7 +52,6 @@ namespace Traffic_Lights.ViewsModels {
         }
         public MenuTasksViewModel(IConfigHandler configHandler) {
             _configHandler = configHandler;
-
             if (_configHandler.ConfigJson.isSetup) {
                 var mySqlConnection = new MySQLConnection(_configHandler);
                 mySqlConnection.Start();

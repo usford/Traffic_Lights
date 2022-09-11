@@ -141,7 +141,6 @@ namespace Traffic_Lights {
         public void InsertStateTable2(string code) {
             var debugLogger = new DebugLogger();
             debugLogger.Start();
-            
             var cmd = new MySqlCommand();
             var sbUpdate = new StringBuilder();
             cmd.Connection = _mySqlConnection.Connection;

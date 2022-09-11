@@ -56,14 +56,17 @@ namespace Traffic_Lights.Views {
                 //proc.StartInfo.UseShellExecute = true;
                 //proc.StartInfo.Verb = "runas";
                 //proc.Start();
-
                 var menuTasksView = new MenuTasksView(config);
                 menuTasksView.Show();
                 Hide();
             }catch (Exception e) {
                 //Console.WriteLine(e);
                 var errorWindow = new ErrorWindow(e.ToString());
-                errorWindow.ShowDialog();
+                var debugLogger = new DebugLogger();
+                errorWindow.ShowDialog();          
+                debugLogger.Start();
+                debugLogger.Write("критическая ошибка:\n" + e.Message);
+                debugLogger.Stop();
             }
         }
     }
