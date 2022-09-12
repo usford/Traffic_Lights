@@ -13,7 +13,7 @@ namespace Traffic_Lights.ConfigProgram {
         public string PathToConfig { get; }
         public string PathToProject { get; }
         public ConfigHandler() {
-            bool isDevelopment = true;
+            bool isDevelopment = false;
 
             PathToDirectory = isDevelopment
                 ? new DirectoryInfo(@"..\..\..").FullName

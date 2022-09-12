@@ -575,3 +575,15 @@
 2022-09-11T21:14:51.206091Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
 2022-09-11T21:14:51.237732Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
 2022-09-11T21:14:51.238009Z 0 [System] [MY-010931] [Server] C:\GitHub\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2022-09-11T21:18:05.257468Z 0 [System] [MY-013105] [Server] C:\GitHub\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Normal shutdown.
+2022-09-11T21:18:06.166331Z 0 [System] [MY-010910] [Server] C:\GitHub\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-09-12T21:04:15.751329Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-09-12T21:04:15.752774Z 0 [System] [MY-010116] [Server] C:\GitHub\Traffic_Lights\MySQL Server 8.0\bin\mysqld (mysqld 8.0.28) starting as process 19592
+2022-09-12T21:04:15.815645Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-09-12T21:04:16.028565Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-09-12T21:04:16.201685Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-09-12T21:04:16.202011Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-09-12T21:04:16.237621Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-09-12T21:04:16.237862Z 0 [System] [MY-010931] [Server] C:\GitHub\Traffic_Lights\MySQL Server 8.0\bin\mysqld: ready for connections. Version: '8.0.28'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2022-09-12T21:04:26.163397Z 0 [System] [MY-013105] [Server] C:\GitHub\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Normal shutdown.
+2022-09-12T21:04:26.398636Z 0 [System] [MY-010910] [Server] C:\GitHub\Traffic_Lights\MySQL Server 8.0\bin\mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
