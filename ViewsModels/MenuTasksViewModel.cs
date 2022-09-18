@@ -115,7 +115,7 @@ namespace Traffic_Lights.ViewsModels {
                 if (!setup) {   
                     var mySqlConnection = new MySQLConnection(_configHandler);
                     mySqlConnection.Start();
-                    mySqlConnection.Open();
+                    await Task.Run(() => mySqlConnection.Open());
                     _mySqlConnection = mySqlConnection;                    
                     setupBar.Close();
                     if (TaskJobButtons == null) _taskJobButtons = new TaskJobButtonList(new TaskJobRepository(_mySqlConnection, _configHandler)).taskList!;
