@@ -4,6 +4,7 @@ using ClosedXML.Excel;
 using Traffic_Lights.ConfigProgram;
 using Traffic_Lights.Interfaces;
 using Traffic_Lights.Views;
+using System.Threading;
 
 namespace Traffic_Lights.MySQLHandler {
     public class MySQLConnection : IMySQLConnection {
@@ -60,19 +61,17 @@ namespace Traffic_Lights.MySQLHandler {
         }
         public void Open() {
             //Console.WriteLine($"Запустился сервер. Host: {Host}, Port={Port}");
-            try
+            while (Convert.ToString(Connection.State) == "Closed")
             {
-                Connection!.Open();
-            } catch (Exception e)
-            {
-                var errorWindow = new ErrorWindow(e.ToString());
-                var debugLogger = new DebugLogger();
-                errorWindow.ShowDialog();
-                debugLogger.Start();
-                debugLogger.Write("критическая ошибка:\n" + e.Message);
-                debugLogger.Stop();
-            }
-            
+                try
+                {
+                    Connection!.Open();
+                }catch(Exception e)
+                {
+                    Thread.Sleep(1000);
+                }
+                
+            }           
         }
         public void Close() {
             Connection!.Close();
