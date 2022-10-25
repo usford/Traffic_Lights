@@ -1,0 +1,57 @@
+﻿<Window x:Class="Traffic_Lights.Views.MenuTasksView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Traffic_Lights.ViewsModels"
+        mc:Ignorable="d"
+        Title="Светофор. Версия 0.0.14" 
+        MinHeight="900" MinWidth="1200"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center"
+                       Margin="0, 0, 0, 15"></TextBlock>
+                <Button
+                    Content="{Binding SetupText}"
+                    Command="{Binding SetupClick}"
+                    IsCancel="{Binding InstallInProgress}" Cursor="Hand"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock TextAlignment="Center" Text="{Binding TextMenuTasks}"></TextBlock>
+            <ItemsControl ItemsSource="{Binding TaskJobButtons}" VerticalAlignment="Center">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{Binding TaskJob.Title}" 
+                                    IsEnabled="{Binding TaskJob.Enabled}"
+                                    Command="{Binding ClickCommand}"
+                                    Click="ButtonClose"
+                                    Margin="0, 15, 0, 0"
+                            />
+                            <TextBlock Text="{Binding TaskJob.Comment}"   
+                                       VerticalAlignment="Center"
+                                       Margin="20, 0, 0, 0"
+                                       FontSize="15"
+                            />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Grid>
+</Window>
